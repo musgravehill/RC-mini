@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<!--[if IE 6]>
+<html id="ie6" lang="en-US">
+<![endif]-->
+<!--[if IE 7]>
+<html id="ie7" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html id="ie8" lang="en-US">
+<![endif]-->
+<!--[if !(IE 6) | !(IE 7) | !(IE 8)  ]><!-->
+<html lang="en-US">
+<!--<![endif]-->
+<head>
+	<meta charset="UTF-8" />
+	<title>  Three Ways To Read A PWM Signal With Arduino | BenRipley.com</title>
+			
+		
+	<link rel="stylesheet" href="http://www.benripley.com/wp-content/themes/Lucid/style.css" type="text/css" />
+	<link rel="pingback" href="http://www.benripley.com/xmlrpc.php" />
+	
+	<!--[if lt IE 9]>
+		<script src="http://www.benripley.com/wp-content/themes/Lucid/js/html5.js" type="text/javascript"></script>
+	<![endif]-->
+
+	<script type="text/javascript">
+		document.documentElement.className = 'js';
+	</script>
+
+	<link rel="alternate" type="application/rss+xml" title="BenRipley.com &raquo; Feed" href="http://www.benripley.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="BenRipley.com &raquo; Comments Feed" href="http://www.benripley.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="BenRipley.com &raquo; Three Ways To Read A PWM Signal With Arduino Comments Feed" href="http://www.benripley.com/diy/arduino/three-ways-to-read-a-pwm-signal-with-arduino/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/72x72\/","ext":".png","source":{"concatemoji":"http:\/\/www.benripley.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.4.8"}};
+			!function(a,b,c){function d(a){var c,d,e,f=b.createElement("canvas"),g=f.getContext&&f.getContext("2d"),h=String.fromCharCode;return g&&g.fillText?(g.textBaseline="top",g.font="600 32px Arial","flag"===a?(g.fillText(h(55356,56806,55356,56826),0,0),f.toDataURL().length>3e3):"diversity"===a?(g.fillText(h(55356,57221),0,0),c=g.getImageData(16,16,1,1).data,g.fillText(h(55356,57221,55356,57343),0,0),c=g.getImageData(16,16,1,1).data,e=c[0]+","+c[1]+","+c[2]+","+c[3],d!==e):("simple"===a?g.fillText(h(55357,56835),0,0):g.fillText(h(55356,57135),0,0),0!==g.getImageData(16,16,1,1).data[0])):!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g;c.supports={simple:d("simple"),flag:d("flag"),unicode8:d("unicode8"),diversity:d("diversity")},c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.simple&&c.supports.flag&&c.supports.unicode8&&c.supports.diversity||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<meta content="Lucid v.1.3" name="generator"/><style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='cptch_stylesheet-css'  href='http://www.benripley.com/wp-content/plugins/captcha/css/style.css?ver=4.4.8' type='text/css' media='all' />
+<link rel='stylesheet' id='dashicons-css'  href='http://www.benripley.com/wp-includes/css/dashicons.min.css?ver=4.4.8' type='text/css' media='all' />
+<link rel='stylesheet' id='cptch_desktop_style-css'  href='http://www.benripley.com/wp-content/plugins/captcha/css/desktop_style.css?ver=4.4.8' type='text/css' media='all' />
+<link rel='stylesheet' id='google_font_open_sans-css'  href='http://fonts.googleapis.com/css?family=Open+Sans%3A400%2C700%2C300&#038;ver=4.4.8' type='text/css' media='all' />
+<link rel='stylesheet' id='google_font_open_sans_condensed-css'  href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed%3A300%2C700&#038;ver=4.4.8' type='text/css' media='all' />
+<link rel='stylesheet' id='et-shortcodes-css-css'  href='http://www.benripley.com/wp-content/themes/Lucid/epanel/shortcodes/css/shortcodes.css?ver=3.0' type='text/css' media='all' />
+<link rel='stylesheet' id='et-shortcodes-responsive-css-css'  href='http://www.benripley.com/wp-content/themes/Lucid/epanel/shortcodes/css/shortcodes_responsive.css?ver=3.0' type='text/css' media='all' />
+<link rel='stylesheet' id='fancybox-css'  href='http://www.benripley.com/wp-content/themes/Lucid/epanel/page_templates/js/fancybox/jquery.fancybox-1.3.4.css?ver=1.3.4' type='text/css' media='screen' />
+<link rel='stylesheet' id='et_page_templates-css'  href='http://www.benripley.com/wp-content/themes/Lucid/epanel/page_templates/page_templates.css?ver=1.8' type='text/css' media='screen' />
+<script type='text/javascript' src='http://www.benripley.com/wp-includes/js/jquery/jquery.js?ver=1.11.3'></script>
+<script type='text/javascript' src='http://www.benripley.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var cptch_vars = {"nonce":"35c2262006","ajaxurl":"http:\/\/www.benripley.com\/wp-admin\/admin-ajax.php","enlarge":"0"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://www.benripley.com/wp-content/plugins/captcha/js/front_end_script.js?ver=4.4.8'></script>
+<link rel='https://api.w.org/' href='http://www.benripley.com/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.benripley.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.benripley.com/wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Bulk Importing Data From Xml' href='http://www.benripley.com/development/sql/bulk-importing-data-from-xml/' />
+<link rel='next' title='Implementing a Quadcopter IMU' href='http://www.benripley.com/diy/arduino/implementing-a-quadcopter-imu/' />
+<meta name="generator" content="WordPress 4.4.8" />
+<link rel="canonical" href="http://www.benripley.com/diy/arduino/three-ways-to-read-a-pwm-signal-with-arduino/" />
+<link rel='shortlink' href='http://www.benripley.com/?p=779' />
+<link rel="alternate" type="application/json+oembed" href="http://www.benripley.com/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fwww.benripley.com%2Fdiy%2Farduino%2Fthree-ways-to-read-a-pwm-signal-with-arduino%2F" />
+<link rel="alternate" type="text/xml+oembed" href="http://www.benripley.com/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fwww.benripley.com%2Fdiy%2Farduino%2Fthree-ways-to-read-a-pwm-signal-with-arduino%2F&#038;format=xml" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" /><style>
+		#featured .flex-direction-nav a:hover, #video-slider-section .flex-direction-nav a:hover { background-color: #00befe; }
+			#featured_section .active-slide .post-meta, #featured_section .switcher_hover .post-meta, .et_tab_link_hover .post-meta { background: #009cff; }
+			h3.main-title { background-color: #009cff; -moz-box-shadow: inset 0 0 10px rgba(0,133,245,0.1); -webkit-box-shadow: inset 0 0 10px rgba(0,133,245,0.1); box-shadow: inset 0 0 10px rgba(0,133,245,0.1); border: 1px solid #0085f5; }
+				.widget li { background: url(http://www.benripley.com/wp-content/themes/Lucid/images/widget-blue-bullet.png) no-repeat 24px 24px; }
+				.footer-widget li { background: url(http://www.benripley.com/wp-content/themes/Lucid/images/widget-blue-bullet.png) no-repeat 0 4px; }
+				.et_mobile_menu li a { background-image: url(http://www.benripley.com/wp-content/themes/Lucid/images/widget-blue-bullet.png); }
+		a { color: #009cff; }
+		.et_video_play { background-color: #009cff; }
+		#second-menu > ul > li > a:hover { background-color: #009cff; -moz-box-shadow: inset 0 0 10px rgba(0,0,0,0.3); -webkit-box-shadow: inset 0 0 10px rgba(0,0,0,0.3); box-shadow: inset 0 0 10px rgba(0,0,0,0.3); }
+		#second-menu ul ul li a:hover { background-color: #33b0ff; }
+		#second-menu ul.nav li ul { background: #009cff; }
+		#second-menu ul ul li a { border-top: 1px solid #33b0ff; }
+		</style><style type="text/css" id="syntaxhighlighteranchor"></style>
+</head>
+<body class="single single-post postid-779 single-format-standard chrome et_includes_sidebar">
+		<header id="main-header">
+		<div class="container clearfix">
+			<a href="#" class="mobile_nav closed">Pages Menu<span></span></a>			<nav id="top-menu">
+										<ul class="nav et_disable_top_tier">
+															<li ><a href="http://www.benripley.com">Home</a></li>
+							
+							<li class="page_item page-item-227"><a href="http://www.benripley.com/contact-me/">Contact Me</a></li>
+								<li class="cat-item cat-item-4"><a href="http://www.benripley.com/category/development/" >Development</a>
+<ul class='children'>
+	<li class="cat-item cat-item-16"><a href="http://www.benripley.com/category/development/net/" >.Net</a>
+</li>
+	<li class="cat-item cat-item-33"><a href="http://www.benripley.com/category/development/design-patterns/" >Design Patterns</a>
+</li>
+	<li class="cat-item cat-item-6"><a href="http://www.benripley.com/category/development/ios/" >iOS</a>
+</li>
+	<li class="cat-item cat-item-15"><a href="http://www.benripley.com/category/development/javascript/" >JavaScript</a>
+</li>
+	<li class="cat-item cat-item-19"><a href="http://www.benripley.com/category/development/linux/" >Linux</a>
+</li>
+	<li class="cat-item cat-item-17"><a href="http://www.benripley.com/category/development/sql/" >SQL</a>
+</li>
+</ul>
+</li>
+	<li class="cat-item cat-item-3"><a href="http://www.benripley.com/category/diy/" >DIY</a>
+<ul class='children'>
+	<li class="cat-item cat-item-40"><a href="http://www.benripley.com/category/diy/arduino/" >Arduino</a>
+</li>
+	<li class="cat-item cat-item-39"><a href="http://www.benripley.com/category/diy/audio/" >Audio</a>
+</li>
+	<li class="cat-item cat-item-42"><a href="http://www.benripley.com/category/diy/quadcopter/" >Quadcopter</a>
+</li>
+</ul>
+</li>
+	<li class="cat-item cat-item-5"><a href="http://www.benripley.com/category/music/" >Music</a>
+</li>
+	<li class="cat-item cat-item-36"><a href="http://www.benripley.com/category/photography/" >Photography</a>
+</li>
+						</ul>
+								</nav>	
+			
+			<div id="social-icons"><a href='http://ca.linkedin.com/pub/ben-ripley/16/a26/112' rel='nofollow' title='LinkedIn' alt='LinkedIn' style='height:35px;width:35px;background-image:url(http://www.benripley.com/wp-content/uploads/2013/09/social_media_35x35.png);background-position:-224px -1px;' /><a href='http://facebook.com/ben.ripley.944' rel='nofollow' title='Facebook' alt='Facebook' style='height:35px;width:35px;background-image:url(http://www.benripley.com/wp-content/uploads/2013/09/social_media_35x35.png);background-position:-76px -1px;' /><a href='https://plus.google.com/103035294872026310524/posts' rel='nofollow' title='Google+' alt='Google+' style='height:35px;width:35px;background-image:url(http://www.benripley.com/wp-content/uploads/2013/09/social_media_35x35.png);background-position:-150px -1px;' /><a href='https://twitter.com/benripley' rel='nofollow' title='Twitter' alt='Twitter' style='height:35px;width:35px;background-image:url(http://www.benripley.com/wp-content/uploads/2013/09/social_media_35x35.png);background-position:-520px -1px;' /><a href='https://github.com/benripley' rel='nofollow' title='Github' alt='Github' style='height:35px;width:35px;background-image:url(http://www.benripley.com/wp-content/uploads/2013/09/social_media_35x35.png);background-position:-927px -1px;' /></div> <!-- end #social-icons -->			
+			<div id="search">
+				<div id="search-form">
+					<form method="get" id="searchform" action="http://www.benripley.com/">
+						<input type="text" value="Search This Site..." name="s" id="searchinput" />
+						<input type="image" src="http://www.benripley.com/wp-content/themes/Lucid/images/search_btn.png" id="searchsubmit" />
+					</form>
+				</div> <!-- end #search-form -->
+			</div> <!-- end #search -->
+		</div> <!-- end .container -->
+	</header> <!-- end #main-header -->
+	
+		
+	<div class="container">
+		<div id="logo-area">
+			<a href="http://www.benripley.com">
+								<img src="http://www.benripley.com/wp-content/uploads/2012/11/Logo1.png" alt="BenRipley.com" id="logo"/>
+			</a>
+			
+					</div>	
+	</div> <!-- end .container -->
+	<div id="secondary-menu">
+		<div class="container">
+			<a href="#" class="mobile_nav closed">Categories Menu<span></span></a>			<nav id="second-menu" class="clearfix">
+										<ul class="nav et_disable_top_tier">
+															<li ><a href="http://www.benripley.com">Home</a></li>
+							
+							<li class="page_item page-item-227"><a href="http://www.benripley.com/contact-me/">Contact Me</a></li>
+								<li class="cat-item cat-item-4"><a href="http://www.benripley.com/category/development/" >Development</a>
+<ul class='children'>
+	<li class="cat-item cat-item-16"><a href="http://www.benripley.com/category/development/net/" >.Net</a>
+</li>
+	<li class="cat-item cat-item-33"><a href="http://www.benripley.com/category/development/design-patterns/" >Design Patterns</a>
+</li>
+	<li class="cat-item cat-item-6"><a href="http://www.benripley.com/category/development/ios/" >iOS</a>
+</li>
+	<li class="cat-item cat-item-15"><a href="http://www.benripley.com/category/development/javascript/" >JavaScript</a>
+</li>
+	<li class="cat-item cat-item-19"><a href="http://www.benripley.com/category/development/linux/" >Linux</a>
+</li>
+	<li class="cat-item cat-item-17"><a href="http://www.benripley.com/category/development/sql/" >SQL</a>
+</li>
+</ul>
+</li>
+	<li class="cat-item cat-item-3"><a href="http://www.benripley.com/category/diy/" >DIY</a>
+<ul class='children'>
+	<li class="cat-item cat-item-40"><a href="http://www.benripley.com/category/diy/arduino/" >Arduino</a>
+</li>
+	<li class="cat-item cat-item-39"><a href="http://www.benripley.com/category/diy/audio/" >Audio</a>
+</li>
+	<li class="cat-item cat-item-42"><a href="http://www.benripley.com/category/diy/quadcopter/" >Quadcopter</a>
+</li>
+</ul>
+</li>
+	<li class="cat-item cat-item-5"><a href="http://www.benripley.com/category/music/" >Music</a>
+</li>
+	<li class="cat-item cat-item-36"><a href="http://www.benripley.com/category/photography/" >Photography</a>
+</li>
+						</ul>
+								</nav>
+		</div> <!-- end .container -->
+	</div> <!-- end #secondary-menu -->
+	<div id="main-area">
+		<div class="container">
+
+<div id="content-area" class="clearfix">
+	<div id="left-area">
+		<div id="breadcrumbs" class="clearfix">
+					<a href="http://www.benripley.com" class="breadcrumbs_home">Home</a> <span class="raquo">&raquo;</span>
+				
+									<a href="http://www.benripley.com/category/diy/arduino/">Arduino</a> <span class="raquo">&raquo;</span> Three Ways To Read A PWM Signal With Arduino					</div> <!-- end #breadcrumbs -->				
+	<article id="post-779" class="entry clearfix post-779 post type-post status-publish format-standard hentry category-arduino tag-interrupts tag-pwm">
+		<p class="meta-info">Posted  by <a href="http://www.benripley.com/author/admin/" title="Posts by Ben" rel="author">Ben</a> on Jun 6, 2014 in <a href="http://www.benripley.com/category/diy/arduino/" rel="category tag">Arduino</a> | <span class="comments-number"><a href="http://www.benripley.com/diy/arduino/three-ways-to-read-a-pwm-signal-with-arduino/#respond">0 comments</a></span></p>
+						
+		<div class="post_content clearfix">
+			<h1 class="title">Three Ways To Read A PWM Signal With Arduino</h1>
+			
+			<p>PWM (<a href="http://en.wikipedia.org/wiki/Pulse-width_modulation" target="_blank">Pulse-Width Modulation</a>) is a modulation technique that controls the width of the pulse based on modulator signal information. PWM can be used to encode information for transmission or to control of the power supplied to electrical devices such as motors.</p>
+<p>Generating a PWM signal with an Arduino is <a href="http://arduino.cc/en/Reference/analogWrite" target="_blank">quite easy</a>. There is significantly less documentation on how best to read a PWM signal. I needed to read the receiver signals for a remote controlled Quadcopter and after doing some research, I discovered three methods of reading a PWM signal with an Arduino.</p>
+<h3>The Gist</h3>
+<p>PWM works by varying the width of the on signal (read Duty Cycle) within a fixed signal frequency or period of time. So what we are really looking for is the length of time the signal remains high for each cycle. There are several ways to do this. The easiest is using the pulseIn function as shown below.</p>
+<h4>1. The pulseIn() Function</h4>
+<p>The pulseIn() waits for the pin to go HIGH, starts timing, then waits for the pin to go LOW and stops timing. Returns the length of the pulse in microseconds.</p>
+<pre class="brush: cpp; title: The pulseIn Function; notranslate" title="The pulseIn Function">
+byte PWM_PIN = 3;
+
+int pwm_value;
+
+void setup() {
+  pinMode(PWM_PIN, INPUT);
+  Serial.begin(115200);
+}
+
+void loop() {
+  pwm_value = pulseIn(PWM_PIN, HIGH);
+  Serial.println(pwm_value);
+}
+</pre>
+<h4>2. External Interrupts</h4>
+<p>The pulseIn function works well and is really simple. However, the downside is that the processor cannot be used while it is waiting for the pin to go low. This is not a very efficient use of our CPU cycles. We can improve this by using an event-driven interrupt system to handle the measurement of the PWM signal. Arduino provides the <a href="http://arduino.cc/en/Reference/attachInterrupt" target="_blank">attachInterrupt</a> function to do just this.</p>
+<p>Most Arduino boards have two external interrupts: numbers 0 (on digital pin 2) and 1 (on digital pin 3).  These interrupts can be set to trigger on RISING or FALLING signal edges, or on low level. Once attached, when an interrupt is triggered, the specified interrupt service routine (ISR) will be called.</p>
+<p>Note the use of volatile variables in this sketch. The Arduino docs <a href="http://arduino.cc/en/Reference/Volatile" target="_blank">state</a>: A variable should be declared volatile whenever its value can be changed by something beyond the control of the code section in which it appears, such as a concurrently executing thread. In the Arduino, the only place that this is likely to occur is in sections of code associated with interrupts, called an interrupt service routine.</p>
+<pre class="brush: cpp; title: External Interrupts; notranslate" title="External Interrupts">
+volatile int pwm_value = 0;
+volatile int prev_time = 0;
+
+void setup() {
+  Serial.begin(115200);
+  // when pin D2 goes high, call the rising function
+  attachInterrupt(0, rising, RISING);
+}
+
+void loop() { }
+
+void rising() {
+  attachInterrupt(0, falling, FALLING);
+  prev_time = micros();
+}
+
+void falling() {
+  attachInterrupt(0, rising, RISING);
+  pwm_value = micros()-prev_time;
+  Serial.println(pwm_value);
+}
+</pre>
+<h4>3. Pin Change Interrupts</h4>
+<p>Using attachInterrupt allows for greater efficiency but now we are forced to use pins 2 and 3 to read the PWM values and we are limited in the number of interrupts we can specify. If we would like to trigger an interrupt on another pin, we need to use Pin Change Interrupts.</p>
+<p>Pin Change Interrupts can be enabled on any of the Arduinos signal pins. The pin change interrupts are grouped into 3 ports on the MCU. This means there are only 3 interrupt subroutines for all 20 pins. This means the subroutine will need to be more complicated as it now needs to determine which pin triggered the interrupt.</p>
+<p>You can configure this manually but the <a href="http://playground.arduino.cc/Main/PinChangeInt" target="_blank">PinChangeInt</a> library makes it very quick and simple.</p>
+<pre class="brush: cpp; title: Pin Change Interrupts; notranslate" title="Pin Change Interrupts">
+#include &lt;PinChangeInt.h&gt;
+
+#define MY_PIN 5 // we could choose any pin
+
+volatile int pwm_value = 0;
+volatile int prev_time = 0;
+uint8_t latest_interrupted_pin;
+
+void rising()
+{
+  latest_interrupted_pin=PCintPort::arduinoPin;
+  PCintPort::attachInterrupt(latest_interrupted_pin, &amp;falling, FALLING);
+  prev_time = micros();
+}
+
+void falling() {
+  latest_interrupted_pin=PCintPort::arduinoPin;
+  PCintPort::attachInterrupt(latest_interrupted_pin, &amp;rising, RISING);
+  pwm_value = micros()-prev_time;
+  Serial.println(state);
+}
+
+void setup() {
+  pinMode(MY_PIN, INPUT); digitalWrite(MY_PIN, HIGH);
+  Serial.begin(115200);
+  PCintPort::attachInterrupt(MY_PIN, &amp;rising, RISING);
+}
+
+void loop() { }
+</pre>
+								</div> 	<!-- end .post_content -->
+	</article> <!-- end .entry -->
+	
+			
+		
+	<!-- You can start editing here. -->
+
+<section id="comment-wrap">
+			<h1 id="comments" class="page_title">0 Comments</h1>
+			
+				
+				
+					
+					<div id="trackbacks">
+				<h3 id="trackbacks-title">Trackbacks/Pingbacks</h3>
+				<ol class="pinglist">
+							<li id="comment-7210"><a href='https://bitknitting.wordpress.com/2017/03/16/taking-mh-z19-co2-readings-using-micropython/' rel='external nofollow' class='url'>Taking MH-Z19 CO2 Readings Using Micropython | bitknitting</a> - [&#8230;] noted in benripley’s excellent post, Three Ways to read a PWM signal, “&#8230;what we are really looking for is the&hellip;	</li><!-- #comment-## -->
+				</ol>
+			</div>
+				
+		
+		
+</section>	</div> <!-- end #left_area -->
+
+		<div id="sidebar">
+				<div id="recent-posts-2" class="widget widget_recent_entries">		<h4 class="widgettitle">Recent Posts</h4>		<ul>
+					<li>
+				<a href="http://www.benripley.com/diy/arduino/the-quadcopter-shield/">The Quadcopter Shield</a>
+						</li>
+					<li>
+				<a href="http://www.benripley.com/development/quadcopter-source-code-from-scratch/">Quadcopter Source Code From Scratch</a>
+						</li>
+					<li>
+				<a href="http://www.benripley.com/diy/quadcopter/multi-rotor-control-system-part-ii/">Multi-rotor Control System &#8211; Part II</a>
+						</li>
+					<li>
+				<a href="http://www.benripley.com/diy/arduino/implementing-a-quadcopter-imu/">Implementing a Quadcopter IMU</a>
+						</li>
+					<li>
+				<a href="http://www.benripley.com/diy/arduino/three-ways-to-read-a-pwm-signal-with-arduino/">Three Ways To Read A PWM Signal With Arduino</a>
+						</li>
+					<li>
+				<a href="http://www.benripley.com/development/sql/bulk-importing-data-from-xml/">Bulk Importing Data From Xml</a>
+						</li>
+					<li>
+				<a href="http://www.benripley.com/diy/quadcopter/quadcopter-parts-list/">Quadcopter Parts List</a>
+						</li>
+					<li>
+				<a href="http://www.benripley.com/diy/quadcopter/multi-rotor-control-system/">Multi-rotor Control System</a>
+						</li>
+				</ul>
+		</div> <!-- end .widget -->			</div> <!-- end #sidebar -->
+</div> 	<!-- end #content-area -->
+	
+		
+		</div> <!-- end .container -->
+	</div> <!-- end #main-area -->
+	<footer id="main-footer">
+			<div class="container">
+			<div id="footer-widgets" class="clearfix">
+							</div> <!-- end #footer-widgets -->	
+		</div> <!-- end .container -->
+		
+				
+	</footer> <!-- end #main-footer -->
+	
+	<div id="footer-bottom">	
+		<div class="container clearfix">
+			<ul class="bottom-menu"> 
+				<li ><a href="http://www.benripley.com">Home</a></li>
+			<li class="page_item page-item-227"><a href="http://www.benripley.com/contact-me/">Contact Me</a></li>
+</ul>
+			<p id="copyright"> </p>
+		</div> <!-- end .container -->	
+	</div> <!-- end #footer-bottom -->	
+	
+	<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-4838428-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script><script type='text/javascript' src='http://www.benripley.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shCore.js?ver=3.0.9b'></script>
+<script type='text/javascript' src='http://www.benripley.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shBrushCpp.js?ver=3.0.9b'></script>
+<script type='text/javascript'>
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "http://www.benripley.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.9b";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.getElementsByTagName("head")[0].insertBefore( corecss, document.getElementById("syntaxhighlighteranchor") );
+		var themecssurl = "http://www.benripley.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeDefault.css?ver=3.0.9b";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		//document.getElementById("syntaxhighlighteranchor").appendChild(themecss);
+		document.getElementsByTagName("head")[0].insertBefore( themecss, document.getElementById("syntaxhighlighteranchor") );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['gutter'] = false;
+	SyntaxHighlighter.defaults['pad-line-numbers'] = true;
+	SyntaxHighlighter.defaults['tab-size'] = 3;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+	SyntaxHighlighter.all();
+</script>
+<script type='text/javascript' src='http://www.benripley.com/wp-content/themes/Lucid/js/superfish.js?ver=1.0'></script>
+<script type='text/javascript' src='http://www.benripley.com/wp-content/themes/Lucid/js/jquery.flexslider-min.js?ver=1.0'></script>
+<script type='text/javascript' src='http://www.benripley.com/wp-content/themes/Lucid/js/jquery.fitvids.js?ver=1.0'></script>
+<script type='text/javascript' src='http://www.benripley.com/wp-content/themes/Lucid/js/custom.js?ver=1.0'></script>
+<script type='text/javascript' src='http://www.benripley.com/wp-content/themes/Lucid/epanel/page_templates/js/fancybox/jquery.easing-1.3.pack.js?ver=1.3.4'></script>
+<script type='text/javascript' src='http://www.benripley.com/wp-content/themes/Lucid/epanel/page_templates/js/fancybox/jquery.fancybox-1.3.4.pack.js?ver=1.3.4'></script>
+<script type='text/javascript' src='http://www.benripley.com/wp-content/themes/Lucid/epanel/page_templates/js/et-ptemplates-frontend.js?ver=1.1'></script>
+<script type='text/javascript' src='http://www.benripley.com/wp-includes/js/wp-embed.min.js?ver=4.4.8'></script>
+</body>
+</html>
