@@ -1,0 +1,3954 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0114)https://www.rcgroups.com/forums/showthread.php?2245978-FrSky-S-Port-telemetry-library-easy-to-use-and-configurable -->
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en" class="mdl-js"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<!--<base href="https://www.rcgroups.com/forums/">--><base href=".">
+<script type="text/javascript" async="" src="./FrSky S-Port telemetry library - easy to use and configurable - RC Groups_files/vglnk.js.&#1041;&#1077;&#1079; &#1085;&#1072;&#1079;&#1074;&#1072;&#1085;&#1080;&#1103;"></script><script src="./FrSky S-Port telemetry library - easy to use and configurable - RC Groups_files/rjs2.php" async=""></script><script async="" src="./FrSky S-Port telemetry library - easy to use and configurable - RC Groups_files/analytics.js.&#1041;&#1077;&#1079; &#1085;&#1072;&#1079;&#1074;&#1072;&#1085;&#1080;&#1103;"></script><script src="./FrSky S-Port telemetry library - easy to use and configurable - RC Groups_files/rjs1.php" async=""></script><script src="./FrSky S-Port telemetry library - easy to use and configurable - RC Groups_files/rjs.php"></script><script type="text/javascript">
+var ad_zones = new Array('width:700-950,_height:70-110,_rcgf-135-img|rcgf-adsense');
+function confirmUnsubscribe(e){var t=confirm("Are you sure you want to unsubscribe from this thread?");if(t==true){window.location=e}}
+</script>
+	
+<style type="text/css">
+#shadow {
+	height:100%;
+	background-color:white;
+	margin:0px auto 0px auto;
+	max-width:1200px;
+	-webkit-box-shadow:0 0 18px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow:0 0 18px rgba(0, 0, 0, 0.5);
+	box-shadow:0 0 18px rgba(0, 0, 0, 0.5);
+	-o-box-shadow: 0 0 18px rgba(0, 0, 0, 0.5);
+	-ms-box-shadow: 0 0 18px rgba(0, 0, 0, 0.5);
+} 
+#wrapper {
+	margin:0px;
+	max-width:1200px;
+}
+#bottom-menu #bottom-menu-left{
+	padding-top:6px;
+	padding-left:21px;
+	font-weight:bold;
+	padding-left: 19px;
+	color:white;
+}
+#bottom-menu #bottom-menu-right{
+	float:right;
+	padding-right:31px;
+}
+#ad_notification_wrapper{
+	background-image: url('https://static.rcgroups.net/forums/images/beta/texture_checker.jpg');
+	width:100%;
+	padding: 12px 0 0px 0px;
+	border-bottom: 4px solid #CCCCCC;
+	overflow:hidden;
+}
+/* ***** basic styles for multi-page nav elements */
+.pagenav td { padding: 0; }
+
+</style>
+
+<link rel="stylesheet" type="text/css" href="./FrSky S-Port telemetry library - easy to use and configurable - RC Groups_files/vbulletin_global.10.css">
+
+<script type="text/javascript" src="./FrSky S-Port telemetry library - easy to use and configurable - RC Groups_files/yahoo-dom-event.1.js.&#1041;&#1077;&#1079; &#1085;&#1072;&#1079;&#1074;&#1072;&#1085;&#1080;&#1103;"></script>
+<script type="text/javascript" src="./FrSky S-Port telemetry library - easy to use and configurable - RC Groups_files/connection-min.js.&#1041;&#1077;&#1079; &#1085;&#1072;&#1079;&#1074;&#1072;&#1085;&#1080;&#1103;"></script>
+<script type="text/javascript">
+<!--
+var SESSIONURL = "";
+var SECURITYTOKEN = "guest";
+var IMGDIR_MISC = "https://static.rcgroups.net/forums/images/beta/misc";
+var vb_disable_ajax = parseInt("0", 10);
+//--></script>
+<script type="text/javascript" src="./FrSky S-Port telemetry library - easy to use and configurable - RC Groups_files/vbulletin_global.3.js.&#1041;&#1077;&#1079; &#1085;&#1072;&#1079;&#1074;&#1072;&#1085;&#1080;&#1103;"></script>
+<script type="text/javascript" src="./FrSky S-Port telemetry library - easy to use and configurable - RC Groups_files/vbulletin_menu.4.js.&#1041;&#1077;&#1079; &#1085;&#1072;&#1079;&#1074;&#1072;&#1085;&#1080;&#1103;"></script>
+
+<script type="text/javascript">
+<!--
+if (typeof(ad_zones) == 'undefined') var ad_zones = [];
+ad_zones.push('400x25,_campaignid:2850');
+
+
+ad_zones.push('zone:183')
+ad_zones.push('zone:98');
+ad_zones.push('zone:170');
+ad_zones.push('clientid=1004');
+var what = '';
+for (var i in ad_zones) what += ad_zones[i] + '!';
+document.write ("<" + "script language='JavaScript' type='text/javascript' src='");
+document.write ("https://decals.rcgroups.net/adjsc.php?z=" + what);
+document.write ("&amp;block=1&amp;source=Radios");
+document.write ("'><" + "/script>");
+
+(function(d, t) { var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+g.src = 'https://decals.rcgroups.net/rjs.php?z=' + ad_zones.join('!') + '&source=Radios'; g.async = false;
+s.parentNode.insertBefore(g, s); }(document, 'script'));
+(function(d, t) { var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+g.src = 'https://decals.rcgroups.net/rjs1.php?z=' + ad_zones.join('!') + '&source=Radios'; g.async = true;
+s.parentNode.insertBefore(g, s); }(document, 'script'));
+//--></script><script language="JavaScript" type="text/javascript" src="./FrSky S-Port telemetry library - easy to use and configurable - RC Groups_files/adjsc.php"></script>
+
+<script type="text/javascript" src="./FrSky S-Port telemetry library - easy to use and configurable - RC Groups_files/rjs3.php"></script>
+
+<script>
+var _gaq = _gaq || {};
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-106064-1', 'auto');
+ga('set', 'dimension1', '135');
+ga('set', 'dimension2', '0');
+ga('send', 'pageview', _gaq);
+</script>
+
+<!-- attachment thumbnails for IE -->
+<!--[if lte IE 7]>
+<style type="text/css">
+.thumbwrap li, .thumbwrap {
+	display: inline;
+	_height: 0;
+}
+#header-right{margin:-65px 0 0 0;}
+#header-right-ad{margin:-95px 275px 0 0;}
+#navbar_more_menu ul li{
+width:12em;
+}
+#navbar_search_menu ul li{
+width:17.5em;
+}
+#top-menu UL LI IMG{
+vertical-align:baseline;
+}
+#top-menu UL LI A#navbar_search IMG{
+vertical-align:text-bottom;
+margin:0;
+}
+</style>
+<![endif]-->
+<!--[if lt IE 7]>
+<style type="text/css">
+#top-menu UL LI IMG{
+margin-top:.75em;
+vertical-align:baseline;
+}
+#top-menu UL LI A#navbar_search IMG{
+vertical-align:baseline;
+margin:.4em 0 0 0;
+}
+</style>
+<![endif]-->
+
+<!-- fix prefix display in stupid IE -->
+<!--[if lte IE 8]>
+<style type="text/css">
+	td.alt2 > a > span.cats { display:inline-block; cursor: pointer; }
+	.alt2 .cats,.listalt2 .cats,.alt1 .cats,.listalt1 .cats{width:80px;}
+	#shadow,#wrapper {min-width:950px;}
+</style>
+<![endif]-->
+<style type="text/css">#logo-img {background-image: url(https://static.rcgroups.net/forums/images/global_sprite2.png);background-position: 0px -6px;}</style>
+
+
+<meta name="description" content="Discussion FrSky S-Port telemetry library - easy to use and configurable Radios">
+
+
+<link rel="shortcut icon" href="https://www.rcgroups.com/favicon.ico">
+<link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://static.rcgroups.net/apple-touch-icon-152x152-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://static.rcgroups.net/apple-touch-icon-144x144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="120x120" href="https://static.rcgroups.net/apple-touch-icon-120x120-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://static.rcgroups.net/apple-touch-icon-114x114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://static.rcgroups.net/apple-touch-icon-72x72-precomposed.png">
+<link rel="apple-touch-icon-precomposed" href="https://static.rcgroups.net/apple-touch-icon-precomposed.png">
+<link href="./FrSky S-Port telemetry library - easy to use and configurable - RC Groups_files/css" rel="stylesheet" type="text/css">
+
+<link rel="alternate" type="application/rss+xml" title="RC Groups RSS Feed" href="https://www.rcgroups.com/forums/external.php?type=RSS2">
+<link rel="alternate" type="application/rss+xml" title="RC Groups - Radios - RSS Feed" href="https://www.rcgroups.com/forums/external.php?type=RSS2&amp;forumids=135">
+
+
+
+<link rel="stylesheet" type="text/css" href="./FrSky S-Port telemetry library - easy to use and configurable - RC Groups_files/responsive.36.css">
+<meta id="viewport" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+
+<!-- 
+  nCode Image Resizer
+  (c) nCode
+  http://www.ncode.nl/vbulletinplugins/
+-->
+<script type="text/javascript" src="./FrSky S-Port telemetry library - easy to use and configurable - RC Groups_files/ncode_imageresizer.js.&#1041;&#1077;&#1079; &#1085;&#1072;&#1079;&#1074;&#1072;&#1085;&#1080;&#1103;"></script>
+<style type="text/css">
+<!--
+table.ncode_imageresizer_warning {
+	background: #000000;
+	color: #FFFFBE;
+	cursor: pointer;
+}
+
+table.ncode_imageresizer_warning td {
+	font-size: 10px;
+	vertical-align: middle;
+	text-decoration: none;
+}
+
+table.ncode_imageresizer_warning td.td1 {
+	padding: 5px;
+}
+
+table.ncode_imageresizer_warning td.td1 {
+	padding: 2px;
+}
+-->
+</style>
+<script type="text/javascript">
+<!--
+NcodeImageResizer.MODE = 'enlarge';
+NcodeImageResizer.MAXWIDTH = 700;
+NcodeImageResizer.MAXHEIGHT = 1280;
+
+NcodeImageResizer.BBURL = 'https://www.rcgroups.com/forums';
+
+var vbphrase = vbphrase || [];
+
+vbphrase['ncode_imageresizer_warning_small'] = 'Click this bar to view the full image.';
+vbphrase['ncode_imageresizer_warning_filesize'] = 'This image has been resized. Click this bar to view the full image. The original image is sized %1$sx%2$s and weights %3$sKB.';
+vbphrase['ncode_imageresizer_warning_no_filesize'] = 'This image has been resized. Click this bar to view the full image. The original image is sized %1$sx%2$s.';
+vbphrase['ncode_imageresizer_warning_fullsize'] = 'Click this bar to view the small image.';
+//-->
+</script>
+	<title>FrSky S-Port telemetry library - easy to use and configurable - RC Groups</title>
+	
+	<style type="text/css" id="vbulletin_showthread_css">
+	<!--
+	
+	#links div { white-space: nowrap; }
+	#links img { vertical-align: middle; }
+	-->
+
+	</style>
+	
+	<link rel="stylesheet" type="text/css" href="./FrSky S-Port telemetry library - easy to use and configurable - RC Groups_files/lightbox.6.css">
+	<link rel="stylesheet" type="text/css" href="./FrSky S-Port telemetry library - easy to use and configurable - RC Groups_files/thumbstyle.9.css">
+
+
+	<!--[if lte IE 8]>
+	    <style type="text/css">
+	    	.thead_postbit_right ul li input{margin:3px 0 0 0;}
+	    </style>
+    <![endif]-->
+    
+<style type="text/css">
+.tcat{
+font-size:15px;
+font-weight:bold;
+}
+</style>
+</head>
+<body onload="">
+
+<!-- google_ad_section_start(weight=ignore) -->
+<div id="shadow">
+<div id="wrapper">
+
+<!-- top strip -->
+<table width="100%" height="25" border="0" cellspacing="0" cellpadding="0" style="background-image:url(https://static.rcgroups.net/forums/images/fillers/hzspacer.jpg)">
+<tbody><tr valign="middle">
+    <td width="250" id="tophzbar_logo"><a href="https://decals.rcgroups.com/adclick.php?bannerid=9827&amp;zoneid=0&amp;source=Radios&amp;dest=http%3A%2F%2Fwww.forcerc.com" target="_blank"><img class="_decalimg" src="./FrSky S-Port telemetry library - easy to use and configurable - RC Groups_files/hh-logo.jpg" width="250" height="25" alt="ForceRC.com" title="ForceRC.com" border="0"></a></td>
+	<td align="center" id="tophzbar_main" style="background-image:url(https://static.rcgroups.net/forums/images/fillers/hzspacer.jpg)"><script language="JavaScript" type="text/javascript">
+<!--// <![CDATA[
+if ((typeof(OA_output) != 'undefined') && (typeof(OA_output['400x25,_campaignid:2850']) != 'undefined'))
+	document.write(OA_output['400x25,_campaignid:2850']);
+else {
+   if (!document.phpAds_used) document.phpAds_used = ',';
+   phpAds_random = new String (Math.random()); phpAds_random = phpAds_random.substring(2,11);
+   
+   document.write ("<" + "script language='JavaScript' type='text/javascript' src='");
+   document.write ("https://decals.rcgroups.net/adjs.php?n=" + phpAds_random);
+   document.write ("&amp;what=400x25,_campaignid:2850&amp;target=_blank");
+   document.write ("&amp;source=Radios&amp;exclude=" + document.phpAds_used);
+   if (document.referrer)
+      document.write ("&amp;referer=" + escape(document.referrer));
+   document.write ("'><" + "/script>");
+}
+// ]]> --></script><a href="https://decals.rcgroups.com/adclick.php?bannerid=9830&amp;zoneid=0&amp;source=Radios&amp;dest=http%3A%2F%2Fwww.forcerc.com" target="_blank"><img class="_decalimg" src="./FrSky S-Port telemetry library - easy to use and configurable - RC Groups_files/hh-banner.jpg" width="400" height="25" alt="ForceRC.com" title="ForceRC.com" border="0"></a><noscript>&lt;a href='https://decals.rcgroups.net/adclick.php?n=a42b8155' target='_blank'&gt;&lt;img src='https://decals.rcgroups.net/adview.php?what=400x25,_campaignid:2850&amp;amp;source=Radios&amp;amp;n=a42b8155' border='0' alt='' /&gt;&lt;/a&gt;</noscript></td>
+	<td width="62" id="tophzbar_1st"><a href="https://decals.rcgroups.com/adclick.php?bannerid=9828&amp;zoneid=0&amp;source=Radios&amp;dest=http%3A%2F%2Fwww.forcerc.com%2Fcategory%2Fairplanes" target="_blank"><img class="_decalimg" src="./FrSky S-Port telemetry library - easy to use and configurable - RC Groups_files/air-btn.jpg" width="60" height="25" alt="Shop our Airplanes Products" title="Shop our Airplanes Products" border="0"></a></td>
+	<td width="62" id="tophzbar_2nd"><a href="https://decals.rcgroups.com/adclick.php?bannerid=9829&amp;zoneid=0&amp;source=Radios&amp;dest=http%3A%2F%2Fwww.forcerc.com%2Fcategory%2Fhelicopters-and-drones" target="_blank"><img class="_decalimg" src="./FrSky S-Port telemetry library - easy to use and configurable - RC Groups_files/sur-btn.jpg" width="60" height="25" alt="Drone Products" title="Drone Products" border="0"></a></td>
+	<td width="62" id="tophzbar_3rd"><a href="https://decals.rcgroups.com/adclick.php?bannerid=18711&amp;zoneid=0&amp;source=Radios&amp;dest=http%3A%2F%2Fwww.forcerc.com%2Fstorefronts%2Fstores%2Fforce-rc-sales" target="_blank"><img class="_decalimg" src="./FrSky S-Port telemetry library - easy to use and configurable - RC Groups_files/sales-btn.jpg" width="60" height="25" alt="Sales" title="Sales" border="0"></a></td>
+	<td width="129" id="tophzbar_search" align="right">
+		<form style="margin:0; height:25px" action="https://www.forcerc.com/SearchDisplay" method="get" target="_blank"> 
+			<table cellspacing="0" cellpadding="0" border="0" style="height:25px;"> 
+				<tbody><tr valign="middle"> 
+					<td>
+						<input width="18" type="image" height="25" src="./FrSky S-Port telemetry library - easy to use and configurable - RC Groups_files/search.jpg" alt="">
+					</td> 
+					<td>
+						<input type="text" tabindex="99" name="searchTerm" onclick="this.value=&#39;&#39;" placeholder="Search Force RC" style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; width: 105px; margin-right: 2px; border: 1px solid #999; padding-left: 2px;" size="15">
+						<input type="hidden" name="filterTerm" value="">
+						<input type="hidden" name="searchType" value="productgrid">
+						<input type="hidden" name="cm_mmc" value="RC-Groups-_-Search-Box">
+					</td>
+				</tr> 
+			</tbody></table>
+		</form> 
+	</td>
+</tr>
+</tbody></table>
+<div id="beacon_982798289829" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="https://decals.rcgroups.net/adlog.php?bannerid=9827,9828,9829&amp;clientid=&amp;zoneid=&amp;source=Radios" width="0" height="0" alt="" style="width: 0px; height: 0px; display: none !important;"></div>
+
+<!-- end top strip -->
+
+	<div id="header-bg" class="cf">
+
+<div id="header-bg-inner">
+<div id="logo-img"><a href="https://www.rcgroups.com/forums/index.php"></a></div>
+
+<div id="header-right-ad">
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle header-ad" style="display:block;" data-ad-client="ca-pub-3653278693006306" data-ad-slot="6051733194"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</div> <!-- /header-right -->
+</div> <!-- /header-bg-inner -->
+</div> <!-- /header-bg -->
+
+<!-- content table -->
+<!-- open content container -->
+
+<div align="center">
+	<div class="page" style="width:100%; text-align:left">
+		<div style="padding:0px 0px 0px 0px" align="left">
+
+
+
+
+<!-- google_ad_section_end -->
+<!-- nav buttons bar -->
+<div id="top-menu">
+<ul>
+		
+		<li><a class="navbar-active" href="https://www.rcgroups.com/forums/index.php">Forums</a></li>
+		<li class="navbar-small"><a href="https://www.rcgroups.com/forums/member.php">Blogs</a></li>
+		<li class="navbar-smaller"><a href="https://www.rcgroups.com/classifieds-201/">Classifieds</a></li>
+		
+		<li class="navbar-small"><a href="https://www.rcgroups.com/places/">Places</a></li>
+		
+		
+			<li class="navbar-smallest"><a id="navbar_more" href="https://www.rcgroups.com/forums/index.php">More<span class="menu-open"></span></a><script type="text/javascript"> vbmenu_register("navbar_more",true); </script></li>
+			
+				<li class="navbar-smallest"><a href="https://www.rcgroups.com/forums/search.php" accesskey="4" rel="nofollow">Search</a></li>
+			
+			<li id="navbar_extra_box"><a id="navbar_extra" href="https://www.rcgroups.com/forums/index.php"><span class="menu-open"></span></a><script type="text/javascript"> vbmenu_register("navbar_extra",true); </script></li>
+		
+		
+
+</ul>
+<ul id="navbar-right">
+
+
+	<li><a href="https://www.rcgroups.com/forums/register.php?">Sign Up</a></li>
+	<li class="navbar-right-divider">|</li>
+	<li><a id="navbar_login" href="https://www.rcgroups.com/forums/login.php?do=login">Log In<span class="menu-open"></span></a><script type="text/javascript"> vbmenu_register("navbar_login",true); </script></li>
+
+
+</ul>
+</div>
+<!-- / nav buttons bar -->
+
+<span></span>
+
+<!-- NAVBAR POPUP MENUS -->
+	<div class="vbmenu_popup navbar-menu" id="navbar_more_menu" style="display:none">
+		<ul id="navbar-more">
+			<li class="navbar-header navbar-menu-top"><span>Tools</span></li>
+			<li class="navbar-alt1-divider">
+			<div class="navbar-more-blue"></div><a href="https://www.rcgroups.com/forums/forumdisplay.php?do=markread&amp;markreadhash=guest" rel="nofollow">Mark Forums Read</a></li>
+			<li class="navbar-alt2"><a href="https://www.rcgroups.com/forums/spy.php?" rel="nofollow">Forum Spy</a></li>
+			<li class="navbar-alt1"><a href="https://www.rcgroups.com/forums/memberlist.php">Member Search</a></li>
+			<li class="navbar-alt2"><a href="https://www.rcgroups.com/forums/usermap.php?">User Map</a></li>
+			<li class="navbar-header"><span>Latest Media</span></li>
+			<li class="navbar-alt1-divider"><div class="navbar-more-blue"></div><a href="https://www.rcgroups.com/forums/thumbgallery.php?do=recent&amp;type=files&amp;id=11">Files</a></li>
+			<li class="navbar-alt2"><a href="https://www.rcgroups.com/forums/thumbgallery.php?do=recent&amp;type=img&amp;id=11">Photos</a></li>
+			<li class="navbar-alt1"><a href="https://www.rcgroups.com/forums/videogallery.php?id=11">Videos</a></li>
+			<li class="navbar-header"><span>Topics</span></li>
+			<li class="navbar-alt2-divider"><div class="navbar-more-blue"></div><a href="https://www.rcgroups.com/rc-clubs-177/">Clubs</a></li>
+			<li class="navbar-alt1"><a href="https://www.rcgroups.com/off-topic-discussion-206/">Off Topic</a></li>
+			<li class="navbar-alt2"><a href="https://www.rcgroups.com/regional-forums-270/">Regions</a></li>
+			<li class="navbar-alt1"><a href="https://www.rcgroups.com/support-forums-205/">Support</a></li>
+			<li><a href="https://www.rcgroups.com/vendors-189/">Vendors</a></li>
+		</ul>
+	</div>
+	<div class="vbmenu_popup navbar-menu" id="navbar_extra_menu" style="display:none">
+		<ul id="navbar-extra">
+			<li class="navbar-header navbar-menu-top"><span>Navigate</span></li>
+			<li class="navbar-more-blue"></li>
+			
+			<li class="navbar-alt1"><a href="https://www.rcgroups.com/forums/member.php">Blogs</a></li>
+			<li class="navbar-alt1 navbar-extra-one"><a href="https://www.rcgroups.com/classifieds-201/">Classifieds</a></li>
+			
+			<li class="navbar-alt1"><a href="https://www.rcgroups.com/places/">Places</a></li>
+			
+			
+				<li class="navbar-alt1 navbar-extra-two"><a href="https://www.rcgroups.com/forums/search.php" rel="nofollow">Search</a></li>
+			
+		</ul>
+	</div>
+	
+
+<!-- / NAVBAR POPUP MENUS -->
+
+<!-- PAGENAV POPUP -->
+	<div id="pagenav_menu" style="display: none; position: absolute; z-index: 50;">
+		<table>
+		<tbody><tr>
+			<td id="pagenav_goto_head" nowrap="nowrap">Go to Page...</td>
+		</tr>
+		<tr>
+			<td class="vbmenu_option" title="">
+			<form action="https://www.rcgroups.com/forums/index.php" method="get" onsubmit="return this.gotopage()" id="pagenav_form">
+				<input type="text" class="bginput" id="pagenav_itxt" style="font-size:11px" size="4">
+				<input type="button" class="button" id="pagenav_ibtn" value="Go">
+			</form>
+			</td>
+		</tr>
+		</tbody></table>
+	</div>
+<!-- / PAGENAV POPUP -->
+
+
+
+	<div class="vbmenu_popup navbar-menu" id="navbar_login_menu" style="display:none">
+		<!-- login form -->
+		<form action="https://www.rcgroups.com/forums/login.php?do=login" method="post" onsubmit="md5hash(vb_login_password, vb_login_md5password, vb_login_md5password_utf, 0)">
+		<script type="text/javascript" src="./FrSky S-Port telemetry library - easy to use and configurable - RC Groups_files/vbulletin_md5.js.&#1041;&#1077;&#1079; &#1085;&#1072;&#1079;&#1074;&#1072;&#1085;&#1080;&#1103;"></script>
+		<ul id="navbar-guest">
+			<li class="navbar-menu-top">
+				<input type="text" name="vb_login_username" id="navbar_username" accesskey="u" tabindex="101" placeholder="User Name">
+			</li>
+			<li>		
+				<input type="password" name="vb_login_password" id="navbar_password" tabindex="102" placeholder="Password">
+			</li>
+			<li>		
+				<label for="cb_cookieuser_navbar">
+				<input type="checkbox" name="cookieuser" value="1" tabindex="103" id="cb_cookieuser_navbar" accesskey="c" checked="">Remember Me</label>
+				<input type="submit" class="button" value="Log In" tabindex="104" title="Enter your username and password in the boxes provided to login, or click the &#39;register&#39; button to create a profile for yourself." accesskey="s">
+				<a href="https://www.rcgroups.com/forums/login.php?do=lostpw">Forgot Password?</a>
+			</li>
+		</ul>
+		<input type="hidden" name="s" value="">
+		<input type="hidden" name="securitytoken" value="guest">
+		<input type="hidden" name="do" value="login">
+		<input type="hidden" name="vb_login_md5password">
+		<input type="hidden" name="vb_login_md5password_utf">
+		</form>
+		<!-- / login form -->
+
+	</div>
+
+
+
+<div id="ad_notification_wrapper">
+
+<!-- breadcrumb -->
+
+	<div class="bread-wrapper">
+		<ul class="breadcrumb">
+		  <li><a class="bread-logo" href="https://www.rcgroups.com/forums/index.php" accesskey="1">&nbsp;</a>
+	<a href="https://www.rcgroups.com/aircraft-general-130/">Aircraft - General</a>
+
+
+	<a href="https://www.rcgroups.com/radios-135/">Radios</a>
+
+
+	<span class="nav-last"><span class="cats Discussion">Discussion</span> FrSky S-Port telemetry library - easy to use and configurable</span>
+
+</li>
+		</ul>
+	</div> <!-- /bread-wrappper -->
+
+
+
+
+
+
+
+	
+	<div id="navbar-ads-box-mega">
+	
+		<div class="navbar-ads-mega">
+			<script language="JavaScript" type="text/javascript">
+			<!--// <![CDATA[
+			if ((typeof(OA_output) != 'undefined') && (typeof(OA_output['zone:183']) != 'undefined'))
+			    document.write(OA_output['zone:183']);
+			else {
+			   if (!document.phpAds_used) document.phpAds_used = ',';
+			   phpAds_random = new String (Math.random()); phpAds_random = phpAds_random.substring(2,11);
+			   
+			   document.write ("<" + "script language='JavaScript' type='text/javascript' src='");
+			   document.write ("https://decals.rcgroups.net/adjs.php?n=" + phpAds_random);
+			   document.write ("&amp;what=zone:183&amp;target=_blank");
+			   document.write ("&amp;source=Radios&amp;exclude=" + document.phpAds_used);
+			   if (document.referrer)
+			      document.write ("&amp;referer=" + escape(document.referrer));
+			   document.write ("'><" + "/script>");
+			}
+			// ]]> --></script><a href="https://decals.rcgroups.com/adclick.php?bannerid=11939&amp;zoneid=183&amp;source=Radios&amp;dest=http%3A%2F%2Fwww.galloree.com%2FRCGroups-com-6946.htm" target="_blank"><img class="_decalimg" src="./FrSky S-Port telemetry library - easy to use and configurable - RC Groups_files/950x110rcgad.jpg" width="950" height="110" alt="" title="" border="0"></a><noscript>&lt;a href='https://decals.rcgroups.net/adclick.php?n=a9ce715f' target='_blank'&gt;&lt;img src='https://decals.rcgroups.net/adview.php?what=zone:183&amp;amp;source=Radios&amp;amp;n=a9ce715f' border='0' alt=''&gt;&lt;/a&gt;</noscript>
+		</div>
+	
+	
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div> <!-- / ad_notifications_wrapper -->
+
+<!-- google_ad_section_start -->
+
+<!-- google_ad_section_end -->
+
+
+
+<!-- google_ad_section_start(weight=ignore) -->
+<a name="poststop" id="poststop"></a>
+
+<!-- controls above postbits -->
+<div class="pagenav-box cf">
+
+	
+		<a class="pagenav-reply " href="https://www.rcgroups.com/forums/newreply.php?do=newreply&amp;noquote=1&amp;p=29439177" rel="nofollow"></a>
+		
+			
+		
+	
+	<div class="pagenav">
+	<table>
+		<tbody><tr>
+			<td>
+				
+					<span class="pagenav_state">Page 1 of 41</span>
+				
+			</td>
+			
+			
+				<td class="pagenav-small">
+		<span class="pagenav_curr" title="Showing results 1 to 15 of 606">1</span>
+		<div class="width_holder"></div>
+	</td><td class="pagenav-small">
+	
+	<a href="https://www.rcgroups.com/forums/showthread.php?2245978-FrSky-S-Port-telemetry-library-easy-to-use-and-configurable/page2" title="Show results 16 to 30 of 606">
+		2
+	</a>
+	
+	<div class="width_holder"></div>
+</td>
+<td class="pagenav-small">
+	
+	<a href="https://www.rcgroups.com/forums/showthread.php?2245978-FrSky-S-Port-telemetry-library-easy-to-use-and-configurable/page3" title="Show results 31 to 45 of 606">
+		3
+	</a>
+	
+	<div class="width_holder"></div>
+</td>
+<td class="pagenav-small">
+	
+	<a href="https://www.rcgroups.com/forums/showthread.php?2245978-FrSky-S-Port-telemetry-library-easy-to-use-and-configurable/page11" title="Show results 151 to 165 of 606">
+		<!--+10-->11
+	</a>
+	
+	<div class="width_holder"></div>
+</td>
+
+			
+				<td>
+					
+					<a class="pagenav_next" href="https://www.rcgroups.com/forums/showthread.php?2245978-FrSky-S-Port-telemetry-library-easy-to-use-and-configurable/page2" title="Show results 151 to 165 of 606">
+						<span class="pagenav-text-show">Next</span>
+					</a>
+					
+					<div class="width_holder"></div>
+				</td>
+			
+			
+				<td nowrap="nowrap" class="pagenav-smaller">
+					
+					<a class="pagenav_last" href="https://www.rcgroups.com/forums/showthread.php?2245978-FrSky-S-Port-telemetry-library-easy-to-use-and-configurable/page41" title="Last Page - Results 601 to 606 of 606">
+						Last
+					</a>
+					
+					<div class="width_holder"></div>
+				</td>
+			
+			
+			<td class="pagenav_jump" title="showthread.php?2245978-FrSky-S-Port-telemetry-library-easy-to-use-and-configurable" id="pagenav.17"><a name="PageNav"><span class="menu-open"></span></a></td>
+			
+		</tr>
+	</tbody></table>
+</div>
+<div style="clear:both"></div>
+</div>
+<!-- / controls above postbits -->
+
+<!-- toolbar -->
+<table class="tborder" cellpadding="5" cellspacing="0" border="0" width="100%" align="center" style="border-bottom-width:0px;">
+<tbody><tr>
+	<td class="tcat" width="100%">
+		
+			<a href="https://www.rcgroups.com/forums/showthread.php?2245978-FrSky-S-Port-telemetry-library-easy-to-use-and-configurable&amp;goto=newpost" style="vertical-align:middle;"><span class="inlineimg threadbit-icon firstnew" title="View First Unread"></span></a>
+			<span class="smallfont thead-firstpost" style="font-size:12px;"><a href="https://www.rcgroups.com/forums/showthread.php?2245978-FrSky-S-Port-telemetry-library-easy-to-use-and-configurable&amp;goto=newpost" style="vertical-align:middle;"><strong>View First Unread</strong></a></span>
+		
+	</td>
+	<td class="vbmenu_control" id="threadtools" nowrap="nowrap">
+		<a href="https://www.rcgroups.com/forums/showthread.php?2245978-FrSky-S-Port-telemetry-library-easy-to-use-and-configurable&amp;nojs=1#goto_threadtools">Thread Tools<span class="menu-open"></span></a>
+		<script type="text/javascript"> vbmenu_register("threadtools",true); </script>
+	</td>
+	
+	
+	
+
+	
+
+</tr>
+</tbody></table>
+<!-- / toolbar -->
+
+
+
+
+
+<!-- end content table -->
+
+		</div>
+	</div>
+</div>
+
+<!-- / close content container -->
+<!-- / end content table -->
+
+<!-- google_ad_section_end -->
+
+
+
+
+
+<!-- google_ad_section_start -->
+<div id="posts"><!-- post #29439177 -->
+
+	<!-- open content container -->
+
+<div align="center">
+	<div class="page" style="width:100%; text-align:left">
+		<div style="padding:0px 0px 0px 0px" align="left">
+
+	<div id="edit29439177" style="padding:0px 0px 0px 0px">
+	<!-- this is not the last post shown on the page -->
+
+
+
+<table id="post29439177" class="tborder user-postbit-left-user" cellpadding="5" cellspacing="0" border="0" width="100%" align="center">
+<tbody><tr>
+	
+		<td class="thead_postbit" colspan="2">
+			<div class="thead_postbit_left">
+				<a name="post29439177"><span class="inlineimg post-status post-old" title="Old"></span></a>
+				<!-- status icon and date -->
+				<span>
+				Sep 14, 2014<span class="thead-postbit-hide">, 12:13 PM</span>
+				
+				</span>
+				<!-- / status icon and date -->			
+			</div>
+			<div class="thead_postbit_right">
+				<ul>
+					
+					<li><a href="https://www.rcgroups.com/forums/showpost.php?p=29439177&amp;postcount=1" target="new" rel="nofollow" id="postcount29439177" name="1"><strong>#1</strong></a></li>
+					
+					
+					
+					
+					
+				</ul>
+			</div>
+		</td>
+	
+</tr>
+
+<tr class="userinfobox userinfobox-user">
+	<td>
+		<div class="user-postbit-statusicons userinfobox-icn-online">
+				
+	<span class="inlineimg_postbit online-status offline" title="pawelsky is offline"></span>
+	
+	
+
+				
+		</div>
+		<div class="userinfobox-name postbit-name">
+				
+				<a class="" href="https://www.rcgroups.com/forums/member.php?u=393936">pawelsky</a>
+				
+		</div>
+		
+		<div class="user-postbit-statusicons userinfobox-icn-pm">
+				<a href="https://www.rcgroups.com/forums/search.php?do=finduser&amp;userid=393936" rel="nofollow"><span class="inlineimg_postbit online-status search" title="Find More Posts by pawelsky"></span></a>
+				
+		</div>
+		
+		<div class="userinfobox-itrader">
+		
+		</div>
+	</td>
+</tr>
+
+<tr valign="top">
+	<td class="user_postbit user-postbit-user">
+		<div class="user_postbit_top postbit-name-user">
+			<div id="postmenu_29439177" class="postbit-name-container">
+				<div class="postbit-name">
+				
+				<a class="" href="https://www.rcgroups.com/forums/member.php?u=393936">pawelsky</a>
+				
+				</div>
+				<div class="postbit-usertitle">Makers gonna make...</div>
+			</div>
+		</div>
+		<div class="user_postbit_top user-postbit-middle-user">
+			
+				<div class="user_postbit_avatar">
+					<a href="https://www.rcgroups.com/forums/member.php?u=393936"><img src="./FrSky S-Port telemetry library - easy to use and configurable - RC Groups_files/avatar393936_1.gif" width="75" height="75" alt="pawelsky&#39;s Avatar" border="0" title="pawelsky&#39;s Avatar"></a>
+				</div>
+			
+			
+			
+		</div>
+	</td>
+	<td class="alt2" id="td_post_29439177">
+		
+		
+			<!-- icon and title -->
+			<div class="postbit-upper">
+				
+				
+				<div class="postbit-category"><span style="display: inline-block;"><span class="cats Discussion">Discussion</span></span></div>
+				<h1 class="postbit-title"><strong>FrSky S-Port telemetry library - easy to use and configurable</strong></h1>
+				
+					
+			</div>
+			<hr size="1" style="color:#c5ccd3; background-color:#c5ccd3">
+			<!-- / icon and title -->
+		
+
+		<!-- message -->
+		<div class="postbit-content" id="post_message_29439177">
+			
+			Hi,<br>
+<br>
+for those having Tarains radios or other system capable of receiving FrSky S-Port telemetry data I've created a library, that allows to emulate and/or decode the <a href="http://www.frsky-rc.com/product/category.php?cate_id=35" target="_blank" rel="nofollow">FrSky S-Port sensors</a> or using Arduino compatible <a href="https://www.pjrc.com/teensy/index.html" target="_blank" rel="nofollow">Teensy 3.x/LC</a> board or 5V/16MHz 328P based boards (e.g. ProMini, Nano, Uno).<br>
+<br>
+If you still use old FrSky telemetry, there is also a library for that as well. You ca fin it here:<br>
+<a href="https://www.rcgroups.com/forums/showthread.php?t=2465555" target="_blank">https://www.rcgroups.com/forums/show....php?t=2465555</a><br>
+<br>
+The library initially created to work together with the <a href="https://www.rcgroups.com/forums/showthread.php?t=1995704" target="_blank">NazaDecoder</a> or <a href="https://www.rcgroups.com/forums/showthread.php?t=2071772" target="_blank">NazaCanDecoder</a> libraries that read telemetry data coming out of DJI Naza Lite/v1/v2 controllers (examples can be found in <a href="https://www.rcgroups.com/forums/showpost.php?p=29662866&amp;postcount=36" target="_blank">post #36</a>), but it can be used for other purposes as well. <br>
+<br>
+The main goals that I had when creating this library was to have it:<br>
+1) easy to use<br>
+2) easy to configure<br>
+3) easy to add new sensors<br>
+<br>
+The library consists of 5 main classes:<ol style="list-style-type: decimal"><li>FrSkySportTelemetry - which is responsible for sending the S.Port data via one of the Teensy serial ports or SoftwareSerial ports on 328P based borads.</li>
+<li>FrSkySportDecoder - which is responsible for decoding the data coming from the S.Port line via one of the Teensy serial ports or SoftwareSerial ports on 328P based borads.</li>
+<li>FrSkySportPolling - which is emulating data polling (useful when there is no device actively polling the S.Port data such as the receiver).</li>
+<li>FrSkySportSingleWireSerial - which is responsible for S-Port-like single wire serial transmission.</li>
+<li>FrSkySportSensor - which is a base class for all the sensors. So far following sensors have been implemented (with the exception of the last one all of them can both emulate and decode the data):<ul><li>FrSkySportSensorAss - which emulates <a href="http://www.frsky-rc.com/product/pro.php?pro_id=153" target="_blank" rel="nofollow">ASS-70</a>/<a href="http://www.frsky-rc.com/product/pro.php?pro_id=152" target="_blank" rel="nofollow">ASS-100</a> airspeed sensors</li>
+<li>FrSkySportSensorFcs - which emulates <a href="http://www.frsky-rc.com/product/pro.php?pro_id=124" target="_blank" rel="nofollow">FCS-40A</a>/<a href="http://www.frsky-rc.com/product/pro.php?pro_id=133" target="_blank" rel="nofollow">FCS-150A</a> current sensors</li>
+<li>FrSkySportSensotFlvss - which emulates <a href="http://www.frsky-rc.com/product/pro.php?pro_id=125" target="_blank" rel="nofollow">FLVSS </a>/<a href="http://www.frsky-rc.com/product/pro.php?pro_id=157" target="_blank" rel="nofollow">MLVSS</a> LiPo voltage monitor sensor</li>
+<li>FrskySportSensorGps - which emulates the <a href="http://www.frsky-rc.com/product/pro.php?pro_id=126" target="_blank" rel="nofollow">GPS v2</a> sensor</li>
+<li>FrskySportSensorRpm - which emulates the <a href="http://www.frsky-rc.com/product/pro.php?pro_id=136" target="_blank" rel="nofollow">RPM/temperature</a> sensor</li>
+<li>FrSkySportSensorSp2uart - which emulates the <a href="http://www.frsky-rc.com/product/pro.php?pro_id=131" target="_blank" rel="nofollow">S.Port to UART Converter</a> type B sensor (analog ADC3/ADC4 inputs only)</li>
+<li>FrskySportSensorVario - which emulates the <a href="http://www.frsky-rc.com/product/pro.php?pro_id=111" target="_blank" rel="nofollow">high precision variometer</a> sensor</li>
+<li>FrskySportSensorXjt- which is a special sensor that is only capable of decoding the additional (i.e. other than from the above sensors) data stream coming from the XJT transmitter module's S.Port. This data includes the old type (hub) telemetry and the special data such as ADC1, ADC2, SWR, RSSI and RxBatt.</li>
+</ul></li>
+</ol><br>
+The library is very easy to use, you can define which sensors to include, you can change their default IDs (e.g. to avoid conflicts or to use 2 FLVSS sensors to 12S batteries). The library makes sure that the sensors respond to correct ID being polled/transmitted (not just any ID or a fixed list of IDs as in some of the existing libraries) so you can even mix the virtual sensors with the real ones without conflicts. You can also define which of the Teensy serial ports to use. In fact you can send/decode different data on different ports by creating multiple telemetry objects.<br>
+<br>
+The library can be used for both emulating the S.Port sensors and decoding the S.Port data, but <b><font color="Red">never at the same time!</font></b><br>
+<br>
+Attached you'll find the library itself and a picture showing the encoder code in action. As you can see the data displayed for FCS and FLVSS sensor matches the data set in code.<br>
+<br>
+<br>
+<font size="5"><b>ENCODER - emulating the S.Port sensor</b></font><br>
+<br>
+Here is a quick example on how the library is used to emulate a sensor<br>
+<br>
+<div style="margin:20px; margin-top:5px">
+	<div class="smallfont" style="margin-bottom:2px">Code:</div>
+	<pre class="alt2" dir="ltr" style="
+		margin: 0px;
+		padding: 5px;
+		border: 1px inset;
+		height: 434px;
+		white-space:pre-wrap;
+		text-align: left;
+		overflow: auto">#include "FrSkySportSensor.h"
+#include "FrSkySportSensorFlvss.h"
+#include "FrSkySportSensorFcs.h"
+#include "FrSkySportSingleWireSerial.h"
+#include "FrSkySportTelemetry.h"
+
+FrSkySportSensorFlvss flvss1;
+FrSkySportSensorFlvss flvss2(FrSkySportSensor::ID15);
+FrSkySportSensorFcs fcs;
+FrSkySportTelemetry telemetry;
+
+void setup()
+{
+  telemetry.begin(FrSkySportSingleWireSerial::SERIAL_3, &amp;flvss1, &amp;flvss2, &amp;fcs);
+}
+
+void loop()
+{
+
+  /* DO YOUR STUFF HERE */
+
+  flvss1.setData(4.10, 4.11, 4.12, 4.13, 4.14, 4.15);
+  flvss2.setData(3.10, 3.11, 3.12, 3.13, 3.14, 3.15);
+  fcs.setData(25.3, 12.6);
+  telemetry.send();
+}</pre>
+</div>As you can see it is super simple, all you need to do is to:<br>
+1) create the sensors you want to use and the telemetry object<br>
+2) call the begin method of the telemetry object defining the port and pointers to used sensors (up to 28)<br>
+3) update the sensor data when necessary<br>
+4) call the send method of the telemetry object periodically<br>
+<br>
+For simplicity it is not possible to remotely change data send frequency which every sensor has defined, the values are as specified by FrSky.<br>
+<br>
+Have a look at the FrSkySportTelemetryExample included in the library to have a better understanding on what parameters can be set for each of the sensors.<br>
+<br>
+<br>
+<b><font size="5">DECODER - decoding the S.Port data</font></b><br>
+<br>
+Here is a quick example on how the library is used to decode a S.Port Sensor data.<br>
+<br>
+<div style="margin:20px; margin-top:5px">
+	<div class="smallfont" style="margin-bottom:2px">Code:</div>
+	<pre class="alt2" dir="ltr" style="
+		margin: 0px;
+		padding: 5px;
+		border: 1px inset;
+		height: 482px;
+		white-space:pre-wrap;
+		text-align: left;
+		overflow: auto">#include "FrSkySportSensor.h"
+#include "FrSkySportSensorFlvss.h"
+#include "FrSkySportSensorFcs.h"
+#include "FrSkySportSingleWireSerial.h"
+#include "FrSkySportDecoder.h"
+
+FrSkySportSensorFlvss flvss1;
+FrSkySportSensorFlvss flvss2(FrSkySportSensor::ID15);
+FrSkySportSensorFcs fcs;
+FrSkySportDecoder decoder;
+
+void setup()
+{
+  decoder.begin(FrSkySportSingleWireSerial::SERIAL_3, &amp;flvss1, &amp;flvss2, &amp;fcs);
+}
+
+void loop()
+{
+  // Call this on every loop
+  decoder.decode();
+
+  // Make sure that all the operations below are short or call them periodically otherwise you'll be losing telemetry data
+  flvss1.getCell1();  // Read cell 1 voltage from the standard FLVSS sensor and do something with it
+  flvss2.getCell2();  // Read cell 2 voltage from the ID15 FLVSS sensor and do something with it
+  fcs.getCurrent();  // Read current from the fcs sensor and do something with it
+
+   /* DO YOUR STUFF HERE */
+
+}</pre>
+</div>As you can see it is super simple, all you need to do is to:<br>
+1) create the sensors you want to use and the decoder object<br>
+2) call the begin method of the decoder object defining the port and pointers to used sensors (up to 28)<br>
+4) call the decode method of the decoder object on every loop<br>
+3) read the data from sensors and do something with it<br>
+<br>
+You can decode data from real sensors, my telemetry library, from <a href="https://github.com/opentx/opentx/wiki/Taranis-serial-port" target="_blank" rel="nofollow">Taranis serial port</a> that can be found in the battery compartment (make sure it is configured to mirror S.Port data in radio menu)or S-Port connector in the Taranis JR TX module bay.<br>
+<br>
+You'll find more detailed example in the FrSkySportDecoderExample and FrSkySportXjtDecoderExample directory.<br>
+<br>
+<font size="5"><b>Data polling</b></font><br>
+<br>
+To send the data the S.Port sensors must be actively polled. Normally that is done by the receiver that the sensor is connected to. If for whatever reason you decide to use this library in a configuration that does not have the receiver (or any other device actively polling) in the S.Port chain you have to enable library's internal polling mechanisms. Note that the polling mechanism the library offer is simplified compared to the one implemented in FrSky receivers and it does not store active sensor IDs to poll them more often. This may cause the data to be updated a bit less frequently.<br>
+<br>
+To enable polling you need to instantiate the FrSkySportTelemetry or FrSkySportDecoder class object passing <b>true</b> as a parameter. If you don't do that <b>false</b> (polling disabled) will be used as a default.<br>
+<br>
+<div style="margin:20px; margin-top:5px">
+	<div class="smallfont" style="margin-bottom:2px">Code:</div>
+	<pre class="alt2" dir="ltr" style="
+		margin: 0px;
+		padding: 5px;
+		border: 1px inset;
+		height: 34px;
+		white-space:pre-wrap;
+		text-align: left;
+		overflow: auto">FrSkySportTelemetry telemetry(true); // Create telemetry object with polling</pre>
+</div><div style="margin:20px; margin-top:5px">
+	<div class="smallfont" style="margin-bottom:2px">Code:</div>
+	<pre class="alt2" dir="ltr" style="
+		margin: 0px;
+		padding: 5px;
+		border: 1px inset;
+		height: 34px;
+		white-space:pre-wrap;
+		text-align: left;
+		overflow: auto">FrSkySportDecoder decoder(true); // Create decoder object with polling</pre>
+</div><br>
+In examples, to make things easier polling can be enabled by uncommenting the following line<br>
+<div style="margin:20px; margin-top:5px">
+	<div class="smallfont" style="margin-bottom:2px">Code:</div>
+	<pre class="alt2" dir="ltr" style="
+		margin: 0px;
+		padding: 5px;
+		border: 1px inset;
+		height: 34px;
+		white-space:pre-wrap;
+		text-align: left;
+		overflow: auto">//#define POLLING_ENABLED</pre>
+</div>For the telemetry to be properly decoded on the Taranis radio RSSI data is required, so when polling is enabled the library also sends out RSSI = 100 at regular intervals.<br>
+<br>
+<b>As both encoder and decoder have the polling capability, if you use both in your setup make sure that only one or the other has the polling enabled, not both at the same time.</b><br>
+<br>
+<br>
+<font size="5"><b>Connections</b></font><br>
+<br>
+Below you can also find attached connection diagrams for both encoder and decoder (note that they are different). Pick one of the Teensy 3.x/LC serial TX or 328P based board 2-12 pins (one that is not used for other purposes) and tell the library to use it in <i><b>telemetry.begin</b></i> or <i><b>decoder.begin</b></i> function. Depending on the board used you should chose:<ul><li><b>SERIAL_1</b>, <b>SERIAL_2</b> or <b>SERIAL_3</b> for Teensy 3.0/3.1/3.2/LC boards (note that the additional SERIAL_USB shall only be used for debug purposes if you know what you are doing)</li>
+<li><b>SERIAL_1</b>, <b>SERIAL_2</b>, <b>SERIAL_3</b>, <b>SERIAL_4</b>, <b>SERIAL_5</b> or <b>SERIAL_6</b> for Teensy 3.5/3.6 boards (note that the additional SERIAL_USB shall only be used for debug purposes if you know what you are doing)</li>
+<li><b>SOFT_SERIAL_PIN_2 </b>to <b>SOFT_SERIAL_PIN_12 </b>for 328P based boards (e.g. Pro Mini, Nano, Uno)</li>
+</ul>Note that for 328P based boards you need to include the SoftwareSerial library in your main sketch:<br>
+<div style="margin:20px; margin-top:5px">
+	<div class="smallfont" style="margin-bottom:2px">Code:</div>
+	<pre class="alt2" dir="ltr" style="
+		margin: 0px;
+		padding: 5px;
+		border: 1px inset;
+		height: 34px;
+		white-space:pre-wrap;
+		text-align: left;
+		overflow: auto">#include "SoftwareSerial.h"</pre>
+</div><b>There were reports that for some reason the library does not work when used with 1.6.0 version of Arduino IDE. This is most likely due to the changed toolchain and modified timings. If you experience problems please upgrade to a newer version where the timing calculation has been modified (<a href="https://www.rcgroups.com/forums/showpost.php?p=31365392&amp;postcount=190" target="_blank">1.6.3 has been confirmed working</a>) - that shall help.</b><br>
+<br>
+Also note that to avoid interrupt conflict with the mentioned SoftwareSerial library you need to disable attitude (roll/pitch) sensing in the NazaDecoder library by uncommenting the following line in NazaDecoder.h file:<br>
+<div style="margin:20px; margin-top:5px">
+	<div class="smallfont" style="margin-bottom:2px">Code:</div>
+	<pre class="alt2" dir="ltr" style="
+		margin: 0px;
+		padding: 5px;
+		border: 1px inset;
+		height: 34px;
+		white-space:pre-wrap;
+		text-align: left;
+		overflow: auto">//#define ATTITUDE_SENSING_DISABLED</pre>
+</div><b>Make sure you understand Teensy 3.x/LC/328P based board powering options before choosing how to power your board!</b><br>
+<br>
+When creating my library I used some of the information that I found on this webpage:<br>
+<a href="https://code.google.com/p/telemetry-convert/wiki/FrSkySPortProtocol" target="_blank" rel="nofollow">https://code.google.com/p/telemetry-...ySPortProtocol</a><br>
+<br>
+<font size="2"><br>
+FrSky S.Port Telemetry library changelog<br>
+-----------------------------------------------------<br>
+Version 20160919<br>
+  [NEW] Added support for Teensy LC, 3.5 and 3.6 boards and updated examples<br>
+  [NEW] Added note about MLVSS sensor in the FLVSS sensor class<br>
+<br>
+Version 20160818<br>
+  [NEW] Added simplified polling to the FrSkySportTelemetry and FrSkySportDecoder class<br>
+  [NEW] Added POLLING_ENABLED define to examples to simplify switching the polling on/off<br>
+  [NEW] Removed separate connection diagrams for decoder, as the connection is now the same for both emulator and decoder classes<br>
+<br>
+Version 20160324<br>
+  [NEW] Increased the max number of sensors from 10 to 28 (to cover all possible sensor IDs)<br>
+<br>
+Version 20160313<br>
+  [FIX] Added missing getAccX, getAccY and getAccZ function names to keywords file for syntax highlighting<br>
+  [FIX] Added missing getCell7 - getCell12 function names to keywords file for syntax highlighting<br>
+  [FIX] Changed the FrSkySportSensorTaranisLegacy decoder class name to FrSkySportSensorXjt<br>
+  [NEW] Added usage example for the FrSkySportSensorXjt decoder class (FrSkySportXjtDecoderExample)<br>
+  [NEW] Added decoding of ADC1, ADC2, RSSI, SWR and RxBatt data to FrSkySportSensorXjt<br>
+  [NEW] Added decoding of vertical speed from FVAS sensor (not documented in FrSky spec, added based on OpenTX sources)<br>
+<br>
+Version 20151108<br>
+  [FIX] For combined values decoded by the FrSkySportSensorTaranisLegacy sensor the data ID is only returned when complete value has been decoded<br>
+  [FIX] Fixed handling empty FLVSS data message that was crashing the decoder<br>
+  [NEW] Added defines for FrSkySportSensorTaranisLegacy sensor decoded values<br>
+  [NEW] Added decoded value IDs to keywords file for syntax highlighting<br>
+  [NEW] Added clarification about different IDs used by FCS-40A and FCS-150A sensors in examples and sensor class header file<br>
+<br>
+Version 20151020<br>
+  [FIX] Stuffing was not used for CRC, fixed<br>
+  [FIX] Fixed lat/lon calculation in FrSkySportSensorTaranisLegacy sensor<br>
+<br>
+Version 20151018<br>
+  [NEW] Added Taranis legacy telemetry decoder class (which decodes data that Taranis spits out on teh S.Port mirror when it receives old FrSky Telemetry Hub data)<br>
+  [NEW] Added CRC checking in decoder class<br>
+  [NEW] Added return result (decoded appId) to decode methods and updated the decoder example<br>
+  [FIX] Removed redundant CRC calculations in FrSkySportSingleWireSerial class<br>
+  [FIX] Simplified cell voltage decoding<br>
+<br>
+Version 20151008<br>
+  [NEW] Added Decoder class and decoding functions to sensors (plus the decoder usage example)<br>
+  [FIX] In RPM sensor changed the rpm value type to integer, t1/t2 are now properly rounded<br>
+  [FIX] Minor editorial corrections<br>
+<br>
+Version 20150921<br>
+  [NEW] Added airspeed (ASS-70/ASS-100) sensor.<br>
+<br>
+Version 20150725<br>
+  [NEW] Added data transmission periods to ensure telemetry receiver is not flooded with data<br>
+  [NEW] Added SP2UART (type B) sensor. Note that only analog ports ADC3 and ADC4 are implemented, not the UART part.<br>
+<br>
+Version 20150319<br>
+  [FIX] corrected setting the 328p serial pin to the right mode when transmitting/receiving. This shall help when chaining the adapter with other sensors. Note that a 4.7kohm resistor is recommended to protect the S.Port data line.<br>
+<br>
+Version 20141129<br>
+  [FIX] fixed incorrect display of GPS coordinates on 328p platform (caused by wrong usage of abs function)<br>
+<br>
+Version 20141120<br>
+  [NEW] added support for 328P based boards (e.g. Pro Mini, Nano, Uno)<br>
+  [NEW] added connection diagrams<br>
+<br>
+Version 20140914<br>
+  initial version of the library<br>
+</font>
+		</div>
+		<!-- / message -->
+
+		
+		<!-- attachments -->
+				
+					<div class="attach_box">
+						<div class="attach_header">
+							<span class="icon_img" title="image icon"></span>
+							<h3 class="head_img">Images</h3>
+							<a href="https://www.rcgroups.com/forums/thumbgallery.php?t=2245978&amp;do=threadgallery&amp;type=img&amp;group=none&amp;starter=no" class="gallery_link">View all Images in thread</a>	
+						</div>
+
+						
+							<div class="img_thumb">
+								<ul class="thumbwrap">
+								<li>
+	
+		
+			<a class="thumb_link" href="https://www.rcgroups.com/forums/attachmentNew.php?attachmentid=7102379" rel="Lightbox_1" id="0" target="_blank">
+				<span class="thumb_box">
+					<img id="7102379" class="thumbnail" src="./FrSky S-Port telemetry library - easy to use and configurable - RC Groups_files/t7102379-232-thumb-FrSky_telemetry_lib.jpg" border="0" alt="Name: FrSky_telemetry_lib.jpg
+Views: 1697
+Size: 167.6 KB
+Description: " title="Name: FrSky_telemetry_lib.jpg
+Views: 1697
+Size: 167.6 KB
+Description: ">
+				</span>
+				<span class="smallfont"><b>Views: 1697</b> <br><br></span>
+			</a>	
+		
+	
+	
+</li> 
+<li>
+	
+		
+			<a class="thumb_link" href="https://www.rcgroups.com/forums/attachmentNew.php?attachmentid=7180934" rel="Lightbox_1" id="1" target="_blank">
+				<span class="thumb_box">
+					<img id="7180934" class="thumbnail" src="./FrSky S-Port telemetry library - easy to use and configurable - RC Groups_files/t7180934-105-thumb-teensy_sport_connection_diagram.jpg" border="0" alt="Name: teensy_sport_connection_diagram.jpg
+Views: 4790
+Size: 98.0 KB
+Description: Connection diagram for Teensy 3.0/3.1/3.2/LC boards" title="Name: teensy_sport_connection_diagram.jpg
+Views: 4790
+Size: 98.0 KB
+Description: Connection diagram for Teensy 3.0/3.1/3.2/LC boards">
+				</span>
+				<span class="smallfont"><b>Views: 4790</b> <br><br>Connection diagram for Teensy 3.0/3.1/3.2/LC boards</span>
+			</a>	
+		
+	
+	
+</li> 
+<li>
+	
+		
+			<a class="thumb_link" href="https://www.rcgroups.com/forums/attachmentNew.php?attachmentid=9378095" rel="Lightbox_1" id="2" target="_blank">
+				<span class="thumb_box">
+					<img id="9378095" class="thumbnail" src="./FrSky S-Port telemetry library - easy to use and configurable - RC Groups_files/t9378095-184-thumb-teensy_36_sport_connection_diagram.jpg" border="0" alt="Name: teensy_36_sport_connection_diagram.jpg
+Views: 367
+Size: 291.7 KB
+Description: Connection diagram for Teensy 3.5/3.6 boards" title="Name: teensy_36_sport_connection_diagram.jpg
+Views: 367
+Size: 291.7 KB
+Description: Connection diagram for Teensy 3.5/3.6 boards">
+				</span>
+				<span class="smallfont"><b>Views: 367</b> <br><br>Connection diagram for Teensy 3.5/3.6 boards</span>
+			</a>	
+		
+	
+	
+</li> 
+<li>
+	
+		
+			<a class="thumb_link" href="https://www.rcgroups.com/forums/attachmentNew.php?attachmentid=7685601" rel="Lightbox_1" id="3" target="_blank">
+				<span class="thumb_box">
+					<img id="7685601" class="thumbnail" src="./FrSky S-Port telemetry library - easy to use and configurable - RC Groups_files/t7685601-35-thumb-328p_sport_connection_diagram.jpg" border="0" alt="Name: 328p_sport_connection_diagram.jpg
+Views: 2966
+Size: 122.6 KB
+Description: Connection diagram for 328P based boards (e.g. Pro Mini, Nano, Uno). Nano used as an example here.
+
+Although the resistor is not absolutely necessary, due to the voltage difference between Arduino and S.Port (5V vs 3.3V) it is strongly recommended" title="Name: 328p_sport_connection_diagram.jpg
+Views: 2966
+Size: 122.6 KB
+Description: Connection diagram for 328P based boards (e.g. Pro Mini, Nano, Uno). Nano used as an example here.
+
+Although the resistor is not absolutely necessary, due to the voltage difference between Arduino and S.Port (5V vs 3.3V) it is strongly recommended">
+				</span>
+				<span class="smallfont"><b>Views: 2966</b> <br><br>Connection diagram for 328P based boards (e.g. Pro Mini, Nano, Uno). Nano used as an example here.
+
+Although the resistor is not absolutely necessary, due to the voltage difference between Arduino and S.Port (5V vs 3.3V) it is strongly recommended</span>
+			</a>	
+		
+	
+	
+</li> 
+
+								</ul>
+							</div>
+						
+			
+						
+
+						
+					</div>
+				
+				
+
+				
+					<div class="attach_box">
+						<div class="attach_header" style="margin-bottom:12px">
+							<span class="icon_files" title="image icon"></span>
+							<h3 class="head_files">Files</h3>
+							<a href="https://www.rcgroups.com/forums/thumbgallery.php?t=2245978&amp;do=threadgallery&amp;type=files&amp;group=none&amp;starter=no" class="gallery_link">View all Files in thread</a>	
+						</div>
+						<div class="other_attach">
+							<ul class="filewrap">
+							<li>
+	<a href="https://www.rcgroups.com/forums/showatt.php?attachmentid=9378094&amp;d=1474912532">
+		<div class="attach_filename">
+			FrSkySportTelemetry_20160...
+		</div>
+		<div class="attach_caption">
+			v20160919
+		</div>
+		<div class="attach_size">
+			(532.4 KB)
+		</div>
+		 
+			<div class="attach_count">	
+				588 views
+			</div>
+		
+		<p>
+			zip
+		</p>
+	</a>   
+</li>
+							</ul>
+						</div>
+					</div>
+				
+	
+				
+
+		<!-- / attachments -->
+		
+
+		
+		
+
+		
+
+	</td>
+</tr>
+<tr valign="bottom">
+	<td class="user-postbit-bottom-user">
+		
+    	<div class="user_postbit_bottom">
+    		
+			
+			
+		</div>	
+		
+	</td>
+	<td class="alt2_bottom" align="right">
+	
+	
+		<!-- edit note -->
+		<div class="user-postbit-edited-container">
+			
+			<div class="smallfont user-postbit-edited user-postbit-edited-user">
+				<em>
+					
+						Last edited by pawelsky; Sep 27, 2016 at <span class="time">01:59 AM</span>.
+					
+					
+				</em>
+			</div>
+			
+			
+			<!-- / edit note -->
+		
+		
+		
+		
+		</div>
+		
+		<!-- / controls -->
+	</td>
+</tr>
+<tr>
+	<td colspan="2" class="tbottom_postbit"></td>
+</tr>
+</tbody></table>
+
+
+
+
+	</div>
+	
+		</div>
+	</div>
+</div>
+
+<!-- / close content container -->
+
+<!-- / post #29439177 -->
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+	<tbody><tr>
+		<td id="guest-first-post-container" align="left">
+			<div>
+				<div id="guest-post-login">Sign up now</div>
+				<div>to remove ads between posts</div>
+				<div><a id="guest-post-register" href="https://www.rcgroups.com/forums/register.php"></a></div>
+			</div>
+		</td>
+		<td align="center">
+		<div id="guest-first-post-ad">
+<script type="text/javascript"><!--// <![CDATA[
+if ((typeof(OA_output) != 'undefined') && (typeof(OA_output['width:700-950,_height:70-110,_rcgf-135-img|rcgf-adsense']) != 'undefined'))
+	document.write(OA_output['width:700-950,_height:70-110,_rcgf-135-img|rcgf-adsense']);
+else {
+	if (!document.phpAds_used) document.phpAds_used = ',';
+	phpAds_random = new String (Math.random()); phpAds_random = phpAds_random.substring(2,11);
+
+	document.write ("<" + "script language='JavaScript' type='text/javascript' src='");
+	document.write ("https://decals.rcgroups.net/adjs.php?n=" + phpAds_random);
+	document.write ("&amp;what=width:700-950,_height:70-110,_rcgf-135-img|rcgf-adsense&amp;target=_blank&amp;block=1");
+	document.write ("&amp;source=Radios&amp;exclude=" + document.phpAds_used);
+	if (document.referrer)
+		document.write ("&amp;referer=" + escape(document.referrer));
+	document.write ("'><" + "/script>");
+}
+// ]]> --></script><a href="https://decals.rcgroups.com/adclick.php?bannerid=20355&amp;zoneid=0&amp;source=Radios&amp;dest=http%3A%2F%2Fwww.spektrumrc.com%2FProducts%2FDefault.aspx%3FProdID%3DSPMR9910%26utm_source%3DRCG%26utm_medium%3DSPM%2520Radio%2520Forum%2520banner%26utm_content%3DSpektrum%2520DX9%2520Black%2520Transmitter%2520Only" target="_blank"><img class="_decalimg" src="./FrSky S-Port telemetry library - easy to use and configurable - RC Groups_files/54764-spm-dx9-black-edition-tx-only-web-banners-950-x-110.jpg" width="950" height="110" alt="DX9 Black Tx Only" title="DX9 Black Tx Only" border="0"></a><noscript>&lt;a href='https://decals.rcgroups.net/adclick.php?n=aa272b7c'&gt;&lt;img src='https://decals.rcgroups.net/adview.php?what=width:700-950,_height:70-110,_rcgf-135-img|rcgf-adsense&amp;amp;source=Radios&amp;amp;n=aa272b7c' border='0' alt=''&gt;&lt;/a&gt;</noscript>	
+</div>
+		</td>
+	</tr>
+	
+</tbody></table>
+<!-- post #29439319 -->
+
+	<!-- open content container -->
+
+<div align="center">
+	<div class="page" style="width:100%; text-align:left">
+		<div style="padding:0px 0px 0px 0px" align="left">
+
+	<div id="edit29439319" style="padding:0px 0px 0px 0px">
+	<!-- this is not the last post shown on the page -->
+
+
+
+<table id="post29439319" class="tborder user-postbit-left-user" cellpadding="5" cellspacing="0" border="0" width="100%" align="center">
+<tbody><tr>
+	
+		<td class="thead_postbit" colspan="2">
+			<div class="thead_postbit_left">
+				<a name="post29439319"><span class="inlineimg post-status post-old" title="Old"></span></a>
+				<!-- status icon and date -->
+				<span>
+				Sep 14, 2014<span class="thead-postbit-hide">, 12:35 PM</span>
+				
+				</span>
+				<!-- / status icon and date -->			
+			</div>
+			<div class="thead_postbit_right">
+				<ul>
+					
+					<li><a href="https://www.rcgroups.com/forums/showpost.php?p=29439319&amp;postcount=2" target="new" rel="nofollow" id="postcount29439319" name="2"><strong>#2</strong></a></li>
+					
+					
+					
+					
+					
+				</ul>
+			</div>
+		</td>
+	
+</tr>
+
+<tr class="userinfobox userinfobox-user">
+	<td>
+		<div class="user-postbit-statusicons userinfobox-icn-online">
+				
+	<span class="inlineimg_postbit online-status offline" title="balbs is offline"></span>
+	
+	
+
+				
+		</div>
+		<div class="userinfobox-name postbit-name">
+				
+				<a class="" href="https://www.rcgroups.com/forums/member.php?u=64345">balbs</a>
+				
+		</div>
+		
+		<div class="user-postbit-statusicons userinfobox-icn-pm">
+				<a href="https://www.rcgroups.com/forums/search.php?do=finduser&amp;userid=64345" rel="nofollow"><span class="inlineimg_postbit online-status search" title="Find More Posts by balbs"></span></a>
+				
+		</div>
+		
+		<div class="userinfobox-itrader">
+		
+		</div>
+	</td>
+</tr>
+
+<tr valign="top">
+	<td class="user_postbit user-postbit-user">
+		<div class="user_postbit_top postbit-name-user">
+			<div id="postmenu_29439319" class="postbit-name-container">
+				<div class="postbit-name">
+				
+				<a class="" href="https://www.rcgroups.com/forums/member.php?u=64345">balbs</a>
+				
+				</div>
+				<div class="postbit-usertitle">Registered User</div>
+			</div>
+		</div>
+		<div class="user_postbit_top user-postbit-middle-user">
+			
+			
+			
+		</div>
+	</td>
+	<td class="alt2" id="td_post_29439319">
+		
+		
+
+		<!-- message -->
+		<div class="postbit-content" id="post_message_29439319">
+			
+			Subscribed! Awesome!
+		</div>
+		<!-- / message -->
+
+		
+
+		
+		
+
+		
+
+	</td>
+</tr>
+<tr valign="bottom">
+	<td class="user-postbit-bottom-user">
+		
+    	<div class="user_postbit_bottom">
+    		
+			
+			
+		</div>	
+		
+	</td>
+	<td class="alt2_bottom" align="right">
+	
+	
+		
+		
+		
+		<!-- / controls -->
+	</td>
+</tr>
+<tr>
+	<td colspan="2" class="tbottom_postbit"></td>
+</tr>
+</tbody></table>
+
+
+
+
+	</div>
+	
+		</div>
+	</div>
+</div>
+
+<!-- / close content container -->
+
+<!-- / post #29439319 --><!-- post #29443965 -->
+
+	<!-- open content container -->
+
+<div align="center">
+	<div class="page" style="width:100%; text-align:left">
+		<div style="padding:0px 0px 0px 0px" align="left">
+
+	<div id="edit29443965" style="padding:0px 0px 0px 0px">
+	<!-- this is not the last post shown on the page -->
+
+
+
+<table id="post29443965" class="tborder user-postbit-left-plus" cellpadding="5" cellspacing="0" border="0" width="100%" align="center">
+<tbody><tr>
+	
+		<td class="thead_postbit" colspan="2">
+			<div class="thead_postbit_left">
+				<a name="post29443965"><span class="inlineimg post-status post-old" title="Old"></span></a>
+				<!-- status icon and date -->
+				<span>
+				Sep 15, 2014<span class="thead-postbit-hide">, 12:46 AM</span>
+				
+				</span>
+				<!-- / status icon and date -->			
+			</div>
+			<div class="thead_postbit_right">
+				<ul>
+					
+					<li><a href="https://www.rcgroups.com/forums/showpost.php?p=29443965&amp;postcount=3" target="new" rel="nofollow" id="postcount29443965" name="3"><strong>#3</strong></a></li>
+					
+					
+					
+					
+					
+				</ul>
+			</div>
+		</td>
+	
+</tr>
+
+<tr class="userinfobox userinfobox-plus">
+	<td>
+		<div class="user-postbit-statusicons userinfobox-icn-online">
+				
+	<span class="inlineimg_postbit online-status offline" title="irun4fundotca is offline"></span>
+	
+	
+
+				
+		</div>
+		<div class="userinfobox-name postbit-name">
+				
+				<a class="" href="https://www.rcgroups.com/forums/member.php?u=396104">irun4fundotca</a>
+				
+		</div>
+		
+		<div class="user-postbit-statusicons userinfobox-icn-pm">
+				<a href="https://www.rcgroups.com/forums/search.php?do=finduser&amp;userid=396104" rel="nofollow"><span class="inlineimg_postbit online-status search" title="Find More Posts by irun4fundotca"></span></a>
+				
+		</div>
+		
+		<div class="userinfobox-itrader">
+		
+		</div>
+	</td>
+</tr>
+
+<tr valign="top">
+	<td class="user_postbit user-postbit-plus">
+		<div class="user_postbit_top postbit-name-plus">
+			<div id="postmenu_29443965" class="postbit-name-container">
+				<div class="postbit-name">
+				
+				<a class="" href="https://www.rcgroups.com/forums/member.php?u=396104">irun4fundotca</a>
+				
+				</div>
+				<div class="postbit-usertitle">Flying Wood For Fun</div>
+			</div>
+		</div>
+		<div class="user_postbit_top user-postbit-middle-plus">
+			
+				<div class="user_postbit_avatar">
+					<a href="https://www.rcgroups.com/forums/member.php?u=396104"><img src="./FrSky S-Port telemetry library - easy to use and configurable - RC Groups_files/avatar396104_2.gif" width="75" height="69" alt="irun4fundotca&#39;s Avatar" border="0" title="irun4fundotca&#39;s Avatar"></a>
+				</div>
+			
+			
+			
+		</div>
+	</td>
+	<td class="alt2" id="td_post_29443965">
+		
+		
+
+		<!-- message -->
+		<div class="postbit-content" id="post_message_29443965">
+			
+			Great Stuff Man Thanks <img src="./FrSky S-Port telemetry library - easy to use and configurable - RC Groups_files/biggrin.gif" border="0" alt="" title="Big Grin" class="inlineimg"><br>
+hope to tinker soon just ordered the dual temp and rpm sensor
+		</div>
+		<!-- / message -->
+
+		
+
+		
+		
+
+		
+
+	</td>
+</tr>
+<tr valign="bottom">
+	<td class="user-postbit-bottom-plus">
+		
+    	<div class="user_postbit_bottom">
+    		
+			<div class="user-badge-plus"><a href="https://www.rcgroups.com/forums/rcgplus.php"></a></div>
+			
+		</div>	
+		
+	</td>
+	<td class="alt2_bottom" align="right">
+	
+	
+		
+		
+		
+		<!-- / controls -->
+	</td>
+</tr>
+<tr>
+	<td colspan="2" class="tbottom_postbit"></td>
+</tr>
+</tbody></table>
+
+
+
+
+	</div>
+	
+		</div>
+	</div>
+</div>
+
+<!-- / close content container -->
+
+<!-- / post #29443965 --><!-- post #29444406 -->
+
+	<!-- open content container -->
+
+<div align="center">
+	<div class="page" style="width:100%; text-align:left">
+		<div style="padding:0px 0px 0px 0px" align="left">
+
+	<div id="edit29444406" style="padding:0px 0px 0px 0px">
+	<!-- this is not the last post shown on the page -->
+
+
+
+<table id="post29444406" class="tborder user-postbit-left-user" cellpadding="5" cellspacing="0" border="0" width="100%" align="center">
+<tbody><tr>
+	
+		<td class="thead_postbit" colspan="2">
+			<div class="thead_postbit_left">
+				<a name="post29444406"><span class="inlineimg post-status post-old" title="Old"></span></a>
+				<!-- status icon and date -->
+				<span>
+				Sep 15, 2014<span class="thead-postbit-hide">, 03:20 AM</span>
+				
+				</span>
+				<!-- / status icon and date -->			
+			</div>
+			<div class="thead_postbit_right">
+				<ul>
+					
+					<li><a href="https://www.rcgroups.com/forums/showpost.php?p=29444406&amp;postcount=4" target="new" rel="nofollow" id="postcount29444406" name="4"><strong>#4</strong></a></li>
+					
+					
+					
+					
+					
+				</ul>
+			</div>
+		</td>
+	
+</tr>
+
+<tr class="userinfobox userinfobox-user">
+	<td>
+		<div class="user-postbit-statusicons userinfobox-icn-online">
+				
+	<span class="inlineimg_postbit online-status offline" title="pawelsky is offline"></span>
+	
+	
+
+				
+		</div>
+		<div class="userinfobox-name postbit-name">
+				
+				<a class="" href="https://www.rcgroups.com/forums/member.php?u=393936">pawelsky</a>
+				
+		</div>
+		
+		<div class="user-postbit-statusicons userinfobox-icn-pm">
+				<a href="https://www.rcgroups.com/forums/search.php?do=finduser&amp;userid=393936" rel="nofollow"><span class="inlineimg_postbit online-status search" title="Find More Posts by pawelsky"></span></a>
+				
+		</div>
+		
+		<div class="userinfobox-itrader">
+		
+		</div>
+	</td>
+</tr>
+
+<tr valign="top">
+	<td class="user_postbit user-postbit-user">
+		<div class="user_postbit_top postbit-name-user">
+			<div id="postmenu_29444406" class="postbit-name-container">
+				<div class="postbit-name">
+				
+				<a class="" href="https://www.rcgroups.com/forums/member.php?u=393936">pawelsky</a>
+				
+				</div>
+				<div class="postbit-usertitle">Makers gonna make...</div>
+			</div>
+		</div>
+		<div class="user_postbit_top user-postbit-middle-user">
+			
+				<div class="user_postbit_avatar">
+					<a href="https://www.rcgroups.com/forums/member.php?u=393936"><img src="./FrSky S-Port telemetry library - easy to use and configurable - RC Groups_files/avatar393936_1.gif" width="75" height="75" alt="pawelsky&#39;s Avatar" border="0" title="pawelsky&#39;s Avatar"></a>
+				</div>
+			
+			
+			
+		</div>
+	</td>
+	<td class="alt2" id="td_post_29444406">
+		
+		
+
+		<!-- message -->
+		<div class="postbit-content" id="post_message_29444406">
+			
+			<div style="margin:20px; margin-top:5px; ">
+	<div class="smallfont" style="margin-bottom:2px">Quote:</div>
+	<table cellpadding="5" cellspacing="0" border="0" width="100%">
+	<tbody><tr>
+		<td class="alt2" style="border:1px inset">
+			
+				<div>
+					Originally Posted by <strong>irun4fundotca</strong>
+					<a href="https://www.rcgroups.com/forums/showthread.php?p=29443965#post29443965" rel="nofollow"><span class="quote_viewpost" title="View Post"></span></a>
+				</div>
+				<div style="font-style:italic">Great Stuff Man Thanks <img src="./FrSky S-Port telemetry library - easy to use and configurable - RC Groups_files/biggrin.gif" border="0" alt="" title="Big Grin" class="inlineimg"><br>
+hope to tinker soon just ordered the dual temp and rpm sensor</div>
+			
+		</td>
+	</tr>
+	</tbody></table>
+</div>Thanks!<br>
+<br>
+Let me know once you have it. I may have some questions about this particular sensor.
+		</div>
+		<!-- / message -->
+
+		
+
+		
+		
+
+		
+
+	</td>
+</tr>
+<tr valign="bottom">
+	<td class="user-postbit-bottom-user">
+		
+    	<div class="user_postbit_bottom">
+    		
+			
+			
+		</div>	
+		
+	</td>
+	<td class="alt2_bottom" align="right">
+	
+	
+		
+		
+		
+		<!-- / controls -->
+	</td>
+</tr>
+<tr>
+	<td colspan="2" class="tbottom_postbit"></td>
+</tr>
+</tbody></table>
+
+
+
+
+	</div>
+	
+		</div>
+	</div>
+</div>
+
+<!-- / close content container -->
+
+<!-- / post #29444406 --><!-- post #29445155 -->
+
+	<!-- open content container -->
+
+<div align="center">
+	<div class="page" style="width:100%; text-align:left">
+		<div style="padding:0px 0px 0px 0px" align="left">
+
+	<div id="edit29445155" style="padding:0px 0px 0px 0px">
+	<!-- this is not the last post shown on the page -->
+
+
+
+<table id="post29445155" class="tborder user-postbit-left-plus" cellpadding="5" cellspacing="0" border="0" width="100%" align="center">
+<tbody><tr>
+	
+		<td class="thead_postbit" colspan="2">
+			<div class="thead_postbit_left">
+				<a name="post29445155"><span class="inlineimg post-status post-old" title="Old"></span></a>
+				<!-- status icon and date -->
+				<span>
+				Sep 15, 2014<span class="thead-postbit-hide">, 07:04 AM</span>
+				
+				</span>
+				<!-- / status icon and date -->			
+			</div>
+			<div class="thead_postbit_right">
+				<ul>
+					
+					<li><a href="https://www.rcgroups.com/forums/showpost.php?p=29445155&amp;postcount=5" target="new" rel="nofollow" id="postcount29445155" name="5"><strong>#5</strong></a></li>
+					
+					
+					
+					
+					
+				</ul>
+			</div>
+		</td>
+	
+</tr>
+
+<tr class="userinfobox userinfobox-plus">
+	<td>
+		<div class="user-postbit-statusicons userinfobox-icn-online">
+				
+	<span class="inlineimg_postbit online-status offline" title="irun4fundotca is offline"></span>
+	
+	
+
+				
+		</div>
+		<div class="userinfobox-name postbit-name">
+				
+				<a class="" href="https://www.rcgroups.com/forums/member.php?u=396104">irun4fundotca</a>
+				
+		</div>
+		
+		<div class="user-postbit-statusicons userinfobox-icn-pm">
+				<a href="https://www.rcgroups.com/forums/search.php?do=finduser&amp;userid=396104" rel="nofollow"><span class="inlineimg_postbit online-status search" title="Find More Posts by irun4fundotca"></span></a>
+				
+		</div>
+		
+		<div class="userinfobox-itrader">
+		
+		</div>
+	</td>
+</tr>
+
+<tr valign="top">
+	<td class="user_postbit user-postbit-plus">
+		<div class="user_postbit_top postbit-name-plus">
+			<div id="postmenu_29445155" class="postbit-name-container">
+				<div class="postbit-name">
+				
+				<a class="" href="https://www.rcgroups.com/forums/member.php?u=396104">irun4fundotca</a>
+				
+				</div>
+				<div class="postbit-usertitle">Flying Wood For Fun</div>
+			</div>
+		</div>
+		<div class="user_postbit_top user-postbit-middle-plus">
+			
+				<div class="user_postbit_avatar">
+					<a href="https://www.rcgroups.com/forums/member.php?u=396104"><img src="./FrSky S-Port telemetry library - easy to use and configurable - RC Groups_files/avatar396104_2.gif" width="75" height="69" alt="irun4fundotca&#39;s Avatar" border="0" title="irun4fundotca&#39;s Avatar"></a>
+				</div>
+			
+			
+			
+		</div>
+	</td>
+	<td class="alt2" id="td_post_29445155">
+		
+		
+
+		<!-- message -->
+		<div class="postbit-content" id="post_message_29445155">
+			
+			<div style="margin:20px; margin-top:5px; ">
+	<div class="smallfont" style="margin-bottom:2px">Quote:</div>
+	<table cellpadding="5" cellspacing="0" border="0" width="100%">
+	<tbody><tr>
+		<td class="alt2" style="border:1px inset">
+			
+				<div>
+					Originally Posted by <strong>pawelsky</strong>
+					<a href="https://www.rcgroups.com/forums/showthread.php?p=29444406#post29444406" rel="nofollow"><span class="quote_viewpost" title="View Post"></span></a>
+				</div>
+				<div style="font-style:italic">Thanks!<br>
+<br>
+Let me know once you have it. I may have some questions about this particular sensor.</div>
+			
+		</td>
+	</tr>
+	</tbody></table>
+</div>no probs, I already have the gps v2, lipo cell checker, 40a current sensor that's one I didn't have yet so I figured what the heck,  I would never use a vario though at least I don't think so<br>
+<br>
+ill tell you, it would be a large craft to have them all connected at once, to bad they weren't all one module
+		</div>
+		<!-- / message -->
+
+		
+
+		
+		
+
+		
+
+	</td>
+</tr>
+<tr valign="bottom">
+	<td class="user-postbit-bottom-plus">
+		
+    	<div class="user_postbit_bottom">
+    		
+			<div class="user-badge-plus"><a href="https://www.rcgroups.com/forums/rcgplus.php"></a></div>
+			
+		</div>	
+		
+	</td>
+	<td class="alt2_bottom" align="right">
+	
+	
+		
+		
+		
+		<!-- / controls -->
+	</td>
+</tr>
+<tr>
+	<td colspan="2" class="tbottom_postbit"></td>
+</tr>
+</tbody></table>
+
+
+
+
+	</div>
+	
+		</div>
+	</div>
+</div>
+
+<!-- / close content container -->
+
+<!-- / post #29445155 --><!-- post #29445180 -->
+
+	<!-- open content container -->
+
+<div align="center">
+	<div class="page" style="width:100%; text-align:left">
+		<div style="padding:0px 0px 0px 0px" align="left">
+
+	<div id="edit29445180" style="padding:0px 0px 0px 0px">
+	<!-- this is not the last post shown on the page -->
+
+
+
+<table id="post29445180" class="tborder user-postbit-left-user" cellpadding="5" cellspacing="0" border="0" width="100%" align="center">
+<tbody><tr>
+	
+		<td class="thead_postbit" colspan="2">
+			<div class="thead_postbit_left">
+				<a name="post29445180"><span class="inlineimg post-status post-old" title="Old"></span></a>
+				<!-- status icon and date -->
+				<span>
+				Sep 15, 2014<span class="thead-postbit-hide">, 07:09 AM</span>
+				
+				</span>
+				<!-- / status icon and date -->			
+			</div>
+			<div class="thead_postbit_right">
+				<ul>
+					
+					<li><a href="https://www.rcgroups.com/forums/showpost.php?p=29445180&amp;postcount=6" target="new" rel="nofollow" id="postcount29445180" name="6"><strong>#6</strong></a></li>
+					
+					
+					
+					
+					
+				</ul>
+			</div>
+		</td>
+	
+</tr>
+
+<tr class="userinfobox userinfobox-user">
+	<td>
+		<div class="user-postbit-statusicons userinfobox-icn-online">
+				
+	<span class="inlineimg_postbit online-status offline" title="pawelsky is offline"></span>
+	
+	
+
+				
+		</div>
+		<div class="userinfobox-name postbit-name">
+				
+				<a class="" href="https://www.rcgroups.com/forums/member.php?u=393936">pawelsky</a>
+				
+		</div>
+		
+		<div class="user-postbit-statusicons userinfobox-icn-pm">
+				<a href="https://www.rcgroups.com/forums/search.php?do=finduser&amp;userid=393936" rel="nofollow"><span class="inlineimg_postbit online-status search" title="Find More Posts by pawelsky"></span></a>
+				
+		</div>
+		
+		<div class="userinfobox-itrader">
+		
+		</div>
+	</td>
+</tr>
+
+<tr valign="top">
+	<td class="user_postbit user-postbit-user">
+		<div class="user_postbit_top postbit-name-user">
+			<div id="postmenu_29445180" class="postbit-name-container">
+				<div class="postbit-name">
+				
+				<a class="" href="https://www.rcgroups.com/forums/member.php?u=393936">pawelsky</a>
+				
+				</div>
+				<div class="postbit-usertitle">Makers gonna make...</div>
+			</div>
+		</div>
+		<div class="user_postbit_top user-postbit-middle-user">
+			
+				<div class="user_postbit_avatar">
+					<a href="https://www.rcgroups.com/forums/member.php?u=393936"><img src="./FrSky S-Port telemetry library - easy to use and configurable - RC Groups_files/avatar393936_1.gif" width="75" height="75" alt="pawelsky&#39;s Avatar" border="0" title="pawelsky&#39;s Avatar"></a>
+				</div>
+			
+			
+			
+		</div>
+	</td>
+	<td class="alt2" id="td_post_29445180">
+		
+		
+
+		<!-- message -->
+		<div class="postbit-content" id="post_message_29445180">
+			
+			<div style="margin:20px; margin-top:5px; ">
+	<div class="smallfont" style="margin-bottom:2px">Quote:</div>
+	<table cellpadding="5" cellspacing="0" border="0" width="100%">
+	<tbody><tr>
+		<td class="alt2" style="border:1px inset">
+			
+				<div>
+					Originally Posted by <strong>irun4fundotca</strong>
+					<a href="https://www.rcgroups.com/forums/showthread.php?p=29445155#post29445155" rel="nofollow"><span class="quote_viewpost" title="View Post"></span></a>
+				</div>
+				<div style="font-style:italic">no probs, I already have the gps v2, lipo cell checker, 40a current sensor that's one I didn't have yet so I figured what the heck,  I would never use a vario though at least I don't think so<br>
+<br>
+ill tell you, it would be a large craft to have them all connected at once, to bad they weren't all one module</div>
+			
+		</td>
+	</tr>
+	</tbody></table>
+</div>Nice, they are all S-Port sensor, right?
+		</div>
+		<!-- / message -->
+
+		
+
+		
+		
+
+		
+
+	</td>
+</tr>
+<tr valign="bottom">
+	<td class="user-postbit-bottom-user">
+		
+    	<div class="user_postbit_bottom">
+    		
+			
+			
+		</div>	
+		
+	</td>
+	<td class="alt2_bottom" align="right">
+	
+	
+		
+		
+		
+		<!-- / controls -->
+	</td>
+</tr>
+<tr>
+	<td colspan="2" class="tbottom_postbit"></td>
+</tr>
+</tbody></table>
+
+
+
+
+	</div>
+	
+		</div>
+	</div>
+</div>
+
+<!-- / close content container -->
+
+<!-- / post #29445180 --><!-- post #29445716 -->
+
+	<!-- open content container -->
+
+<div align="center">
+	<div class="page" style="width:100%; text-align:left">
+		<div style="padding:0px 0px 0px 0px" align="left">
+
+	<div id="edit29445716" style="padding:0px 0px 0px 0px">
+	<!-- this is not the last post shown on the page -->
+
+
+
+<table id="post29445716" class="tborder user-postbit-left-plus" cellpadding="5" cellspacing="0" border="0" width="100%" align="center">
+<tbody><tr>
+	
+		<td class="thead_postbit" colspan="2">
+			<div class="thead_postbit_left">
+				<a name="post29445716"><span class="inlineimg post-status post-old" title="Old"></span></a>
+				<!-- status icon and date -->
+				<span>
+				Sep 15, 2014<span class="thead-postbit-hide">, 08:39 AM</span>
+				
+				</span>
+				<!-- / status icon and date -->			
+			</div>
+			<div class="thead_postbit_right">
+				<ul>
+					
+					<li><a href="https://www.rcgroups.com/forums/showpost.php?p=29445716&amp;postcount=7" target="new" rel="nofollow" id="postcount29445716" name="7"><strong>#7</strong></a></li>
+					
+					
+					
+					
+					
+				</ul>
+			</div>
+		</td>
+	
+</tr>
+
+<tr class="userinfobox userinfobox-plus">
+	<td>
+		<div class="user-postbit-statusicons userinfobox-icn-online">
+				
+	<span class="inlineimg_postbit online-status offline" title="irun4fundotca is offline"></span>
+	
+	
+
+				
+		</div>
+		<div class="userinfobox-name postbit-name">
+				
+				<a class="" href="https://www.rcgroups.com/forums/member.php?u=396104">irun4fundotca</a>
+				
+		</div>
+		
+		<div class="user-postbit-statusicons userinfobox-icn-pm">
+				<a href="https://www.rcgroups.com/forums/search.php?do=finduser&amp;userid=396104" rel="nofollow"><span class="inlineimg_postbit online-status search" title="Find More Posts by irun4fundotca"></span></a>
+				
+		</div>
+		
+		<div class="userinfobox-itrader">
+		
+		</div>
+	</td>
+</tr>
+
+<tr valign="top">
+	<td class="user_postbit user-postbit-plus">
+		<div class="user_postbit_top postbit-name-plus">
+			<div id="postmenu_29445716" class="postbit-name-container">
+				<div class="postbit-name">
+				
+				<a class="" href="https://www.rcgroups.com/forums/member.php?u=396104">irun4fundotca</a>
+				
+				</div>
+				<div class="postbit-usertitle">Flying Wood For Fun</div>
+			</div>
+		</div>
+		<div class="user_postbit_top user-postbit-middle-plus">
+			
+				<div class="user_postbit_avatar">
+					<a href="https://www.rcgroups.com/forums/member.php?u=396104"><img src="./FrSky S-Port telemetry library - easy to use and configurable - RC Groups_files/avatar396104_2.gif" width="75" height="69" alt="irun4fundotca&#39;s Avatar" border="0" title="irun4fundotca&#39;s Avatar"></a>
+				</div>
+			
+			
+			
+		</div>
+	</td>
+	<td class="alt2" id="td_post_29445716">
+		
+		
+
+		<!-- message -->
+		<div class="postbit-content" id="post_message_29445716">
+			
+			<div style="margin:20px; margin-top:5px; ">
+	<div class="smallfont" style="margin-bottom:2px">Quote:</div>
+	<table cellpadding="5" cellspacing="0" border="0" width="100%">
+	<tbody><tr>
+		<td class="alt2" style="border:1px inset">
+			
+				<div>
+					Originally Posted by <strong>pawelsky</strong>
+					<a href="https://www.rcgroups.com/forums/showthread.php?p=29445180#post29445180" rel="nofollow"><span class="quote_viewpost" title="View Post"></span></a>
+				</div>
+				<div style="font-style:italic">Nice, they are all S-Port sensor, right?</div>
+			
+		</td>
+	</tr>
+	</tbody></table>
+</div>yeah correct, I still want an airspeed sensor <br>
+was thinking on using an apm type airspeed sensor but its analog so I didn't go for it<br>
+<br>
+they will all fit nicely on my 90" piper cub
+		</div>
+		<!-- / message -->
+
+		
+
+		
+		
+
+		
+
+	</td>
+</tr>
+<tr valign="bottom">
+	<td class="user-postbit-bottom-plus">
+		
+    	<div class="user_postbit_bottom">
+    		
+			<div class="user-badge-plus"><a href="https://www.rcgroups.com/forums/rcgplus.php"></a></div>
+			
+		</div>	
+		
+	</td>
+	<td class="alt2_bottom" align="right">
+	
+	
+		
+		
+		
+		<!-- / controls -->
+	</td>
+</tr>
+<tr>
+	<td colspan="2" class="tbottom_postbit"></td>
+</tr>
+</tbody></table>
+
+
+
+
+	</div>
+	
+		</div>
+	</div>
+</div>
+
+<!-- / close content container -->
+
+<!-- / post #29445716 --><!-- post #29458513 -->
+
+	<!-- open content container -->
+
+<div align="center">
+	<div class="page" style="width:100%; text-align:left">
+		<div style="padding:0px 0px 0px 0px" align="left">
+
+	<div id="edit29458513" style="padding:0px 0px 0px 0px">
+	<!-- this is not the last post shown on the page -->
+
+
+
+<table id="post29458513" class="tborder user-postbit-left-user" cellpadding="5" cellspacing="0" border="0" width="100%" align="center">
+<tbody><tr>
+	
+		<td class="thead_postbit" colspan="2">
+			<div class="thead_postbit_left">
+				<a name="post29458513"><span class="inlineimg post-status post-old" title="Old"></span></a>
+				<!-- status icon and date -->
+				<span>
+				Sep 16, 2014<span class="thead-postbit-hide">, 05:07 PM</span>
+				
+				</span>
+				<!-- / status icon and date -->			
+			</div>
+			<div class="thead_postbit_right">
+				<ul>
+					
+					<li><a href="https://www.rcgroups.com/forums/showpost.php?p=29458513&amp;postcount=8" target="new" rel="nofollow" id="postcount29458513" name="8"><strong>#8</strong></a></li>
+					
+					
+					
+					
+					
+				</ul>
+			</div>
+		</td>
+	
+</tr>
+
+<tr class="userinfobox userinfobox-user">
+	<td>
+		<div class="user-postbit-statusicons userinfobox-icn-online">
+				
+	<span class="inlineimg_postbit online-status offline" title="pawelsky is offline"></span>
+	
+	
+
+				
+		</div>
+		<div class="userinfobox-name postbit-name">
+				
+				<a class="" href="https://www.rcgroups.com/forums/member.php?u=393936">pawelsky</a>
+				
+		</div>
+		
+		<div class="user-postbit-statusicons userinfobox-icn-pm">
+				<a href="https://www.rcgroups.com/forums/search.php?do=finduser&amp;userid=393936" rel="nofollow"><span class="inlineimg_postbit online-status search" title="Find More Posts by pawelsky"></span></a>
+				
+		</div>
+		
+		<div class="userinfobox-itrader">
+		
+		</div>
+	</td>
+</tr>
+
+<tr valign="top">
+	<td class="user_postbit user-postbit-user">
+		<div class="user_postbit_top postbit-name-user">
+			<div id="postmenu_29458513" class="postbit-name-container">
+				<div class="postbit-name">
+				
+				<a class="" href="https://www.rcgroups.com/forums/member.php?u=393936">pawelsky</a>
+				
+				</div>
+				<div class="postbit-usertitle">Makers gonna make...</div>
+			</div>
+		</div>
+		<div class="user_postbit_top user-postbit-middle-user">
+			
+				<div class="user_postbit_avatar">
+					<a href="https://www.rcgroups.com/forums/member.php?u=393936"><img src="./FrSky S-Port telemetry library - easy to use and configurable - RC Groups_files/avatar393936_1.gif" width="75" height="75" alt="pawelsky&#39;s Avatar" border="0" title="pawelsky&#39;s Avatar"></a>
+				</div>
+			
+			
+			
+		</div>
+	</td>
+	<td class="alt2" id="td_post_29458513">
+		
+		
+
+		<!-- message -->
+		<div class="postbit-content" id="post_message_29458513">
+			
+			Got some logs from real sensors from irun4fundotca (thanks for that) and this confirms my understanding of the data rates and the defaults as written on the attached picture from FrSky.<br>
+<br>
+Interesting thing is that COG is by default disabled and not reported by the GPS sensor.<br>
+<br>
+Next version of the library will have the data rates implemented and configurable. I'll also add option for enabling/disabling particular messages.
+		</div>
+		<!-- / message -->
+
+		
+		<!-- attachments -->
+				
+					<div class="attach_box">
+						<div class="attach_header">
+							<span class="icon_img" title="image icon"></span>
+							<h3 class="head_img">Images</h3>
+							<a href="https://www.rcgroups.com/forums/thumbgallery.php?t=2245978&amp;do=threadgallery&amp;type=img&amp;group=none&amp;starter=no" class="gallery_link">View all Images in thread</a>	
+						</div>
+
+						
+							<div class="img_thumb">
+								<ul class="thumbwrap">
+								<li>
+	
+		
+			<a class="thumb_link" href="https://www.rcgroups.com/forums/attachmentNew.php?attachmentid=7108946" rel="Lightbox_1" id="4" target="_blank">
+				<span class="thumb_box">
+					<img id="7108946" class="thumbnail" src="./FrSky S-Port telemetry library - easy to use and configurable - RC Groups_files/t7108946-220-thumb-sensor default settings.jpg" border="0" alt="Name: sensor default settings.jpg
+Views: 2362
+Size: 164.8 KB
+Description: " title="Name: sensor default settings.jpg
+Views: 2362
+Size: 164.8 KB
+Description: ">
+				</span>
+				<span class="smallfont"><b>Views: 2362</b> <br><br></span>
+			</a>	
+		
+	
+	
+</li> 
+
+								</ul>
+							</div>
+						
+			
+						
+
+						
+					</div>
+				
+				
+
+				
+	
+				
+
+		<!-- / attachments -->
+		
+
+		
+		
+
+		
+
+	</td>
+</tr>
+<tr valign="bottom">
+	<td class="user-postbit-bottom-user">
+		
+    	<div class="user_postbit_bottom">
+    		
+			
+			
+		</div>	
+		
+	</td>
+	<td class="alt2_bottom" align="right">
+	
+	
+		
+		
+		
+		<!-- / controls -->
+	</td>
+</tr>
+<tr>
+	<td colspan="2" class="tbottom_postbit"></td>
+</tr>
+</tbody></table>
+
+
+
+
+	</div>
+	
+		</div>
+	</div>
+</div>
+
+<!-- / close content container -->
+
+<!-- / post #29458513 --><!-- post #29502612 -->
+
+	<!-- open content container -->
+
+<div align="center">
+	<div class="page" style="width:100%; text-align:left">
+		<div style="padding:0px 0px 0px 0px" align="left">
+
+	<div id="edit29502612" style="padding:0px 0px 0px 0px">
+	<!-- this is not the last post shown on the page -->
+
+
+
+<table id="post29502612" class="tborder user-postbit-left-user" cellpadding="5" cellspacing="0" border="0" width="100%" align="center">
+<tbody><tr>
+	
+		<td class="thead_postbit" colspan="2">
+			<div class="thead_postbit_left">
+				<a name="post29502612"><span class="inlineimg post-status post-old" title="Old"></span></a>
+				<!-- status icon and date -->
+				<span>
+				Sep 22, 2014<span class="thead-postbit-hide">, 07:49 AM</span>
+				
+				</span>
+				<!-- / status icon and date -->			
+			</div>
+			<div class="thead_postbit_right">
+				<ul>
+					
+					<li><a href="https://www.rcgroups.com/forums/showpost.php?p=29502612&amp;postcount=9" target="new" rel="nofollow" id="postcount29502612" name="9"><strong>#9</strong></a></li>
+					
+					
+					
+					
+					
+				</ul>
+			</div>
+		</td>
+	
+</tr>
+
+<tr class="userinfobox userinfobox-user">
+	<td>
+		<div class="user-postbit-statusicons userinfobox-icn-online">
+				
+	<span class="inlineimg_postbit online-status offline" title="pawelsky is offline"></span>
+	
+	
+
+				
+		</div>
+		<div class="userinfobox-name postbit-name">
+				
+				<a class="" href="https://www.rcgroups.com/forums/member.php?u=393936">pawelsky</a>
+				
+		</div>
+		
+		<div class="user-postbit-statusicons userinfobox-icn-pm">
+				<a href="https://www.rcgroups.com/forums/search.php?do=finduser&amp;userid=393936" rel="nofollow"><span class="inlineimg_postbit online-status search" title="Find More Posts by pawelsky"></span></a>
+				
+		</div>
+		
+		<div class="userinfobox-itrader">
+		
+		</div>
+	</td>
+</tr>
+
+<tr valign="top">
+	<td class="user_postbit user-postbit-user">
+		<div class="user_postbit_top postbit-name-user">
+			<div id="postmenu_29502612" class="postbit-name-container">
+				<div class="postbit-name">
+				
+				<a class="" href="https://www.rcgroups.com/forums/member.php?u=393936">pawelsky</a>
+				
+				</div>
+				<div class="postbit-usertitle">Makers gonna make...</div>
+			</div>
+		</div>
+		<div class="user_postbit_top user-postbit-middle-user">
+			
+				<div class="user_postbit_avatar">
+					<a href="https://www.rcgroups.com/forums/member.php?u=393936"><img src="./FrSky S-Port telemetry library - easy to use and configurable - RC Groups_files/avatar393936_1.gif" width="75" height="75" alt="pawelsky&#39;s Avatar" border="0" title="pawelsky&#39;s Avatar"></a>
+				</div>
+			
+			
+			
+		</div>
+	</td>
+	<td class="alt2" id="td_post_29502612">
+		
+		
+
+		<!-- message -->
+		<div class="postbit-content" id="post_message_29502612">
+			
+			Joined the FrSky Developing Union to get access to the S.Port protocol specification. Looks like the implementation is pretty close to what is expected so other than enabling the data rates and enabling/disabling of particular messages only minor corrections will be necessary.
+		</div>
+		<!-- / message -->
+
+		
+
+		
+		
+
+		
+
+	</td>
+</tr>
+<tr valign="bottom">
+	<td class="user-postbit-bottom-user">
+		
+    	<div class="user_postbit_bottom">
+    		
+			
+			
+		</div>	
+		
+	</td>
+	<td class="alt2_bottom" align="right">
+	
+	
+		
+		
+		
+		<!-- / controls -->
+	</td>
+</tr>
+<tr>
+	<td colspan="2" class="tbottom_postbit"></td>
+</tr>
+</tbody></table>
+
+
+
+
+	</div>
+	
+		</div>
+	</div>
+</div>
+
+<!-- / close content container -->
+
+<!-- / post #29502612 --><!-- post #29526766 -->
+
+	<!-- open content container -->
+
+<div align="center">
+	<div class="page" style="width:100%; text-align:left">
+		<div style="padding:0px 0px 0px 0px" align="left">
+
+	<div id="edit29526766" style="padding:0px 0px 0px 0px">
+	<!-- this is not the last post shown on the page -->
+
+
+
+<table id="post29526766" class="tborder user-postbit-left-user" cellpadding="5" cellspacing="0" border="0" width="100%" align="center">
+<tbody><tr>
+	
+		<td class="thead_postbit" colspan="2">
+			<div class="thead_postbit_left">
+				<a name="post29526766"><span class="inlineimg post-status post-old" title="Old"></span></a>
+				<!-- status icon and date -->
+				<span>
+				Sep 25, 2014<span class="thead-postbit-hide">, 04:33 AM</span>
+				
+				</span>
+				<!-- / status icon and date -->			
+			</div>
+			<div class="thead_postbit_right">
+				<ul>
+					
+					<li><a href="https://www.rcgroups.com/forums/showpost.php?p=29526766&amp;postcount=10" target="new" rel="nofollow" id="postcount29526766" name="10"><strong>#10</strong></a></li>
+					
+					
+					
+					
+					
+				</ul>
+			</div>
+		</td>
+	
+</tr>
+
+<tr class="userinfobox userinfobox-user">
+	<td>
+		<div class="user-postbit-statusicons userinfobox-icn-online">
+				
+	<span class="inlineimg_postbit online-status offline" title="monty_mcmont is offline"></span>
+	
+	
+
+				
+		</div>
+		<div class="userinfobox-name postbit-name">
+				
+				<a class="" href="https://www.rcgroups.com/forums/member.php?u=545112">monty_mcmont</a>
+				
+		</div>
+		
+		<div class="user-postbit-statusicons userinfobox-icn-pm">
+				<a href="https://www.rcgroups.com/forums/search.php?do=finduser&amp;userid=545112" rel="nofollow"><span class="inlineimg_postbit online-status search" title="Find More Posts by monty_mcmont"></span></a>
+				
+		</div>
+		
+		<div class="userinfobox-itrader">
+		
+		</div>
+	</td>
+</tr>
+
+<tr valign="top">
+	<td class="user_postbit user-postbit-user">
+		<div class="user_postbit_top postbit-name-user">
+			<div id="postmenu_29526766" class="postbit-name-container">
+				<div class="postbit-name">
+				
+				<a class="" href="https://www.rcgroups.com/forums/member.php?u=545112">monty_mcmont</a>
+				
+				</div>
+				<div class="postbit-usertitle">Registered User</div>
+			</div>
+		</div>
+		<div class="user_postbit_top user-postbit-middle-user">
+			
+			
+			
+		</div>
+	</td>
+	<td class="alt2" id="td_post_29526766">
+		
+		
+
+		<!-- message -->
+		<div class="postbit-content" id="post_message_29526766">
+			
+			Fantastic work again, Pawelsky!<br>
+<br>
+What would happen if you sent data to the telemetry hub with a PHY_ID that isn't listed in the table? Would the data still be sent over the telemetry link, and how would it appear on the receiver? Can a sensor name label be programmed in, or does the telemetry receiver simply map the PHY_IDs to sensor names?<br>
+<br>
+The reason I ask is that I have some custom sensors that I intend to read and log via a serial port on my Teensy. I'd like to be able to send the values from those sensors  over the telemetry link to my receiver. If using a PHY_ID &gt; 7 won't work, I guess I could just send the information with one of the existing PHY_IDs and live with the fact that the label is wrong!
+		</div>
+		<!-- / message -->
+
+		
+
+		
+		
+
+		
+
+	</td>
+</tr>
+<tr valign="bottom">
+	<td class="user-postbit-bottom-user">
+		
+    	<div class="user_postbit_bottom">
+    		
+			
+			
+		</div>	
+		
+	</td>
+	<td class="alt2_bottom" align="right">
+	
+	
+		
+		
+		
+		<!-- / controls -->
+	</td>
+</tr>
+<tr>
+	<td colspan="2" class="tbottom_postbit"></td>
+</tr>
+</tbody></table>
+
+
+
+
+	</div>
+	
+		</div>
+	</div>
+</div>
+
+<!-- / close content container -->
+
+<!-- / post #29526766 --><!-- post #29526816 -->
+
+	<!-- open content container -->
+
+<div align="center">
+	<div class="page" style="width:100%; text-align:left">
+		<div style="padding:0px 0px 0px 0px" align="left">
+
+	<div id="edit29526816" style="padding:0px 0px 0px 0px">
+	<!-- this is not the last post shown on the page -->
+
+
+
+<table id="post29526816" class="tborder user-postbit-left-user" cellpadding="5" cellspacing="0" border="0" width="100%" align="center">
+<tbody><tr>
+	
+		<td class="thead_postbit" colspan="2">
+			<div class="thead_postbit_left">
+				<a name="post29526816"><span class="inlineimg post-status post-old" title="Old"></span></a>
+				<!-- status icon and date -->
+				<span>
+				Sep 25, 2014<span class="thead-postbit-hide">, 04:49 AM</span>
+				
+				</span>
+				<!-- / status icon and date -->			
+			</div>
+			<div class="thead_postbit_right">
+				<ul>
+					
+					<li><a href="https://www.rcgroups.com/forums/showpost.php?p=29526816&amp;postcount=11" target="new" rel="nofollow" id="postcount29526816" name="11"><strong>#11</strong></a></li>
+					
+					
+					
+					
+					
+				</ul>
+			</div>
+		</td>
+	
+</tr>
+
+<tr class="userinfobox userinfobox-user">
+	<td>
+		<div class="user-postbit-statusicons userinfobox-icn-online">
+				
+	<span class="inlineimg_postbit online-status offline" title="pawelsky is offline"></span>
+	
+	
+
+				
+		</div>
+		<div class="userinfobox-name postbit-name">
+				
+				<a class="" href="https://www.rcgroups.com/forums/member.php?u=393936">pawelsky</a>
+				
+		</div>
+		
+		<div class="user-postbit-statusicons userinfobox-icn-pm">
+				<a href="https://www.rcgroups.com/forums/search.php?do=finduser&amp;userid=393936" rel="nofollow"><span class="inlineimg_postbit online-status search" title="Find More Posts by pawelsky"></span></a>
+				
+		</div>
+		
+		<div class="userinfobox-itrader">
+		
+		</div>
+	</td>
+</tr>
+
+<tr valign="top">
+	<td class="user_postbit user-postbit-user">
+		<div class="user_postbit_top postbit-name-user">
+			<div id="postmenu_29526816" class="postbit-name-container">
+				<div class="postbit-name">
+				
+				<a class="" href="https://www.rcgroups.com/forums/member.php?u=393936">pawelsky</a>
+				
+				</div>
+				<div class="postbit-usertitle">Makers gonna make...</div>
+			</div>
+		</div>
+		<div class="user_postbit_top user-postbit-middle-user">
+			
+				<div class="user_postbit_avatar">
+					<a href="https://www.rcgroups.com/forums/member.php?u=393936"><img src="./FrSky S-Port telemetry library - easy to use and configurable - RC Groups_files/avatar393936_1.gif" width="75" height="75" alt="pawelsky&#39;s Avatar" border="0" title="pawelsky&#39;s Avatar"></a>
+				</div>
+			
+			
+			
+		</div>
+	</td>
+	<td class="alt2" id="td_post_29526816">
+		
+		
+
+		<!-- message -->
+		<div class="postbit-content" id="post_message_29526816">
+			
+			<div style="margin:20px; margin-top:5px; ">
+	<div class="smallfont" style="margin-bottom:2px">Quote:</div>
+	<table cellpadding="5" cellspacing="0" border="0" width="100%">
+	<tbody><tr>
+		<td class="alt2" style="border:1px inset">
+			
+				<div>
+					Originally Posted by <strong>monty_mcmont</strong>
+					<a href="https://www.rcgroups.com/forums/showthread.php?p=29526766#post29526766" rel="nofollow"><span class="quote_viewpost" title="View Post"></span></a>
+				</div>
+				<div style="font-style:italic">Fantastic work again, Pawelsky!<br>
+<br>
+What would happen if you sent data to the telemetry hub with a PHY_ID that isn't listed in the table? Would the data still be sent over the telemetry link, and how would it appear on the receiver? Can a sensor name label be programmed in, or does the telemetry receiver simply map the PHY_IDs to sensor names?<br>
+<br>
+The reason I ask is that I have some custom sensors that I intend to read and log via a serial port on my Teensy. I'd like to be able to send the values from those sensors  over the telemetry link to my receiver. If using a PHY_ID &gt; 7 won't work, I guess I could just send the information with one of the existing PHY_IDs and live with the fact that the label is wrong!</div>
+			
+		</td>
+	</tr>
+	</tbody></table>
+</div>First of all S.Port bus implements a pull model rather than push (receiver requests particular physical id to respond, and only then the data shall be sent).<br>
+<br>
+There are 28 physical IDs available (FrSkySportSensor::IDxx), so you can use one of these that is not mentioned in the table and is shall be polled by the Taranis no problem (same way as the second FLVSS sensor that has ID15 assigned in the example code). Note that PHY_ID 0 maps to ID1, PHY_ID 1 maps to ID2 etc.<br>
+<br>
+Sensor names cannot be programmed. The type of data that is being sent is determined by the so called APP_ID which is predefined by FrSky. Only these predefined APP_IDs will be understood and displayed by the receiver.
+		</div>
+		<!-- / message -->
+
+		
+
+		
+		
+
+		
+
+	</td>
+</tr>
+<tr valign="bottom">
+	<td class="user-postbit-bottom-user">
+		
+    	<div class="user_postbit_bottom">
+    		
+			
+			
+		</div>	
+		
+	</td>
+	<td class="alt2_bottom" align="right">
+	
+	
+		
+		
+		
+		<!-- / controls -->
+	</td>
+</tr>
+<tr>
+	<td colspan="2" class="tbottom_postbit"></td>
+</tr>
+</tbody></table>
+
+
+
+
+	</div>
+	
+		</div>
+	</div>
+</div>
+
+<!-- / close content container -->
+
+<!-- / post #29526816 --><!-- post #29527205 -->
+
+	<!-- open content container -->
+
+<div align="center">
+	<div class="page" style="width:100%; text-align:left">
+		<div style="padding:0px 0px 0px 0px" align="left">
+
+	<div id="edit29527205" style="padding:0px 0px 0px 0px">
+	<!-- this is not the last post shown on the page -->
+
+
+
+<table id="post29527205" class="tborder user-postbit-left-user" cellpadding="5" cellspacing="0" border="0" width="100%" align="center">
+<tbody><tr>
+	
+		<td class="thead_postbit" colspan="2">
+			<div class="thead_postbit_left">
+				<a name="post29527205"><span class="inlineimg post-status post-old" title="Old"></span></a>
+				<!-- status icon and date -->
+				<span>
+				Sep 25, 2014<span class="thead-postbit-hide">, 06:42 AM</span>
+				
+				</span>
+				<!-- / status icon and date -->			
+			</div>
+			<div class="thead_postbit_right">
+				<ul>
+					
+					<li><a href="https://www.rcgroups.com/forums/showpost.php?p=29527205&amp;postcount=12" target="new" rel="nofollow" id="postcount29527205" name="12"><strong>#12</strong></a></li>
+					
+					
+					
+					
+					
+				</ul>
+			</div>
+		</td>
+	
+</tr>
+
+<tr class="userinfobox userinfobox-user">
+	<td>
+		<div class="user-postbit-statusicons userinfobox-icn-online">
+				
+	<span class="inlineimg_postbit online-status offline" title="monty_mcmont is offline"></span>
+	
+	
+
+				
+		</div>
+		<div class="userinfobox-name postbit-name">
+				
+				<a class="" href="https://www.rcgroups.com/forums/member.php?u=545112">monty_mcmont</a>
+				
+		</div>
+		
+		<div class="user-postbit-statusicons userinfobox-icn-pm">
+				<a href="https://www.rcgroups.com/forums/search.php?do=finduser&amp;userid=545112" rel="nofollow"><span class="inlineimg_postbit online-status search" title="Find More Posts by monty_mcmont"></span></a>
+				
+		</div>
+		
+		<div class="userinfobox-itrader">
+		
+		</div>
+	</td>
+</tr>
+
+<tr valign="top">
+	<td class="user_postbit user-postbit-user">
+		<div class="user_postbit_top postbit-name-user">
+			<div id="postmenu_29527205" class="postbit-name-container">
+				<div class="postbit-name">
+				
+				<a class="" href="https://www.rcgroups.com/forums/member.php?u=545112">monty_mcmont</a>
+				
+				</div>
+				<div class="postbit-usertitle">Registered User</div>
+			</div>
+		</div>
+		<div class="user_postbit_top user-postbit-middle-user">
+			
+			
+			
+		</div>
+	</td>
+	<td class="alt2" id="td_post_29527205">
+		
+		
+
+		<!-- message -->
+		<div class="postbit-content" id="post_message_29527205">
+			
+			<div style="margin:20px; margin-top:5px; ">
+	<div class="smallfont" style="margin-bottom:2px">Quote:</div>
+	<table cellpadding="5" cellspacing="0" border="0" width="100%">
+	<tbody><tr>
+		<td class="alt2" style="border:1px inset">
+			
+				<div>
+					Originally Posted by <strong>pawelsky</strong>
+					<a href="https://www.rcgroups.com/forums/showthread.php?p=29526816#post29526816" rel="nofollow"><span class="quote_viewpost" title="View Post"></span></a>
+				</div>
+				<div style="font-style:italic">First of all S.Port bus implements a pull model rather than push (receiver requests particular physical id to respond, and only then the data shall be sent).<br>
+<br>
+There are 28 physical IDs available (FrSkySportSensor::IDxx), so you can use one of these that is not mentioned in the table and is shall be polled by the Taranis no problem (same way as the second FLVSS sensor that has ID15 assigned in the example code). Note that PHY_ID 0 maps to ID1, PHY_ID 1 maps to ID2 etc.<br>
+<br>
+Sensor names cannot be programmed. The type of data that is being sent is determined by the so called APP_ID which is predefined by FrSky. Only these predefined APP_IDs will be understood and displayed by the receiver.</div>
+			
+		</td>
+	</tr>
+	</tbody></table>
+</div>Great, thanks for this very useful information Pawelsky. I should be able to send the data to my receiver from my custom sensors via the Teensy and the FrSky telemetry link :-D
+		</div>
+		<!-- / message -->
+
+		
+
+		
+		
+
+		
+
+	</td>
+</tr>
+<tr valign="bottom">
+	<td class="user-postbit-bottom-user">
+		
+    	<div class="user_postbit_bottom">
+    		
+			
+			
+		</div>	
+		
+	</td>
+	<td class="alt2_bottom" align="right">
+	
+	
+		
+		
+		
+		<!-- / controls -->
+	</td>
+</tr>
+<tr>
+	<td colspan="2" class="tbottom_postbit"></td>
+</tr>
+</tbody></table>
+
+
+
+
+	</div>
+	
+		</div>
+	</div>
+</div>
+
+<!-- / close content container -->
+
+<!-- / post #29527205 --><!-- post #29528764 -->
+
+	<!-- open content container -->
+
+<div align="center">
+	<div class="page" style="width:100%; text-align:left">
+		<div style="padding:0px 0px 0px 0px" align="left">
+
+	<div id="edit29528764" style="padding:0px 0px 0px 0px">
+	<!-- this is not the last post shown on the page -->
+
+
+
+<table id="post29528764" class="tborder user-postbit-left-user" cellpadding="5" cellspacing="0" border="0" width="100%" align="center">
+<tbody><tr>
+	
+		<td class="thead_postbit" colspan="2">
+			<div class="thead_postbit_left">
+				<a name="post29528764"><span class="inlineimg post-status post-old" title="Old"></span></a>
+				<!-- status icon and date -->
+				<span>
+				Sep 25, 2014<span class="thead-postbit-hide">, 10:54 AM</span>
+				
+				</span>
+				<!-- / status icon and date -->			
+			</div>
+			<div class="thead_postbit_right">
+				<ul>
+					
+					<li><a href="https://www.rcgroups.com/forums/showpost.php?p=29528764&amp;postcount=13" target="new" rel="nofollow" id="postcount29528764" name="13"><strong>#13</strong></a></li>
+					
+					
+					
+					
+					
+				</ul>
+			</div>
+		</td>
+	
+</tr>
+
+<tr class="userinfobox userinfobox-user">
+	<td>
+		<div class="user-postbit-statusicons userinfobox-icn-online">
+				
+	<span class="inlineimg_postbit online-status offline" title="monty_mcmont is offline"></span>
+	
+	
+
+				
+		</div>
+		<div class="userinfobox-name postbit-name">
+				
+				<a class="" href="https://www.rcgroups.com/forums/member.php?u=545112">monty_mcmont</a>
+				
+		</div>
+		
+		<div class="user-postbit-statusicons userinfobox-icn-pm">
+				<a href="https://www.rcgroups.com/forums/search.php?do=finduser&amp;userid=545112" rel="nofollow"><span class="inlineimg_postbit online-status search" title="Find More Posts by monty_mcmont"></span></a>
+				
+		</div>
+		
+		<div class="userinfobox-itrader">
+		
+		</div>
+	</td>
+</tr>
+
+<tr valign="top">
+	<td class="user_postbit user-postbit-user">
+		<div class="user_postbit_top postbit-name-user">
+			<div id="postmenu_29528764" class="postbit-name-container">
+				<div class="postbit-name">
+				
+				<a class="" href="https://www.rcgroups.com/forums/member.php?u=545112">monty_mcmont</a>
+				
+				</div>
+				<div class="postbit-usertitle">Registered User</div>
+			</div>
+		</div>
+		<div class="user_postbit_top user-postbit-middle-user">
+			
+			
+			
+		</div>
+	</td>
+	<td class="alt2" id="td_post_29528764">
+		
+		
+
+		<!-- message -->
+		<div class="postbit-content" id="post_message_29528764">
+			
+			Me again! I was just wondering what the physical connections are. Do you simply connect ground and signal (e.g. serial port Tx) from the Teensy to the Smart Port on the receiver? <br>
+<br>
+Also, does the receiver automatically include RSSI data in with the other telemetry data when it transmits it back to the ground station?
+		</div>
+		<!-- / message -->
+
+		
+
+		
+		
+
+		
+
+	</td>
+</tr>
+<tr valign="bottom">
+	<td class="user-postbit-bottom-user">
+		
+    	<div class="user_postbit_bottom">
+    		
+			
+			
+		</div>	
+		
+	</td>
+	<td class="alt2_bottom" align="right">
+	
+	
+		
+		
+		
+		<!-- / controls -->
+	</td>
+</tr>
+<tr>
+	<td colspan="2" class="tbottom_postbit"></td>
+</tr>
+</tbody></table>
+
+
+
+
+	</div>
+	
+		</div>
+	</div>
+</div>
+
+<!-- / close content container -->
+
+<!-- / post #29528764 --><!-- post #29529030 -->
+
+	<!-- open content container -->
+
+<div align="center">
+	<div class="page" style="width:100%; text-align:left">
+		<div style="padding:0px 0px 0px 0px" align="left">
+
+	<div id="edit29529030" style="padding:0px 0px 0px 0px">
+	<!-- this is not the last post shown on the page -->
+
+
+
+<table id="post29529030" class="tborder user-postbit-left-user" cellpadding="5" cellspacing="0" border="0" width="100%" align="center">
+<tbody><tr>
+	
+		<td class="thead_postbit" colspan="2">
+			<div class="thead_postbit_left">
+				<a name="post29529030"><span class="inlineimg post-status post-old" title="Old"></span></a>
+				<!-- status icon and date -->
+				<span>
+				Sep 25, 2014<span class="thead-postbit-hide">, 11:27 AM</span>
+				
+				</span>
+				<!-- / status icon and date -->			
+			</div>
+			<div class="thead_postbit_right">
+				<ul>
+					
+					<li><a href="https://www.rcgroups.com/forums/showpost.php?p=29529030&amp;postcount=14" target="new" rel="nofollow" id="postcount29529030" name="14"><strong>#14</strong></a></li>
+					
+					
+					
+					
+					
+				</ul>
+			</div>
+		</td>
+	
+</tr>
+
+<tr class="userinfobox userinfobox-user">
+	<td>
+		<div class="user-postbit-statusicons userinfobox-icn-online">
+				
+	<span class="inlineimg_postbit online-status offline" title="pawelsky is offline"></span>
+	
+	
+
+				
+		</div>
+		<div class="userinfobox-name postbit-name">
+				
+				<a class="" href="https://www.rcgroups.com/forums/member.php?u=393936">pawelsky</a>
+				
+		</div>
+		
+		<div class="user-postbit-statusicons userinfobox-icn-pm">
+				<a href="https://www.rcgroups.com/forums/search.php?do=finduser&amp;userid=393936" rel="nofollow"><span class="inlineimg_postbit online-status search" title="Find More Posts by pawelsky"></span></a>
+				
+		</div>
+		
+		<div class="userinfobox-itrader">
+		
+		</div>
+	</td>
+</tr>
+
+<tr valign="top">
+	<td class="user_postbit user-postbit-user">
+		<div class="user_postbit_top postbit-name-user">
+			<div id="postmenu_29529030" class="postbit-name-container">
+				<div class="postbit-name">
+				
+				<a class="" href="https://www.rcgroups.com/forums/member.php?u=393936">pawelsky</a>
+				
+				</div>
+				<div class="postbit-usertitle">Makers gonna make...</div>
+			</div>
+		</div>
+		<div class="user_postbit_top user-postbit-middle-user">
+			
+				<div class="user_postbit_avatar">
+					<a href="https://www.rcgroups.com/forums/member.php?u=393936"><img src="./FrSky S-Port telemetry library - easy to use and configurable - RC Groups_files/avatar393936_1.gif" width="75" height="75" alt="pawelsky&#39;s Avatar" border="0" title="pawelsky&#39;s Avatar"></a>
+				</div>
+			
+			
+			
+		</div>
+	</td>
+	<td class="alt2" id="td_post_29529030">
+		
+		
+
+		<!-- message -->
+		<div class="postbit-content" id="post_message_29529030">
+			
+			<div style="margin:20px; margin-top:5px; ">
+	<div class="smallfont" style="margin-bottom:2px">Quote:</div>
+	<table cellpadding="5" cellspacing="0" border="0" width="100%">
+	<tbody><tr>
+		<td class="alt2" style="border:1px inset">
+			
+				<div>
+					Originally Posted by <strong>monty_mcmont</strong>
+					<a href="https://www.rcgroups.com/forums/showthread.php?p=29528764#post29528764" rel="nofollow"><span class="quote_viewpost" title="View Post"></span></a>
+				</div>
+				<div style="font-style:italic">Me again! I was just wondering what the physical connections are. Do you simply connect ground and signal (e.g. serial port Tx) from the Teensy to the Smart Port on the receiver?</div>
+			
+		</td>
+	</tr>
+	</tbody></table>
+</div>Yes.<br>
+<br>
+<div style="margin:20px; margin-top:5px; ">
+	<div class="smallfont" style="margin-bottom:2px">Quote:</div>
+	<table cellpadding="5" cellspacing="0" border="0" width="100%">
+	<tbody><tr>
+		<td class="alt2" style="border:1px inset">
+			
+				<div>
+					Originally Posted by <strong>monty_mcmont</strong>
+					<a href="https://www.rcgroups.com/forums/showthread.php?p=29528764#post29528764" rel="nofollow"><span class="quote_viewpost" title="View Post"></span></a>
+				</div>
+				<div style="font-style:italic">Also, does the receiver automatically include RSSI data in with the other telemetry data when it transmits it back to the ground station?</div>
+			
+		</td>
+	</tr>
+	</tbody></table>
+</div>The RSSI value is sent back to the Taranis radio (which can display it), but if you are using a built in TX module I don't think you can easily get access to the S.Port telemetry stream and redirect it to your GS. You would need to use the FrSky external X series TX module.<br>
+<br>
+<b>EDIT: </b>Correction - you can get easy access to S.Port telemetry stream on Taranis:<br>
+<a href="https://github.com/opentx/opentx/wiki/Taranis-serial-port" target="_blank" rel="nofollow">https://github.com/opentx/opentx/wik...is-serial-port</a>
+		</div>
+		<!-- / message -->
+
+		
+
+		
+		
+
+		
+
+	</td>
+</tr>
+<tr valign="bottom">
+	<td class="user-postbit-bottom-user">
+		
+    	<div class="user_postbit_bottom">
+    		
+			
+			
+		</div>	
+		
+	</td>
+	<td class="alt2_bottom" align="right">
+	
+	
+		<!-- edit note -->
+		<div class="user-postbit-edited-container">
+			
+			<div class="smallfont user-postbit-edited user-postbit-edited-user">
+				<em>
+					
+						Last edited by pawelsky; Sep 25, 2014 at <span class="time">05:35 PM</span>.
+					
+					
+				</em>
+			</div>
+			
+			
+			<!-- / edit note -->
+		
+		
+		
+		
+		</div>
+		
+		<!-- / controls -->
+	</td>
+</tr>
+<tr>
+	<td colspan="2" class="tbottom_postbit"></td>
+</tr>
+</tbody></table>
+
+
+
+
+	</div>
+	
+		</div>
+	</div>
+</div>
+
+<!-- / close content container -->
+
+<!-- / post #29529030 --><!-- post #29531597 -->
+
+	<!-- open content container -->
+
+<div align="center">
+	<div class="page" style="width:100%; text-align:left">
+		<div style="padding:0px 0px 0px 0px" align="left">
+
+	<div id="edit29531597" style="padding:0px 0px 0px 0px">
+	
+
+
+
+<table id="post29531597" class="tborder user-postbit-left-user" cellpadding="5" cellspacing="0" border="0" width="100%" align="center">
+<tbody><tr>
+	
+		<td class="thead_postbit" colspan="2">
+			<div class="thead_postbit_left">
+				<a name="post29531597"><span class="inlineimg post-status post-old" title="Old"></span></a>
+				<!-- status icon and date -->
+				<span>
+				Sep 25, 2014<span class="thead-postbit-hide">, 04:53 PM</span>
+				
+				</span>
+				<!-- / status icon and date -->			
+			</div>
+			<div class="thead_postbit_right">
+				<ul>
+					
+					<li><a href="https://www.rcgroups.com/forums/showpost.php?p=29531597&amp;postcount=15" target="new" rel="nofollow" id="postcount29531597" name="15"><strong>#15</strong></a></li>
+					
+					
+					
+					
+					
+				</ul>
+			</div>
+		</td>
+	
+</tr>
+
+<tr class="userinfobox userinfobox-user">
+	<td>
+		<div class="user-postbit-statusicons userinfobox-icn-online">
+				
+	<span class="inlineimg_postbit online-status offline" title="monty_mcmont is offline"></span>
+	
+	
+
+				
+		</div>
+		<div class="userinfobox-name postbit-name">
+				
+				<a class="" href="https://www.rcgroups.com/forums/member.php?u=545112">monty_mcmont</a>
+				
+		</div>
+		
+		<div class="user-postbit-statusicons userinfobox-icn-pm">
+				<a href="https://www.rcgroups.com/forums/search.php?do=finduser&amp;userid=545112" rel="nofollow"><span class="inlineimg_postbit online-status search" title="Find More Posts by monty_mcmont"></span></a>
+				
+		</div>
+		
+		<div class="userinfobox-itrader">
+		
+		</div>
+	</td>
+</tr>
+
+<tr valign="top">
+	<td class="user_postbit user-postbit-user">
+		<div class="user_postbit_top postbit-name-user">
+			<div id="postmenu_29531597" class="postbit-name-container">
+				<div class="postbit-name">
+				
+				<a class="" href="https://www.rcgroups.com/forums/member.php?u=545112">monty_mcmont</a>
+				
+				</div>
+				<div class="postbit-usertitle">Registered User</div>
+			</div>
+		</div>
+		<div class="user_postbit_top user-postbit-middle-user">
+			
+			
+			
+		</div>
+	</td>
+	<td class="alt2" id="td_post_29531597">
+		
+		
+
+		<!-- message -->
+		<div class="postbit-content" id="post_message_29531597">
+			
+			I use a FrSky X8R telemetry enabled receiver and a FrSky DJT JR module with pins on the back, into which I can plug one of the FrSky FLD-02 telemetry displays :-)
+		</div>
+		<!-- / message -->
+
+		
+
+		
+		
+
+		
+
+	</td>
+</tr>
+<tr valign="bottom">
+	<td class="user-postbit-bottom-user">
+		
+    	<div class="user_postbit_bottom">
+    		
+			
+			
+		</div>	
+		
+	</td>
+	<td class="alt2_bottom" align="right">
+	
+	
+		
+		
+		
+		<!-- / controls -->
+	</td>
+</tr>
+<tr>
+	<td colspan="2" class="tbottom_postbit"></td>
+</tr>
+</tbody></table>
+
+
+
+
+	</div>
+	
+		</div>
+	</div>
+</div>
+
+<!-- / close content container -->
+
+<!-- / post #29531597 --><div id="lastpost"></div></div>
+<!-- google_ad_section_end -->
+
+<!-- google_ad_section_start(weight=ignore) -->
+
+<!-- start content table -->
+<!-- open content container -->
+
+<div align="center">
+	<div class="page" style="width:100%; text-align:left">
+		<div style="padding:0px 0px 0px 0px" align="left">
+
+<!-- / start content table -->
+
+<!-- controls below postbits -->
+<div class="pagenav-box cf">
+	
+		<a class="pagenav-reply " href="https://www.rcgroups.com/forums/newreply.php?do=newreply&amp;noquote=1&amp;p=29531597" rel="nofollow"></a>
+		
+			
+		
+		
+	
+	
+		<div class="pagenav">
+	<table>
+		<tbody><tr>
+			<td>
+				
+					<span class="pagenav_state">Page 1 of 41</span>
+				
+			</td>
+			
+			
+				<td class="pagenav-small">
+		<span class="pagenav_curr" title="Showing results 1 to 15 of 606">1</span>
+		<div class="width_holder"></div>
+	</td><td class="pagenav-small">
+	
+	<a href="https://www.rcgroups.com/forums/showthread.php?2245978-FrSky-S-Port-telemetry-library-easy-to-use-and-configurable/page2" title="Show results 16 to 30 of 606">
+		2
+	</a>
+	
+	<div class="width_holder"></div>
+</td>
+<td class="pagenav-small">
+	
+	<a href="https://www.rcgroups.com/forums/showthread.php?2245978-FrSky-S-Port-telemetry-library-easy-to-use-and-configurable/page3" title="Show results 31 to 45 of 606">
+		3
+	</a>
+	
+	<div class="width_holder"></div>
+</td>
+<td class="pagenav-small">
+	
+	<a href="https://www.rcgroups.com/forums/showthread.php?2245978-FrSky-S-Port-telemetry-library-easy-to-use-and-configurable/page11" title="Show results 151 to 165 of 606">
+		<!--+10-->11
+	</a>
+	
+	<div class="width_holder"></div>
+</td>
+
+			
+				<td>
+					
+					<a class="pagenav_next" href="https://www.rcgroups.com/forums/showthread.php?2245978-FrSky-S-Port-telemetry-library-easy-to-use-and-configurable/page2" title="Show results 151 to 165 of 606">
+						<span class="pagenav-text-show">Next</span>
+					</a>
+					
+					<div class="width_holder"></div>
+				</td>
+			
+			
+				<td nowrap="nowrap" class="pagenav-smaller">
+					
+					<a class="pagenav_last" href="https://www.rcgroups.com/forums/showthread.php?2245978-FrSky-S-Port-telemetry-library-easy-to-use-and-configurable/page41" title="Last Page - Results 601 to 606 of 606">
+						Last
+					</a>
+					
+					<div class="width_holder"></div>
+				</td>
+			
+			
+			<td class="pagenav_jump" title="showthread.php?2245978-FrSky-S-Port-telemetry-library-easy-to-use-and-configurable" id="pagenav.142"><a name="PageNav"><span class="menu-open"></span></a></td>
+			
+		</tr>
+	</tbody></table>
+</div>
+<div style="clear:both"></div>
+		
+	
+</div>
+<!-- / controls below postbits -->
+
+
+
+
+
+
+
+<div class="smallfont pagenav-return" align="center">
+
+	<strong>
+	
+	<a href="https://www.rcgroups.com/radios-135/">Return to Radios</a>
+	
+	</strong>
+
+</div>
+<br>
+ 
+
+
+
+
+<!-- lightbox scripts -->
+	<script type="text/javascript" src="./FrSky S-Port telemetry library - easy to use and configurable - RC Groups_files/vbulletin_lightbox.8.js.&#1041;&#1077;&#1079; &#1085;&#1072;&#1079;&#1074;&#1072;&#1085;&#1080;&#1103;"></script>
+	<script type="text/javascript">
+	<!--
+	vBulletin.register_control("vB_Lightbox_Container", "posts", 1);
+	//-->
+	</script>
+<!-- / lightbox scripts -->
+
+
+
+
+
+
+
+
+
+
+<!-- next / previous links -->
+	<br>
+	<div class="smallfont" align="center">
+		<strong>«</strong>
+			<a href="https://www.rcgroups.com/forums/showthread.php?2245978-FrSky-S-Port-telemetry-library-easy-to-use-and-configurable&amp;goto=nextoldest" rel="nofollow">Previous Thread</a>
+			|
+			<a href="https://www.rcgroups.com/forums/showthread.php?2245978-FrSky-S-Port-telemetry-library-easy-to-use-and-configurable&amp;goto=nextnewest" rel="nofollow">Next Thread</a>
+		<strong>»</strong>
+	</div>
+<!-- / next / previous links -->
+
+
+
+
+
+
+
+<!-- popup menu contents -->
+<br>
+
+<!-- thread tools menu -->
+<div class="vbmenu_popup" id="threadtools_menu" style="display:none">
+<form action="https://www.rcgroups.com/forums/postings.php?t=2245978&amp;pollid=" method="post" name="threadadminform">
+	<table cellpadding="4" cellspacing="1" border="0">
+	<tbody><tr>
+		<td class="thead">Thread Tools<a name="goto_threadtools"></a></td>
+	</tr>
+	<tr>
+		<td class="vbmenu_option"><span class="threadtool printer" title="Show Printable Version"></span> <a href="https://www.rcgroups.com/forums/printthread.php?t=2245978" accesskey="3" rel="nofollow">Show Printable Version</a></td>
+	</tr>
+	
+	
+	
+	
+	<tr>
+		<td class="vbmenu_option"><span class="threadtool showattch" title="Show attachments"></span> <a href="https://www.rcgroups.com/forums/thumbgallery.php?t=2245978&amp;do=threadgallery">Show Attachments in this Thread</a></td>
+	</tr>
+	
+	
+	</tbody></table>
+</form>
+</div>
+<!-- / thread tools menu -->
+
+<!-- **************************************************** -->
+
+
+
+<!-- **************************************************** -->
+
+
+
+<!-- / popup menu contents -->
+
+
+
+
+
+
+<div style="width: 100%; clear: both;">
+	
+</div>
+
+		</div>
+	</div>
+</div>
+
+<!-- / close content container -->
+
+
+<!-- /content area table -->
+
+<div class="tborderads">
+<script language="JavaScript" type="text/javascript">
+<!--// <![CDATA[
+if ((typeof(OA_output) != 'undefined') && (typeof(OA_output['zone:170']) != 'undefined'))
+	document.write(OA_output['zone:170']);
+else {
+	if (!document.phpAds_used) document.phpAds_used = ',';
+	phpAds_random = new String (Math.random()); phpAds_random = phpAds_random.substring(2,11);
+
+	document.write ("<" + "script language='JavaScript' type='text/javascript' src='");
+	document.write ("https://decals.rcgroups.net/adjs.php?n=" + phpAds_random);
+	document.write ("&amp;what=zone:170&amp;target=_blank&amp;block=1");
+	document.write ("&amp;source=Radios&amp;exclude=" + document.phpAds_used);
+	if (document.referrer)
+		document.write ("&amp;referer=" + escape(document.referrer));
+	document.write ("'><" + "/script>");
+}
+// ]]> --></script><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3653278693006306" data-ad-slot="2220747591" data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script><noscript>&lt;a href='https://decals.rcgroups.net/adclick.php?n=ab93962e' target='_blank'&gt;&lt;img src='https://decals.rcgroups.net/adview.php?what=zone:170&amp;amp;source=Radios&amp;amp;n=ab93962e' border='0' alt=''&gt;&lt;/a&gt;</noscript>
+</div>
+
+<form action="https://www.rcgroups.com/forums/index.php" method="get" style="clear:left">
+
+<div id="footer_blackbar"></div>
+<div id="footer_background">
+	<div id="footer_gradient">
+		<div id="footer_half">
+			<div id="footer_leftbackgroundextend"></div>
+			<div id="footer_container">
+				<div id="footer_leftcontainer">
+					<div id="footer_copyright">
+						<div class="footer-logo" title="Terry, transmitting"></div>
+						<p>All RCGroups content copyright © 1996 - 2017 by RCGroups.com.</p>
+					</div>
+				</div>
+				<div id="footer_rightcontainer">
+					<ul id="footercolumn_sites">
+						<li><h3>Channels</h3></li>
+						<li><a class="footer_link" href="https://www.rcgroups.com/forums/channels.php?id=11">All</a></li>
+						<li><a class="footer_link" href="https://www.rcgroups.com/forums/channels.php?id=16">Airplanes</a></li>
+						<li><a class="footer_link" href="https://www.rcgroups.com/forums/channels.php?id=6">Boats</a></li>
+						<li><a class="footer_link" href="https://www.rcgroups.com/forums/channels.php?id=17">Cars</a></li>
+						<li><a class="footer_link" href="https://www.rcgroups.com/forums/channels.php?id=29">Electric Flight</a></li>
+						<li><a class="footer_link" href="https://www.rcgroups.com/forums/channels.php?id=37">FPV</a></li>
+						<li><a class="footer_link" href="https://www.rcgroups.com/forums/channels.php?id=33">Helis</a></li>
+						<li><a class="footer_link" href="https://www.rcgroups.com/forums/channels.php?id=38">Jets</a></li>
+						<li><a class="footer_link" href="https://www.rcgroups.com/forums/channels.php?id=34">Drones</a></li>
+						<li><a class="footer_link" href="https://www.rcgroups.com/forums/channels.php?id=36">Sailplanes</a></li>
+					</ul>
+					<ul id="footercolumn_about">
+						<li><h3>About RCG</h3></li>
+						<li><a class="footer_link" href="https://www.rcgroups.com/forums/advertising.php">Advertising</a></li>
+						<li><a class="footer_link" href="https://www.rcgroups.com/forums/sponsors.php">Our Sponsors</a></li>
+						<li><a class="footer_link" href="https://www.rcgroups.com/forums/faq.php">FAQ</a></li>
+						<li><a class="footer_link" href="https://www.rcgroups.com/forums/reviewpolicies.php">Review Policies</a></li>
+						<li><a class="footer_link" href="https://www.rcgroups.com/forums/wlist.php">Rules</a></li>
+						<li><a class="footer_link" href="https://www.rcgroups.com/forums/termsofservice.php">Terms of Service</a><br></li>
+						<li><a class="footer_link" href="https://www.rcgroups.com/forums/privacypolicy.php">Privacy Policy</a></li>
+						<li><a class="footer_link" href="https://www.rcgroups.com/forums/history.php">Site History</a></li>
+						<li><a class="footer_link" href="https://www.rcgroups.com/forums/contacts.php">Contact Us</a></li>
+					</ul>
+					<ul id="footercolumn_features">
+						<li><h3>Features</h3></li>
+						
+						<li><a class="footer_link" href="https://www.rcgroups.com/forums/index.php">Forums</a></li>
+						<li><a class="footer_link" href="https://www.rcgroups.com/forums/member.php">Blogs</a></li>
+						<li><a class="footer_link" href="https://www.rcgroups.com/forums/calendar.php">Calendar</a></li>
+						<li><a class="footer_link" href="https://www.rcgroups.com/classifieds-201/">Classifieds</a></li>
+						
+						<li><a class="footer_link" href="http://maps.rcgroups.com/">Maps</a></li>
+						
+						
+						<li><a class="footer_link" href="https://www.rcgroups.com/forums/rcgplus.php">RCG Plus</a></li>
+						
+						<li><a class="footer_link" href="http://www.galloree.com/RCGroups-com-6946.htm">RCGroups Store</a></li>
+					</ul>
+					<ul id="footercolumn_tools">
+						<li><h3>Tools</h3></li>
+						<li><a class="footer_link" href="https://www.rcgroups.com/forums/spy.php?" rel="nofollow">Forum Spy</a></li>
+						<li><a class="footer_link" href="https://www.rcgroups.com/forums/forumdisplay.php?do=markread&amp;markreadhash=guest" rel="nofollow" onclick="javascript:if (confirm(&#39;Are you sure you want to mark all forums read?&#39;)) {return true} else {return false}">Mark Forums Read</a><br></li>
+						<li><a class="footer_link" href="https://www.rcgroups.com/forums/memberlist.php">Member Search</a><br></li>
+						<li><a class="footer_link" href="https://www.rcgroups.com/forums/upcoming.php" rel="nofollow">Upcoming Articles</a></li>
+						<li><a class="footer_link" href="https://www.rcgroups.com/forums/usermap.php?" rel="nofollow">User Map</a></li>
+						
+						<li><a class="footer_link" href="https://www.rcgroups.com/forums/login.php?do=login">Log In</a></li>
+						<li><a class="footer_link" href="https://www.rcgroups.com/forums/register.php?">Sign Up</a></li>
+						
+					</ul>
+					<ul id="footercolumn_media">
+						<li><h3>Media</h3></li>
+						<li><a class="footer_link" href="https://www.rcgroups.com/forums/thumbgallery.php?do=recent&amp;type=files&amp;id=11">Files</a></li>
+						<li><a class="footer_link" href="https://www.rcgroups.com/forums/thumbgallery.php?do=recent&amp;type=img&amp;id=11">Photos</a></li>
+						<li><a class="footer_link" href="https://www.rcgroups.com/forums/videogallery.php?id=11">Videos</a></li>
+						
+					</ul>
+					<ul id="footercolumn_topics">
+						<li><h3>Topics</h3></li>
+						<li><a class="footer_link" href="https://www.rcgroups.com/rc-clubs-177/">Clubs</a></li>
+						<li><a class="footer_link" href="https://www.rcgroups.com/regional-forums-270/">Regions</a></li>
+						<li><a class="footer_link" href="https://www.rcgroups.com/vendors-189/">Vendors</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+	// Main vBulletin Javascript Initialization
+	vBulletin_init();
+//-->
+</script>
+
+<!--[if lte IE 9]>
+<script src="https://static.rcgroups.net/forums/clientscript/placeholder.min.1.js" type="text/javascript"></script>
+<script type="text/javascript">Placeholder.init();</script>
+<![endif]-->
+
+
+
+</form>
+
+<div id="bottom-menu-wrapper">
+	<div id="bottom-menu">
+		<div style="margin:0 0 0 15px;">
+			<ul>
+				<li id="bottom-menu-left">Style</li>
+				<li id="bottom-menu-default" class="style_selected"><a href="javascript:void(0);" onclick="switch_style(40,&#39;style&#39;);">Default</a></li>
+				
+				<li id="bottom-menu-fluid"><a href="javascript:void(0);" onclick="switch_style(41,&#39;style&#39;);">Fluid</a></li>
+				<li id="bottom-menu-classic"><a href="javascript:void(0);" onclick="switch_style(11,&#39;style&#39;);">Classic</a></li>
+				<li id="bottom-menu-right"><a onclick="self.scrollTo(0, 0); return false;">Back to Top</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+var rwt_adsource = "";
+if (!rwt_adsource)
+{
+	rwt_adsource = "Radios";
+}
+var rwt_campid = 5336718137;
+</script>
+<script type="text/javascript" src="./FrSky S-Port telemetry library - easy to use and configurable - RC Groups_files/rwt.js.&#1041;&#1077;&#1079; &#1085;&#1072;&#1079;&#1074;&#1072;&#1085;&#1080;&#1103;"></script>
+
+
+</div> <!-- end wrapper -->
+</div> <!-- end shadow -->
+
+<script>
+(function(d, t) { var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+g.src = 'https://decals.rcgroups.net/rjs2.php?z=' + ad_zones.join('!') + '&source=Radios'; g.async = true;
+s.parentNode.insertBefore(g, s); }(document, 'script'));
+</script>
+
+<!-- temp -->
+<div style="display:none">
+	<!-- thread rate -->
+	
+		
+	
+	<!-- / thread rate -->
+</div>
+
+<script type="text/javascript">
+  var vglnk = { api_url: '//api.viglink.com/api',
+                key: '8a24c98a696b4e5723db293f62190b87' };
+
+  (function(d, t) {
+    var s = d.createElement(t); s.type = 'text/javascript'; s.async = true;
+    s.src = ('https:' == document.location.protocol ? vglnk.api_url :
+             '//cdn.viglink.com/api') + '/vglnk.js';
+    var r = d.getElementsByTagName(t)[0]; r.parentNode.insertBefore(s, r);
+  }(document, 'script'));
+</script>
+
+<!-- google_ad_section_end -->
+
+
+<div id="Lightbox_overlay" style="position: absolute; top: 4900px; z-index: 1000; left: 0px; width: 100%; height: 100%; display: none;"></div><div id="lightbox3" class="lightbox" style="z-index: 1100; left: 315px; top: 4989px; display: none;">
+	
+	<!--Top Bar-->
+	<div class="lbbar" style="top:0px; height:50px;">
+		<span class="lblogo"></span>
+		
+		<a id="lightboxbutton3" class="lbclosebutton"></a>
+	</div>
+
+	<!--Image Box-->
+	<div style="text-align:center; " id="lightboxholder">
+		
+			 <a href="./FrSky S-Port telemetry library - easy to use and configurable - RC Groups_files/a7685601-57-328p_sport_connection_diagram.jpg" id="lightboxlink3" target="_blank"><img src="./FrSky S-Port telemetry library - easy to use and configurable - RC Groups_files/a7685601-57-328p_sport_connection_diagram.jpg" alt="" border="0" id="lightboximg3" width="719" height="437" title="328p_sport_connection_diagram.jpg; 
+817 x 497 (@89%)"></a> 
+	</div>
+
+	<!--Bottom Bar-->
+	<div class="lbbar lbbottombar">
+		<div class="lbfilenamecase">
+			<span class="lbattachbase" id="details_3" style="width: 719px;"><b>328p_sport_connection_diagram</b></span><span class="lbattachext">.jpg</span>
+
+			<span class="lbreportcase" valign="top">
+				<a class="lbreport" href="https://www.rcgroups.com/forums/report.php?p=29439177" rel="nofollow">Report this to a moderator</a>
+			</span>
+		</div>
+
+		<div style="background-color:#1A1A1A;">
+			<div class="lbinfocase">
+				<span class="lbinfolbl">by: </span><a class="lbviewuser" href="https://www.rcgroups.com/forums/member.php?u=393936">pawelsky</a> <span class="lbinfolbl">size:</span> <span class="lbinfotxt">122.6 KB</span><span class="lbinfolbl"> views: </span><span class="lbinfotxt">2,966</span>
+				<a class="lbviewpost" href="https://www.rcgroups.com/forums/showthread.php?2245978-FrSky-S-Port-telemetry-library-easy-to-use-and-configurable&amp;postid=29439177">View Post</a> 
+				<a class="lbviewpics" href="https://www.rcgroups.com/forums/thumbgallery.php?do=threadgallery&amp;t=2245978">Pics In Thread</a>
+
+				
+			</div>
+		</div>
+
+		<div class="lbdescriptioncase">
+			<div class="lbdescription" id="description_3" style="width: 719px;">
+				Connection diagram for 328P based boards (e.g. Pro Mini, Nano, Uno). Nano used as an example here.
+
+Although the resistor is not absolutely necessary, due to the voltage difference between Arduino and S.Port (5V vs 3.3V) it is strongly recommended&nbsp;
+			</div>
+		</div>
+		<div class="lbbottombarpadding">
+			&nbsp;
+		</div>
+	</div>
+
+	<!--Right Button-->
+	<div class="lbnextposition">
+		<a id="lightboxnextbutton3" class="lbnextbutton "></a>
+	</div>
+	<!--Left Button-->
+	<div class="lbprevposition">
+		<a id="lightboxprevbutton3" class="lbprevbutton "></a>
+	</div>
+</div></body></html>
