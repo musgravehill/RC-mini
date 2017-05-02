@@ -52,7 +52,7 @@ void loop() {
         gps_alt = gps_parser.altitude.meters();
       }
       if (gps_parser.speed.isValid()) {
-        gps_speed = gps_parser.speed.kmph();
+        gps_speed = gps_parser.speed.kmph() * 1000/3600; // m\s
       }
       if (gps_parser.course.isValid()) {
         gps_course = gps_parser.course.deg();
