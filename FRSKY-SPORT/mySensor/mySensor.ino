@@ -1,4 +1,6 @@
 /*
+      USE RESISTOR TO S.PORT FROM 5v-ARDUINO. 
+      
 			  The default S.Port rate for polling a GPS is 1 hz.
 
 			  Use hardware serial for GPS. Disconnect GPS when programming.
