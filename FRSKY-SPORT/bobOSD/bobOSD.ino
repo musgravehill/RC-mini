@@ -29,7 +29,7 @@ uint32_t TIMEMACHINE_prevMicros_1000ms = 0L;
 
 void setup() {
   SPI.begin();
-  osd.init(10);
+  osd.init(10); //d10 or d6 on microMinimOSD ?
   osd.setDisplayOffsets(60, 18);
   osd.setBlinkParams(_8fields, _BT_BT);
   osd.activateOSD();
