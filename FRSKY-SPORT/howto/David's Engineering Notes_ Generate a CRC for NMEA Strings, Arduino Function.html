@@ -1,0 +1,1593 @@
+<!DOCTYPE html>
+<html class='v2' dir='ltr' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<head>
+<link type='text/css' rel='stylesheet' href='https://www.blogger.com/static/v1/widgets/1691512649-css_bundle_v2.css' />
+<script src='https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js'></script>
+<script type='text/x-mathjax-config'>   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}}); </script>
+<script src='http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' type='text/javascript'> </script>
+<script>
+this.onload = function () {
+  document.body.innerHTML = markdown(
+    document.body.textContent
+  );
+};
+</script>
+<meta content='width=1100' name='viewport'/>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+<meta content='blogger' name='generator'/>
+<link href='http://engineeringnotes.blogspot.ru/favicon.ico' rel='icon' type='image/x-icon'/>
+<link href='http://engineeringnotes.blogspot.com/2015/02/generate-crc-for-nmea-strings-arduino.html' rel='canonical'/>
+<link rel="alternate" type="application/atom+xml" title="David&#39;s Engineering Notes - Atom" href="http://engineeringnotes.blogspot.com/feeds/posts/default" />
+<link rel="alternate" type="application/rss+xml" title="David&#39;s Engineering Notes - RSS" href="http://engineeringnotes.blogspot.com/feeds/posts/default?alt=rss" />
+<link rel="service.post" type="application/atom+xml" title="David&#39;s Engineering Notes - Atom" href="https://www.blogger.com/feeds/9403259/posts/default" />
+
+<link rel="alternate" type="application/atom+xml" title="David&#39;s Engineering Notes - Atom" href="http://engineeringnotes.blogspot.com/feeds/5421205382896948790/comments/default" />
+<!--[if IE]><script type="text/javascript" src="https://www.blogger.com/static/v1/jsbin/3095787282-ieretrofit.js"></script>
+<![endif]-->
+<link href='http://1.bp.blogspot.com/-X3bIj7DQmRc/VNwp_iHlftI/AAAAAAAAADs/987zm0kST0Y/s1600/CRC_to_UART_screens.JPG' rel='image_src'/>
+<meta content='http://engineeringnotes.blogspot.com/2015/02/generate-crc-for-nmea-strings-arduino.html' property='og:url'/>
+<meta content='Generate a CRC for NMEA Strings, Arduino Function' property='og:title'/>
+<meta content='resources and techniques for electronic design and Arduino microcontroller programming' property='og:description'/>
+<meta content='http://1.bp.blogspot.com/-X3bIj7DQmRc/VNwp_iHlftI/AAAAAAAAADs/987zm0kST0Y/w1200-h630-p-k-no-nu/CRC_to_UART_screens.JPG' property='og:image'/>
+<!--[if IE]> <script> (function() { var html5 = ("abbr,article,aside,audio,canvas,datalist,details," + "figure,footer,header,hgroup,mark,menu,meter,nav,output," + "progress,section,time,video").split(','); for (var i = 0; i < html5.length; i++) { document.createElement(html5[i]); } try { document.execCommand('BackgroundImageCache', false, true); } catch(e) {} })(); </script> <![endif]-->
+<title>David's Engineering Notes: Generate a CRC for NMEA Strings, Arduino Function</title>
+<link href="https://fonts.googleapis.com/css?kit=ljpKc6CdXusL1cnGUSamX5mxkqBriMdZvjElzIe1zwD36Wyy7IrvP6-VCw9PviVq" rel="stylesheet" type="text/css"><style id='page-skin-1' type='text/css'><!--
+/*
+-----------------------------------------------
+Blogger Template Style
+Name:     Simple
+Designer: Blogger
+URL:      www.blogger.com
+----------------------------------------------- */
+
+/* Content
+----------------------------------------------- */
+body {
+font: normal normal 12px 'Trebuchet MS', Trebuchet, Verdana, sans-serif;
+color: #222233;
+background: #ffffff none repeat scroll top left;
+padding: 0 0 0 0;
+}
+html body .region-inner {
+min-width: 0;
+max-width: 100%;
+width: auto;
+}
+h2 {
+font-size: 22px;
+}
+a:link {
+text-decoration:none;
+color: #1561d6;
+}
+a:visited {
+text-decoration:none;
+color: #2288bb;
+}
+a:hover {
+text-decoration:underline;
+color: #bb5421;
+}
+.body-fauxcolumn-outer .fauxcolumn-inner {
+background: transparent none repeat scroll top left;
+_background-image: none;
+}
+.body-fauxcolumn-outer .cap-top {
+position: absolute;
+z-index: 1;
+height: 400px;
+width: 100%;
+}
+.body-fauxcolumn-outer .cap-top .cap-left {
+width: 100%;
+background: transparent none repeat-x scroll top left;
+_background-image: none;
+}
+.content-outer {
+-moz-box-shadow: 0 0 0 rgba(0, 0, 0, .15);
+-webkit-box-shadow: 0 0 0 rgba(0, 0, 0, .15);
+-goog-ms-box-shadow: 0 0 0 #333333;
+box-shadow: 0 0 0 rgba(0, 0, 0, .15);
+margin-bottom: 1px;
+}
+.content-inner {
+padding: 10px 40px;
+}
+.content-inner {
+background-color: #ffffff;
+}
+/* Header
+----------------------------------------------- */
+.header-outer {
+background: transparent none repeat-x scroll 0 -400px;
+_background-image: none;
+}
+.Header h1 {
+font: normal bold 50px Reenie Beanie;
+color: #3143b2;
+text-shadow: 0 0 0 rgba(0, 0, 0, .2);
+}
+.Header h1 a {
+color: #3143b2;
+}
+.Header .description {
+font-size: 18px;
+color: #6e89b4;
+}
+.header-inner .Header .titlewrapper {
+padding: 22px 0;
+}
+.header-inner .Header .descriptionwrapper {
+padding: 0 0;
+}
+/* Tabs
+----------------------------------------------- */
+.tabs-inner .section:first-child {
+border-top: 0 solid #dddddd;
+}
+.tabs-inner .section:first-child ul {
+margin-top: -1px;
+border-top: 1px solid #dddddd;
+border-left: 1px solid #dddddd;
+border-right: 1px solid #dddddd;
+}
+.tabs-inner .widget ul {
+background: transparent none repeat-x scroll 0 -800px;
+_background-image: none;
+border-bottom: 1px solid #dddddd;
+margin-top: 0;
+margin-left: -30px;
+margin-right: -30px;
+}
+.tabs-inner .widget li a {
+display: inline-block;
+padding: .6em 1em;
+font: normal normal 12px 'Trebuchet MS', Trebuchet, Verdana, sans-serif;
+color: #000000;
+border-left: 1px solid #ffffff;
+border-right: 1px solid #dddddd;
+}
+.tabs-inner .widget li:first-child a {
+border-left: none;
+}
+.tabs-inner .widget li.selected a, .tabs-inner .widget li a:hover {
+color: #000000;
+background-color: #eeeeee;
+text-decoration: none;
+}
+/* Columns
+----------------------------------------------- */
+.main-outer {
+border-top: 0 solid transparent;
+}
+.fauxcolumn-left-outer .fauxcolumn-inner {
+border-right: 1px solid transparent;
+}
+.fauxcolumn-right-outer .fauxcolumn-inner {
+border-left: 1px solid transparent;
+}
+/* Headings
+----------------------------------------------- */
+div.widget > h2,
+div.widget h2.title {
+margin: 0 0 1em 0;
+font: normal bold 11px 'Trebuchet MS',Trebuchet,Verdana,sans-serif;
+color: #000000;
+}
+/* Widgets
+----------------------------------------------- */
+.widget .zippy {
+color: #999999;
+text-shadow: 2px 2px 1px rgba(0, 0, 0, .1);
+}
+.widget .popular-posts ul {
+list-style: none;
+}
+/* Posts
+----------------------------------------------- */
+h2.date-header {
+font: normal bold 11px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+}
+.date-header span {
+background-color: #ffffff;
+color: #666666;
+padding: 0.4em;
+letter-spacing: 3px;
+margin: inherit;
+}
+.main-inner {
+padding-top: 35px;
+padding-bottom: 65px;
+}
+.main-inner .column-center-inner {
+padding: 0 0;
+}
+.main-inner .column-center-inner .section {
+margin: 0 1em;
+}
+.post {
+margin: 0 0 45px 0;
+}
+h3.post-title, .comments h4 {
+font: normal bold 22px Yanone Kaffeesatz;
+margin: .75em 0 0;
+}
+.post-body {
+font-size: 110%;
+line-height: 1.4;
+position: relative;
+}
+.post-body img, .post-body .tr-caption-container, .Profile img, .Image img,
+.BlogList .item-thumbnail img {
+padding: 2px;
+background: #ffffff;
+border: 1px solid #eeeeee;
+-moz-box-shadow: 1px 1px 5px rgba(0, 0, 0, .1);
+-webkit-box-shadow: 1px 1px 5px rgba(0, 0, 0, .1);
+box-shadow: 1px 1px 5px rgba(0, 0, 0, .1);
+}
+.post-body img, .post-body .tr-caption-container {
+padding: 5px;
+}
+.post-body .tr-caption-container {
+color: #333344;
+}
+.post-body .tr-caption-container img {
+padding: 0;
+background: transparent;
+border: none;
+-moz-box-shadow: 0 0 0 rgba(0, 0, 0, .1);
+-webkit-box-shadow: 0 0 0 rgba(0, 0, 0, .1);
+box-shadow: 0 0 0 rgba(0, 0, 0, .1);
+}
+.post-header {
+margin: 0 0 1.5em;
+line-height: 1.6;
+font-size: 90%;
+}
+.post-footer {
+margin: 20px -2px 0;
+padding: 5px 10px;
+color: #666666;
+background-color: #eeeeee;
+border-bottom: 1px solid #eeeeee;
+line-height: 1.6;
+font-size: 90%;
+}
+#comments .comment-author {
+padding-top: 1.5em;
+border-top: 1px solid transparent;
+background-position: 0 1.5em;
+}
+#comments .comment-author:first-child {
+padding-top: 0;
+border-top: none;
+}
+.avatar-image-container {
+margin: .2em 0 0;
+}
+#comments .avatar-image-container img {
+border: 1px solid #eeeeee;
+}
+/* Comments
+----------------------------------------------- */
+.comments .comments-content .icon.blog-author {
+background-repeat: no-repeat;
+background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEgAACxIB0t1+/AAAAAd0SU1FB9sLFwMeCjjhcOMAAAD+SURBVDjLtZSvTgNBEIe/WRRnm3U8RC1neQdsm1zSBIU9VVF1FkUguQQsD9ITmD7ECZIJSE4OZo9stoVjC/zc7ky+zH9hXwVwDpTAWWLrgS3QAe8AZgaAJI5zYAmc8r0G4AHYHQKVwII8PZrZFsBFkeRCABYiMh9BRUhnSkPTNCtVXYXURi1FpBDgArj8QU1eVXUzfnjv7yP7kwu1mYrkWlU33vs1QNu2qU8pwN0UpKoqokjWwCztrMuBhEhmh8bD5UDqur75asbcX0BGUB9/HAMB+r32hznJgXy2v0sGLBcyAJ1EK3LFcbo1s91JeLwAbwGYu7TP/3ZGfnXYPgAVNngtqatUNgAAAABJRU5ErkJggg==);
+}
+.comments .comments-content .loadmore a {
+border-top: 1px solid #999999;
+border-bottom: 1px solid #999999;
+}
+.comments .comment-thread.inline-thread {
+background-color: #eeeeee;
+}
+.comments .continue {
+border-top: 2px solid #999999;
+}
+/* Accents
+---------------------------------------------- */
+.section-columns td.columns-cell {
+border-left: 1px solid transparent;
+}
+.blog-pager {
+background: transparent url(//www.blogblog.com/1kt/simple/paging_dot.png) repeat-x scroll top center;
+}
+.blog-pager-older-link, .home-link,
+.blog-pager-newer-link {
+background-color: #ffffff;
+padding: 5px;
+}
+.footer-outer {
+border-top: 1px dashed #bbbbbb;
+}
+/* Mobile
+----------------------------------------------- */
+body.mobile  {
+background-size: auto;
+}
+.mobile .body-fauxcolumn-outer {
+background: transparent none repeat scroll top left;
+}
+.mobile .body-fauxcolumn-outer .cap-top {
+background-size: 100% auto;
+}
+.mobile .content-outer {
+-webkit-box-shadow: 0 0 3px rgba(0, 0, 0, .15);
+box-shadow: 0 0 3px rgba(0, 0, 0, .15);
+}
+.mobile .tabs-inner .widget ul {
+margin-left: 0;
+margin-right: 0;
+}
+.mobile .post {
+margin: 0;
+}
+.mobile .main-inner .column-center-inner .section {
+margin: 0;
+}
+.mobile .date-header span {
+padding: 0.1em 10px;
+margin: 0 -10px;
+}
+.mobile h3.post-title {
+margin: 0;
+}
+.mobile .blog-pager {
+background: transparent none no-repeat scroll top center;
+}
+.mobile .footer-outer {
+border-top: none;
+}
+.mobile .main-inner, .mobile .footer-inner {
+background-color: #ffffff;
+}
+.mobile-index-contents {
+color: #222233;
+}
+.mobile-link-button {
+background-color: #1561d6;
+}
+.mobile-link-button a:link, .mobile-link-button a:visited {
+color: #ffffff;
+}
+.mobile .tabs-inner .section:first-child {
+border-top: none;
+}
+.mobile .tabs-inner .PageList .widget-content {
+background-color: #eeeeee;
+color: #000000;
+border-top: 1px solid #dddddd;
+border-bottom: 1px solid #dddddd;
+}
+.mobile .tabs-inner .PageList .widget-content .pagelist-arrow {
+border-left: 1px solid #dddddd;
+}
+pre.prettyprint {
+width: auto;
+overflow: auto;
+max-height: 400px
+}
+--></style>
+<style id='template-skin-1' type='text/css'><!--
+body {
+min-width: 1030px;
+}
+.content-outer, .content-fauxcolumn-outer, .region-inner {
+min-width: 1030px;
+max-width: 1030px;
+_width: 1030px;
+}
+.main-inner .columns {
+padding-left: 0;
+padding-right: 240px;
+}
+.main-inner .fauxcolumn-center-outer {
+left: 0;
+right: 240px;
+/* IE6 does not respect left and right together */
+_width: expression(this.parentNode.offsetWidth -
+parseInt("0") -
+parseInt("240px") + 'px');
+}
+.main-inner .fauxcolumn-left-outer {
+width: 0;
+}
+.main-inner .fauxcolumn-right-outer {
+width: 240px;
+}
+.main-inner .column-left-outer {
+width: 0;
+right: 100%;
+margin-left: -0;
+}
+.main-inner .column-right-outer {
+width: 240px;
+margin-right: -240px;
+}
+#layout {
+min-width: 0;
+}
+#layout .content-outer {
+min-width: 0;
+width: 800px;
+}
+#layout .region-inner {
+min-width: 0;
+width: auto;
+}
+--></style>
+<link href='https://www.blogger.com/dyn-css/authorization.css?targetBlogID=9403259&amp;zx=ad6412af-e3a2-404f-8ec1-6bb70335d7d0' rel='stylesheet'/>
+</head>
+<body class='loading variant-simplysimple' onload='prettyPrint()'>
+<div class='navbar section' id='navbar'><div class='widget Navbar' data-version='1' id='Navbar1'><script type="text/javascript">
+    function setAttributeOnload(object, attribute, val) {
+      if(window.addEventListener) {
+        window.addEventListener('load',
+          function(){ object[attribute] = val; }, false);
+      } else {
+        window.attachEvent('onload', function(){ object[attribute] = val; });
+      }
+    }
+  </script>
+<div id="navbar-iframe-container"></div>
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+<script type="text/javascript">
+      gapi.load("gapi.iframes:gapi.iframes.style.bubble", function() {
+        if (gapi.iframes && gapi.iframes.getContext) {
+          gapi.iframes.getContext().openChild({
+              url: 'https://www.blogger.com/navbar.g?targetBlogID\x3d9403259\x26blogName\x3dDavid\x27s+Engineering+Notes\x26publishMode\x3dPUBLISH_MODE_BLOGSPOT\x26navbarType\x3dLIGHT\x26layoutType\x3dLAYOUTS\x26searchRoot\x3dhttp://engineeringnotes.blogspot.com/search\x26blogLocale\x3den\x26v\x3d2\x26homepageUrl\x3dhttp://engineeringnotes.blogspot.com/\x26targetPostID\x3d5421205382896948790\x26blogPostOrPageUrl\x3dhttp://engineeringnotes.blogspot.com/2015/02/generate-crc-for-nmea-strings-arduino.html\x26vt\x3d2004946375820955761',
+              where: document.getElementById("navbar-iframe-container"),
+              id: "navbar-iframe"
+          });
+        }
+      });
+    </script><script type="text/javascript">
+(function() {
+var script = document.createElement('script');
+script.type = 'text/javascript';
+script.src = '//pagead2.googlesyndication.com/pagead/js/google_top_exp.js';
+var head = document.getElementsByTagName('head')[0];
+if (head) {
+head.appendChild(script);
+}})();
+</script>
+</div></div>
+<div class='body-fauxcolumns'>
+<div class='fauxcolumn-outer body-fauxcolumn-outer'>
+<div class='cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left'>
+<div class='fauxborder-right'></div>
+<div class='fauxcolumn-inner'>
+</div>
+</div>
+<div class='cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+</div>
+<div class='content'>
+<div class='content-fauxcolumns'>
+<div class='fauxcolumn-outer content-fauxcolumn-outer'>
+<div class='cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left'>
+<div class='fauxborder-right'></div>
+<div class='fauxcolumn-inner'>
+</div>
+</div>
+<div class='cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+</div>
+<div class='content-outer'>
+<div class='content-cap-top cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left content-fauxborder-left'>
+<div class='fauxborder-right content-fauxborder-right'></div>
+<div class='content-inner'>
+<header>
+<div class='header-outer'>
+<div class='header-cap-top cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left header-fauxborder-left'>
+<div class='fauxborder-right header-fauxborder-right'></div>
+<div class='region-inner header-inner'>
+<div class='header section' id='header'><div class='widget Header' data-version='1' id='Header1'>
+<div id='header-inner'>
+<div class='titlewrapper'>
+<h1 class='title'>
+<a href='http://engineeringnotes.blogspot.ru/'>
+David's Engineering Notes
+</a>
+</h1>
+</div>
+<div class='descriptionwrapper'>
+<p class='description'><span>Notes on Electronics and Software: reminders, tips, sources [ntech-quad-engineering-hobby-pro]</span></p>
+</div>
+</div>
+</div></div>
+</div>
+</div>
+<div class='header-cap-bottom cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+</header>
+<div class='tabs-outer'>
+<div class='tabs-cap-top cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left tabs-fauxborder-left'>
+<div class='fauxborder-right tabs-fauxborder-right'></div>
+<div class='region-inner tabs-inner'>
+<div class='tabs no-items section' id='crosscol'></div>
+<div class='tabs no-items section' id='crosscol-overflow'></div>
+</div>
+</div>
+<div class='tabs-cap-bottom cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+<div class='main-outer'>
+<div class='main-cap-top cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left main-fauxborder-left'>
+<div class='fauxborder-right main-fauxborder-right'></div>
+<div class='region-inner main-inner'>
+<div class='columns fauxcolumns'>
+<div class='fauxcolumn-outer fauxcolumn-center-outer'>
+<div class='cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left'>
+<div class='fauxborder-right'></div>
+<div class='fauxcolumn-inner'>
+</div>
+</div>
+<div class='cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+<div class='fauxcolumn-outer fauxcolumn-left-outer'>
+<div class='cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left'>
+<div class='fauxborder-right'></div>
+<div class='fauxcolumn-inner'>
+</div>
+</div>
+<div class='cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+<div class='fauxcolumn-outer fauxcolumn-right-outer'>
+<div class='cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left'>
+<div class='fauxborder-right'></div>
+<div class='fauxcolumn-inner'>
+</div>
+</div>
+<div class='cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+<!-- corrects IE6 width calculation -->
+<div class='columns-inner'>
+<div class='column-center-outer'>
+<div class='column-center-inner'>
+<div class='main section' id='main'><div class='widget Blog' data-version='1' id='Blog1'>
+<div class='blog-posts hfeed'>
+
+          <div class="date-outer">
+        
+<h2 class='date-header'><span>Feb 11, 2015</span></h2>
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='http://1.bp.blogspot.com/-X3bIj7DQmRc/VNwp_iHlftI/AAAAAAAAADs/987zm0kST0Y/s1600/CRC_to_UART_screens.JPG' itemprop='image_url'/>
+<meta content='9403259' itemprop='blogId'/>
+<meta content='5421205382896948790' itemprop='postId'/>
+<a name='5421205382896948790'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+Generate a CRC for NMEA Strings, Arduino Function
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-5421205382896948790' itemprop='description articleBody'>
+One common format for sending data between computers for from sensors to computers is to send human-readable text strings. While it is less compact than other methods, it is easy to implement, debug and parse in any language without explanation or software decoding, and is more than adequate for moderate message lengths and data rates. A common form is seen in GPS <a href="http://en.wikipedia.org/wiki/NMEA_0183" rel="nofollow" target="_blank">NMEA</a> messages. These are comma-delimited <span style="font-size: small;">lines with the form of</span><br />
+<blockquote class="tr_bq">
+<span style="font-size: small;"><b><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><span style="color: blue;">$</span><span style="color: #666666;">MSGTYPE,value,value,value</span><span style="color: blue;">*</span><span style="color: #e69138;">HH</span></span></b></span></blockquote>
+<span style="font-size: small;">The output from the program below is:&nbsp; <b><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><span style="color: #674ea7;"><span style="color: blue;">&nbsp;</span></span></span></b></span><br />
+<blockquote class="tr_bq">
+<span style="font-size: small;"><b><span style="font-family: &quot;Courier New&quot;,Courier,monospace;"><span style="color: #674ea7;"><span style="color: blue;">$</span><span style="color: #666666;">XY,10.1,20.0</span><span style="color: blue;">*</span></span></span></b><span style="color: #e69138;"><b><span style="font-family: &quot;Courier New&quot;,Courier,monospace;">03</span></b></span></span></blockquote>
+<span style="font-size: small;"></span>
+<span style="font-size: small;">The content is all of the characters between the <span style="color: blue;">$</span> and the <span style="color: blue;">*</span>. The last two characters are a CRC checksum to provide an option for the receiving device to verify the message. It is 8 bits, formatted as two hex digits. A </span>search for the way to generate this will lead to many variations of codes. It was a long search to find a solution that actually generated the <i>correct </i>8-bit code used in gps NMEA style messages. [Here is a <a href="http://www.hhhh.org/wiml/proj/nmeaxor.html" rel="nofollow" target="_blank">working calculator</a>] The key part of the algorithm is the exclusive-OR of successive bytes:<br />
+<br />
+<pre>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #cc6600;">for</span> (<span style="color: #cc6600;">byte</span> x = start_with+1; x&lt;end_with; x++){ <span style="color: #7e7e7e;">// XOR chars between '$' and '*'</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CRC&nbsp;=&nbsp;CRC&nbsp;^&nbsp;buffer[x];
+&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;</pre>
+<pre>&nbsp;</pre>
+I wanted to use this format to send data from several different sensors between two embedded computer boards via UART. I didn't immediately need CRC coding, but decided to implement for the sake of robustness that may be required in a future implementation. I converted the code that Elimeléc Lopez* posted into a callable function for Arduino. I used a global character array to hold the result. This code illustrates the use of character arrays and <i>String </i>variables together in C++ syntax.<br />
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://1.bp.blogspot.com/-X3bIj7DQmRc/VNwp_iHlftI/AAAAAAAAADs/987zm0kST0Y/s1600/CRC_to_UART_screens.JPG" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="411" src="http://1.bp.blogspot.com/-X3bIj7DQmRc/VNwp_iHlftI/AAAAAAAAADs/987zm0kST0Y/s1600/CRC_to_UART_screens.JPG" width="640">&nbsp;</a></div>
+<div class="separator" style="clear: both; text-align: center;">
+<span style="font-size: x-small;"><i>Code is executed on a Teensyduino 3.1. Output is printed to the monitor and to UART2, wired to the UART on an O-Droid C1 running linux. Its output is viewed via its comm port directed back to PC and observed in Teraterm.</i></span></div>
+<br />
+Usage:<br />
+<!-- HTML generated using hilite.me --><br />
+<div style="background: #ffffff; border-width: .1em .1em .1em .8em; border: solid gray; overflow: auto; padding: .2em .6em; width: auto;">
+<table><tbody>
+<tr><td><pre style="line-height: 125%; margin: 0;"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87</pre>
+</td><td><pre style="line-height: 125%; margin: 0;"><span style="color: #aaaaaa; font-style: italic;">// Demonstrate the use of a function to generate the NMEA 8-bit CRC</span>
+<span style="color: #aaaaaa; font-style: italic;">// - A message is built and placed into a buffer string</span>
+<span style="color: #aaaaaa; font-style: italic;">// - The checksum is computed, and formatted to two chars</span>
+<span style="color: #aaaaaa; font-style: italic;">// - The full string is printed both to the IDE monitor and to a hardware UART</span>
+<span style="color: #aaaaaa; font-style: italic;">// EX1:  $test*   --&gt; 16</span>
+<span style="color: #aaaaaa; font-style: italic;">// EX2:  $GPRMC,023405.00,A,1827.23072,N,06958.07877,W,1.631,33.83,230613,,,A*  --&gt; 42</span>
+
+<span style="color: #4c8317;">#define SERIALN Serial2    </span><span style="color: #aaaaaa; font-style: italic;">// define which hardware serial port (1 on TD2; 1.2.3 on TD3</span>
+<span style="color: #0000aa;">const</span> byte buff_len = <span style="color: #009999;">90</span>;
+<span style="color: #00aaaa;">char</span> CRCbuffer[buff_len];
+
+<span style="color: #aaaaaa; font-style: italic;">// create pre-dfined strings to control flexible output formatting</span>
+String sp = <span style="color: #aa5500;">" "</span>;
+String delim = <span style="color: #aa5500;">","</span>;
+String splat = <span style="color: #aa5500;">"*"</span>;
+String msg = <span style="color: #aa5500;">""</span>; 
+
+<span style="color: #aaaaaa; font-style: italic;">// --------------------------------------------------</span>
+<span style="color: #00aaaa;">void</span> <span style="color: #00aa00;">setup</span>() {
+  SERIALN.begin(<span style="color: #009999;">115200</span>, SERIAL_8N1); <span style="color: #aaaaaa; font-style: italic;">// configure Teensy HW UART serial port</span>
+
+  Serial.begin(<span style="color: #009999;">115200</span>); <span style="color: #aaaaaa; font-style: italic;">// Init and set rate for serial output (value doesn't matter for Teensy 3)</span>
+  <span style="color: #0000aa;">while</span> (!Serial) {
+    ; <span style="color: #aaaaaa; font-style: italic;">// wait for serial port to connect. Needed for Leonardo &amp; Teensyduino 3</span>
+  }
+  <span style="color: #aaaaaa; font-style: italic;">// build msg</span>
+  Serial.println(<span style="color: #aa5500;">"NMEA CRC Demo"</span>);
+  <span style="color: #00aaaa;">char</span> strX[<span style="color: #009999;">8</span>];
+  <span style="color: #00aaaa;">char</span> strY[<span style="color: #009999;">8</span>];
+  <span style="color: #00aaaa;">float</span> x = <span style="color: #009999;">10.1</span>;
+  <span style="color: #00aaaa;">float</span> y = <span style="color: #009999;">20</span>;
+  String cmd = <span style="color: #aa5500;">"$XY"</span>;    <span style="color: #aaaaaa; font-style: italic;">// a command name</span>
+  dtostrf(x,<span style="color: #009999;">4</span>,<span style="color: #009999;">1</span>,strX);      <span style="color: #aaaaaa; font-style: italic;">// format float value to string XX.X</span>
+  dtostrf(y,<span style="color: #009999;">4</span>,<span style="color: #009999;">1</span>,strY);      
+  msg = cmd + delim + strX + delim + strY + splat;
+  outputMsg(msg); <span style="color: #aaaaaa; font-style: italic;">// print the entire message string, and append the CRC</span>
+}
+
+<span style="color: #aaaaaa; font-style: italic;">// -----------------------------------------------------------------------</span>
+<span style="color: #00aaaa;">void</span> <span style="color: #00aa00;">loop</span>(){ 
+}
+
+<span style="color: #aaaaaa; font-style: italic;">// -----------------------------------------------------------------------</span>
+<span style="color: #00aaaa;">void</span> <span style="color: #00aa00;">outputMsg</span>(String msg) {
+  msg.toCharArray(CRCbuffer,<span style="color: #0000aa;">sizeof</span>(CRCbuffer)); <span style="color: #aaaaaa; font-style: italic;">// put complete string into CRCbuffer</span>
+  <span style="color: #00aaaa;">int</span> crc = convertToCRC(CRCbuffer);
+
+  Serial.print(msg);
+  <span style="color: #0000aa;">if</span> (crc &lt; <span style="color: #009999;">16</span>) Serial.print(<span style="color: #aa5500;">"0"</span>); <span style="color: #aaaaaa; font-style: italic;">// add leading 0 </span>
+  Serial.println(crc);
+
+  <span style="color: #aaaaaa; font-style: italic;">// repeat for UART output</span>
+  SERIALN.print(msg);
+  <span style="color: #0000aa;">if</span> (crc &lt; <span style="color: #009999;">16</span>) SERIALN.print(<span style="color: #aa5500;">"0"</span>); <span style="color: #aaaaaa; font-style: italic;">// add leading 0 </span>
+  SERIALN.println(crc);
+}
+
+<span style="color: #aaaaaa; font-style: italic;">// -----------------------------------------------------------------------</span>
+byte <span style="color: #00aa00;">convertToCRC</span>(<span style="color: #00aaaa;">char</span> *buff) {
+  <span style="color: #aaaaaa; font-style: italic;">// NMEA CRC: XOR each byte with previous for all chars between '$' and '*'</span>
+  <span style="color: #00aaaa;">char</span> c;
+  byte i;
+  byte start_with = <span style="color: #009999;">0</span>;
+  byte end_with = <span style="color: #009999;">0</span>;
+  byte CRC = <span style="color: #009999;">0</span>;
+
+  <span style="color: #0000aa;">for</span> (i = <span style="color: #009999;">0</span>; i &lt; buff_len; i++) {
+    c = buff[i];
+    <span style="color: #0000aa;">if</span>(c == <span style="color: #aa5500;">'$'</span>){
+      start_with = i;
+    }
+    <span style="color: #0000aa;">if</span>(c == <span style="color: #aa5500;">'*'</span>){
+      end_with = i;
+    }      
+  }
+  <span style="color: #0000aa;">if</span> (end_with &gt; start_with){
+    <span style="color: #0000aa;">for</span> (i = start_with+<span style="color: #009999;">1</span>; i &lt; end_with; i++){ <span style="color: #aaaaaa; font-style: italic;">// XOR every character between '$' and '*'</span>
+      CRC = CRC ^ buff[i] ;  <span style="color: #aaaaaa; font-style: italic;">// compute CRC</span>
+    }
+  }
+  <span style="color: #0000aa;">else</span> { <span style="color: #aaaaaa; font-style: italic;">// print locations if error</span>
+    Serial.println(<span style="color: #aa5500;">"CRC ERROR"</span>);
+    SERIALN.println(<span style="color: #aa5500;">"CRC ERROR"</span>);
+  }
+  <span style="color: #0000aa;">return</span> CRC;
+  <span style="color: #aaaaaa; font-style: italic;">//based on code by Elimeléc López - July-19th-2013</span>
+}
+</pre>
+</td></tr>
+</tbody></table>
+</div>
+<br />
+<br />
+<br />
+*Based on:&nbsp; Generate commands and include NMEA-style 1-byte hex CRC. The algorithm in ArduinoWiring is from <a href="http://elimelecsarduinoprojects.blogspot.com/2013/07/nmea-checksum-calculator.html">nmea-checksum-calculator.html</a> by Elimeléc López 
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'><span class='post-labels'>
+Labels:
+<a href='http://engineeringnotes.blogspot.ru/search/label/arduino' rel='tag'>arduino</a>,
+<a href='http://engineeringnotes.blogspot.ru/search/label/function' rel='tag'>function</a>,
+<a href='http://engineeringnotes.blogspot.ru/search/label/GPS' rel='tag'>GPS</a>,
+<a href='http://engineeringnotes.blogspot.ru/search/label/NMEA' rel='tag'>NMEA</a>
+</span>
+<span class='post-location'>
+</span>
+<span class='post-icons'>
+<span class='item-action'>
+<a href='https://www.blogger.com/email-post.g?blogID=9403259&postID=5421205382896948790' title='Email Post'>
+<img alt='' class='icon-action' height='13' src='http://img1.blogblog.com/img/icon18_email.gif' width='18'/>
+</a>
+</span>
+<span class='item-control blog-admin pid-1127609409'>
+<a href='https://www.blogger.com/post-edit.g?blogID=9403259&postID=5421205382896948790&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-2'></div>
+<div class='post-footer-line post-footer-line-3'></div>
+</div>
+</div>
+<div class='comments' id='comments'>
+<a name='comments'></a>
+<div id='backlinks-container'>
+<div id='Blog1_backlinks-container'>
+</div>
+</div>
+</div>
+</div>
+
+        </div></div>
+      
+</div>
+<div class='blog-pager' id='blog-pager'>
+<span id='blog-pager-newer-link'>
+<a class='blog-pager-newer-link' href='http://engineeringnotes.blogspot.ru/2015/03/why-is-oled-display-scrambled-random.html' id='Blog1_blog-pager-newer-link' title='Newer Post'>Newer Post</a>
+</span>
+<span id='blog-pager-older-link'>
+<a class='blog-pager-older-link' href='http://engineeringnotes.blogspot.ru/2015/01/pololu-logic-level-shifter-4-channel.html' id='Blog1_blog-pager-older-link' title='Older Post'>Older Post</a>
+</span>
+<a class='home-link' href='http://engineeringnotes.blogspot.ru/'>Home</a>
+</div>
+<div class='clear'></div>
+<div class='post-feeds'>
+</div>
+<script type='text/javascript'>
+    window.___gcfg = { 'lang': 'en' };
+  </script>
+</div></div>
+</div>
+</div>
+<div class='column-left-outer'>
+<div class='column-left-inner'>
+<aside>
+</aside>
+</div>
+</div>
+<div class='column-right-outer'>
+<div class='column-right-inner'>
+<aside>
+<div class='sidebar section' id='sidebar-right-1'><div class='widget BlogSearch' data-version='1' id='BlogSearch1'>
+<h2 class='title'>Search the Blog</h2>
+<div class='widget-content'>
+<div id='BlogSearch1_form'>
+<form action='http://engineeringnotes.blogspot.ru/search' class='gsc-search-box' target='_top'>
+<table cellpadding='0' cellspacing='0' class='gsc-search-box'>
+<tbody>
+<tr>
+<td class='gsc-input'>
+<input autocomplete='off' class='gsc-input' name='q' size='10' title='search' type='text' value=''/>
+</td>
+<td class='gsc-search-button'>
+<input class='gsc-search-button' title='search' type='submit' value='Search'/>
+</td>
+</tr>
+</tbody>
+</table>
+</form>
+</div>
+</div>
+<div class='clear'></div>
+<span class='widget-item-control'>
+<span class='item-control blog-admin'>
+<a class='quickedit' href='//www.blogger.com/rearrange?blogID=9403259&widgetType=BlogSearch&widgetId=BlogSearch1&action=editWidget&sectionId=sidebar-right-1' onclick='return _WidgetManager._PopupConfig(document.getElementById("BlogSearch1"));' target='configBlogSearch1' title='Edit'>
+<img alt='' height='18' src='https://resources.blogblog.com/img/icon18_wrench_allbkg.png' width='18'/>
+</a>
+</span>
+</span>
+<div class='clear'></div>
+</div><div class='widget TextList' data-version='1' id='TextList1'>
+<h2>Books and References</h2>
+<div class='widget-content'>
+<ul>
+<li>Drive: The Surprising Truth About What Motivates Us, Daniel H. Pink</li>
+<li>Understanding Digital Signal Processing, Richard Lyons</li>
+<li>The Scientist and Engineer's Guide to Digital Signal Processing, Steven W. Smith</li>
+</ul>
+<div class='clear'></div>
+<span class='widget-item-control'>
+<span class='item-control blog-admin'>
+<a class='quickedit' href='//www.blogger.com/rearrange?blogID=9403259&widgetType=TextList&widgetId=TextList1&action=editWidget&sectionId=sidebar-right-1' onclick='return _WidgetManager._PopupConfig(document.getElementById("TextList1"));' target='configTextList1' title='Edit'>
+<img alt='' height='18' src='https://resources.blogblog.com/img/icon18_wrench_allbkg.png' width='18'/>
+</a>
+</span>
+</span>
+<div class='clear'></div>
+</div>
+</div><div class='widget LinkList' data-version='1' id='LinkList1'>
+<h2>Engineering Links</h2>
+<div class='widget-content'>
+<ul>
+<li><a href='http://www.adafruit.com'>Adafruit</a></li>
+<li><a href='http://www.ameridroid.com'>AmeriDroid</a></li>
+<li><a href='http://pololu.com'>Pololu</a></li>
+</ul>
+<div class='clear'></div>
+<span class='widget-item-control'>
+<span class='item-control blog-admin'>
+<a class='quickedit' href='//www.blogger.com/rearrange?blogID=9403259&widgetType=LinkList&widgetId=LinkList1&action=editWidget&sectionId=sidebar-right-1' onclick='return _WidgetManager._PopupConfig(document.getElementById("LinkList1"));' target='configLinkList1' title='Edit'>
+<img alt='' height='18' src='https://resources.blogblog.com/img/icon18_wrench_allbkg.png' width='18'/>
+</a>
+</span>
+</span>
+<div class='clear'></div>
+</div>
+</div><div class='widget Label' data-version='1' id='Label1'>
+<h2>Tags</h2>
+<div class='widget-content list-label-widget-content'>
+<ul>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/7-segment%20display'>7-segment display</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/accelerometer'>accelerometer</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/actobotics'>actobotics</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/adafruit'>adafruit</a>
+<span dir='ltr'>(2)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/analogWrite'>analogWrite</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/android'>android</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/arduino'>arduino</a>
+<span dir='ltr'>(27)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/arduino%20graphing%20library'>arduino graphing library</a>
+<span dir='ltr'>(3)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/arduino%20library'>arduino library</a>
+<span dir='ltr'>(2)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/ascii%20plot'>ascii plot</a>
+<span dir='ltr'>(2)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/barGraph'>barGraph</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/barGraphS'>barGraphS</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/base'>base</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/binary'>binary</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/blink'>blink</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/blog%20formatting'>blog formatting</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/c%2B%2B'>c++</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/calculator'>calculator</a>
+<span dir='ltr'>(3)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/cardiac'>cardiac</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/cascade%20attenuation'>cascade attenuation</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/code%20formatting'>code formatting</a>
+<span dir='ltr'>(2)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/common%20collector'>common collector</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/compileDATE'>compileDATE</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/constrain'>constrain</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/CRC'>CRC</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/curve%20fit'>curve fit</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/DAC'>DAC</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/data%20smoothing'>data smoothing</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/date'>date</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/debouncing'>debouncing</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/defining%20a%20class'>defining a class</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/display'>display</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/dotGraph'>dotGraph</a>
+<span dir='ltr'>(2)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/dtostrf'>dtostrf</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/ECG'>ECG</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/electronics'>electronics</a>
+<span dir='ltr'>(5)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/electronics%20distributors'>electronics distributors</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/emitter%20follower'>emitter follower</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/equation%20rendering'>equation rendering</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/example'>example</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/filters'>filters</a>
+<span dir='ltr'>(2)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/Find%20Components'>Find Components</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/float%20formatting'>float formatting</a>
+<span dir='ltr'>(2)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/format%20code'>format code</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/function'>function</a>
+<span dir='ltr'>(2)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/GPS'>GPS</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/graphing'>graphing</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/hermetic'>hermetic</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/hex'>hex</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/hilite.me'>hilite.me</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/html'>html</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/IMU'>IMU</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/inductor'>inductor</a>
+<span dir='ltr'>(2)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/LaTex'>LaTex</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/LCD%20Display'>LCD Display</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/LED%20pin%20location'>LED pin location</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/library'>library</a>
+<span dir='ltr'>(2)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/library%20keywords'>library keywords</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/linear%20regression'>linear regression</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/linear%20technology'>linear technology</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/linux'>linux</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/MathJax'>MathJax</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/microfluidics'>microfluidics</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/MIDI'>MIDI</a>
+<span dir='ltr'>(2)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/MIT'>MIT</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/NMEA'>NMEA</a>
+<span dir='ltr'>(2)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/NPN%20dual%20smt%20transistors'>NPN dual smt transistors</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/number%20format'>number format</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/octal'>octal</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/odroid'>odroid</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/OLED%20display'>OLED display</a>
+<span dir='ltr'>(4)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/oled%20print'>oled print</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/oop'>oop</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/op%20amp'>op amp</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/pcb'>pcb</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/PIC'>PIC</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/PID'>PID</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/pinMode'>pinMode</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/plot'>plot</a>
+<span dir='ltr'>(2)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/plotting'>plotting</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/precision%20real-time%20clock'>precision real-time clock</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/prettyprint'>prettyprint</a>
+<span dir='ltr'>(2)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/print'>print</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/printbits'>printbits</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/PWM'>PWM</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/rand'>rand</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/random'>random</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/random%20number%20generator'>random number generator</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/RC%20servo'>RC servo</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/reference'>reference</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/rnd'>rnd</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/rng'>rng</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/robotics'>robotics</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/RTC'>RTC</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/scheduler'>scheduler</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/scrambled'>scrambled</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/sensors'>sensors</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/serial%20port'>serial port</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/software'>software</a>
+<span dir='ltr'>(3)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/sot-883'>sot-883</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/sparkfun'>sparkfun</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/sprintf'>sprintf</a>
+<span dir='ltr'>(2)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/SSD1306'>SSD1306</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/synth'>synth</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/tactile%20feedback'>tactile feedback</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/tactile%20interface'>tactile interface</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/teensy'>teensy</a>
+<span dir='ltr'>(2)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/teensyduino'>teensyduino</a>
+<span dir='ltr'>(3)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/terminal%20program'>terminal program</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/text%20control'>text control</a>
+<span dir='ltr'>(2)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/text%20plot'>text plot</a>
+<span dir='ltr'>(2)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/TextGraph'>TextGraph</a>
+<span dir='ltr'>(3)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/time'>time</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/tiny'>tiny</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/trace%20impedance'>trace impedance</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/transistor'>transistor</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/trig%20functions'>trig functions</a>
+<span dir='ltr'>(2)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/troubleshooting'>troubleshooting</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/tutorial'>tutorial</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/ultra-small'>ultra-small</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/vertical%20counters'>vertical counters</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/wide%20Vin%20range%20driver'>wide Vin range driver</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/windows'>windows</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/Wiring'>Wiring</a>
+<span dir='ltr'>(2)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/xbee'>xbee</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/xctu'>xctu</a>
+<span dir='ltr'>(1)</span>
+</li>
+<li>
+<a dir='ltr' href='http://engineeringnotes.blogspot.ru/search/label/zigbee'>zigbee</a>
+<span dir='ltr'>(2)</span>
+</li>
+</ul>
+<div class='clear'></div>
+<span class='widget-item-control'>
+<span class='item-control blog-admin'>
+<a class='quickedit' href='//www.blogger.com/rearrange?blogID=9403259&widgetType=Label&widgetId=Label1&action=editWidget&sectionId=sidebar-right-1' onclick='return _WidgetManager._PopupConfig(document.getElementById("Label1"));' target='configLabel1' title='Edit'>
+<img alt='' height='18' src='https://resources.blogblog.com/img/icon18_wrench_allbkg.png' width='18'/>
+</a>
+</span>
+</span>
+<div class='clear'></div>
+</div>
+</div></div>
+<table border='0' cellpadding='0' cellspacing='0' class='section-columns columns-2'>
+<tbody>
+<tr>
+<td class='first columns-cell'>
+<div class='sidebar no-items section' id='sidebar-right-2-1'></div>
+</td>
+<td class='columns-cell'>
+<div class='sidebar no-items section' id='sidebar-right-2-2'></div>
+</td>
+</tr>
+</tbody>
+</table>
+<div class='sidebar no-items section' id='sidebar-right-3'></div>
+</aside>
+</div>
+</div>
+</div>
+<div style='clear: both'></div>
+<!-- columns -->
+</div>
+<!-- main -->
+</div>
+</div>
+<div class='main-cap-bottom cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+<footer>
+<div class='footer-outer'>
+<div class='footer-cap-top cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left footer-fauxborder-left'>
+<div class='fauxborder-right footer-fauxborder-right'></div>
+<div class='region-inner footer-inner'>
+<div class='foot no-items section' id='footer-1'></div>
+<table border='0' cellpadding='0' cellspacing='0' class='section-columns columns-2'>
+<tbody>
+<tr>
+<td class='first columns-cell'>
+<div class='foot no-items section' id='footer-2-1'></div>
+</td>
+<td class='columns-cell'>
+<div class='foot no-items section' id='footer-2-2'></div>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- outside of the include in order to lock Attribution widget -->
+<div class='foot section' id='footer-3'><div class='widget Attribution' data-version='1' id='Attribution1'>
+<div class='widget-content' style='text-align: center;'>
+Simple theme. Powered by <a href='https://www.blogger.com' target='_blank'>Blogger</a>.
+</div>
+<div class='clear'></div>
+<span class='widget-item-control'>
+<span class='item-control blog-admin'>
+<a class='quickedit' href='//www.blogger.com/rearrange?blogID=9403259&widgetType=Attribution&widgetId=Attribution1&action=editWidget&sectionId=footer-3' onclick='return _WidgetManager._PopupConfig(document.getElementById("Attribution1"));' target='configAttribution1' title='Edit'>
+<img alt='' height='18' src='https://resources.blogblog.com/img/icon18_wrench_allbkg.png' width='18'/>
+</a>
+</span>
+</span>
+<div class='clear'></div>
+</div></div>
+</div>
+</div>
+<div class='footer-cap-bottom cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+</footer>
+<!-- content -->
+</div>
+</div>
+<div class='content-cap-bottom cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+</div>
+<script type='text/javascript'>
+    window.setTimeout(function() {
+        document.body.className = document.body.className.replace('loading', '');
+      }, 10);
+  </script>
+<script src='https://apis.google.com/js/plusone.js' type='text/javascript'></script>
+
+<script type="text/javascript" src="https://www.blogger.com/static/v1/widgets/1411214009-widgets.js"></script>
+<script type='text/javascript'>
+window['__wavt'] = 'AOuZoY5Aw6OiRzjQBdiYTTGXxc8zdH11bg:1495464718602';_WidgetManager._Init('//www.blogger.com/rearrange?blogID\x3d9403259','//engineeringnotes.blogspot.ru/2015/02/generate-crc-for-nmea-strings-arduino.html','9403259');
+_WidgetManager._SetDataContext([{'name': 'blog', 'data': {'blogId': '9403259', 'title': 'David\x27s Engineering Notes', 'url': 'http://engineeringnotes.blogspot.ru/2015/02/generate-crc-for-nmea-strings-arduino.html', 'canonicalUrl': 'http://engineeringnotes.blogspot.com/2015/02/generate-crc-for-nmea-strings-arduino.html', 'homepageUrl': 'http://engineeringnotes.blogspot.ru/', 'searchUrl': 'http://engineeringnotes.blogspot.ru/search', 'canonicalHomepageUrl': 'http://engineeringnotes.blogspot.com/', 'blogspotFaviconUrl': 'http://engineeringnotes.blogspot.ru/favicon.ico', 'bloggerUrl': 'https://www.blogger.com', 'hasCustomDomain': false, 'httpsEnabled': true, 'enabledCommentProfileImages': true, 'gPlusViewType': 'FILTERED_POSTMOD', 'adultContent': false, 'analyticsAccountNumber': '', 'encoding': 'UTF-8', 'locale': 'en', 'localeUnderscoreDelimited': 'en', 'languageDirection': 'ltr', 'isPrivate': false, 'isMobile': false, 'isMobileRequest': false, 'mobileClass': '', 'isPrivateBlog': false, 'feedLinks': '\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22David\x26#39;s Engineering Notes - Atom\x22 href\x3d\x22http://engineeringnotes.blogspot.com/feeds/posts/default\x22 /\x3e\n\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/rss+xml\x22 title\x3d\x22David\x26#39;s Engineering Notes - RSS\x22 href\x3d\x22http://engineeringnotes.blogspot.com/feeds/posts/default?alt\x3drss\x22 /\x3e\n\x3clink rel\x3d\x22service.post\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22David\x26#39;s Engineering Notes - Atom\x22 href\x3d\x22https://www.blogger.com/feeds/9403259/posts/default\x22 /\x3e\n\n\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22David\x26#39;s Engineering Notes - Atom\x22 href\x3d\x22http://engineeringnotes.blogspot.com/feeds/5421205382896948790/comments/default\x22 /\x3e\n', 'meTag': '', 'openIdOpTag': '', 'mobileHeadScript': '', 'adsenseHostId': 'ca-host-pub-1556223355139109', 'ieCssRetrofitLinks': '\x3c!--[if IE]\x3e\x3cscript type\x3d\x22text/javascript\x22 src\x3d\x22https://www.blogger.com/static/v1/jsbin/3095787282-ieretrofit.js\x22\x3e\x3c/script\x3e\n\x3c![endif]--\x3e', 'view': '', 'dynamicViewsCommentsSrc': '//www.blogblog.com/dynamicviews/4224c15c4e7c9321/js/comments.js', 'dynamicViewsScriptSrc': '//www.blogblog.com/dynamicviews/3db44de20395f7da', 'plusOneApiSrc': 'https://apis.google.com/js/plusone.js', 'sharing': {'platforms': [{'name': 'Get link', 'key': 'link', 'shareMessage': 'Get link', 'target': ''}, {'name': 'Facebook', 'key': 'facebook', 'shareMessage': 'Share to Facebook', 'target': 'facebook'}, {'name': 'BlogThis!', 'key': 'blogThis', 'shareMessage': 'BlogThis!', 'target': 'blog'}, {'name': 'Twitter', 'key': 'twitter', 'shareMessage': 'Share to Twitter', 'target': 'twitter'}, {'name': 'Pinterest', 'key': 'pinterest', 'shareMessage': 'Share to Pinterest', 'target': 'pinterest'}, {'name': 'Google+', 'key': 'googlePlus', 'shareMessage': 'Share to Google+', 'target': 'googleplus'}, {'name': 'Email', 'key': 'email', 'shareMessage': 'Email', 'target': 'email'}], 'googlePlusShareButtonWidth': 300, 'googlePlusBootstrap': '\x3cscript type\x3d\x22text/javascript\x22\x3ewindow.___gcfg \x3d {\x27lang\x27: \x27en\x27};\x3c/script\x3e'}, 'jumpLinkMessage': 'Read more &#187;', 'pageType': 'item', 'postId': '5421205382896948790', 'postImageThumbnailUrl': 'http://1.bp.blogspot.com/-X3bIj7DQmRc/VNwp_iHlftI/AAAAAAAAADs/987zm0kST0Y/s72-c/CRC_to_UART_screens.JPG', 'postImageUrl': 'http://1.bp.blogspot.com/-X3bIj7DQmRc/VNwp_iHlftI/AAAAAAAAADs/987zm0kST0Y/s1600/CRC_to_UART_screens.JPG', 'pageName': 'Generate a CRC for NMEA Strings, Arduino Function', 'pageTitle': 'David\x27s Engineering Notes: Generate a CRC for NMEA Strings, Arduino Function', 'metaDescription': ''}}, {'name': 'features', 'data': {'unsupported_browser_message': 'false', 'lightbox_img_parsing': 'false', 'sharing_get_link_dialog': 'false'}}, {'name': 'messages', 'data': {'linkCopiedToClipboard': 'Link copied to clipboard!', 'postLink': 'Post Link'}}, {'name': 'template', 'data': {'name': 'custom', 'localizedName': 'Custom', 'isResponsive': false, 'isAlternateRendering': false, 'isCustom': true, 'variant': 'simplysimple', 'variantId': 'simplysimple', 'variantName': 'Simply Simple', 'localizedVariantName': 'Simply Simple'}}, {'name': 'view', 'data': {'classic': {'name': 'classic', 'url': '?view\x3dclassic'}, 'flipcard': {'name': 'flipcard', 'url': '?view\x3dflipcard'}, 'magazine': {'name': 'magazine', 'url': '?view\x3dmagazine'}, 'mosaic': {'name': 'mosaic', 'url': '?view\x3dmosaic'}, 'sidebar': {'name': 'sidebar', 'url': '?view\x3dsidebar'}, 'snapshot': {'name': 'snapshot', 'url': '?view\x3dsnapshot'}, 'timeslide': {'name': 'timeslide', 'url': '?view\x3dtimeslide'}, 'isMobile': false, 'title': 'Generate a CRC for NMEA Strings, Arduino Function', 'description': 'resources and techniques for electronic design and Arduino microcontroller programming', 'featuredImage': 'http://1.bp.blogspot.com/-X3bIj7DQmRc/VNwp_iHlftI/AAAAAAAAADs/987zm0kST0Y/s1600/CRC_to_UART_screens.JPG', 'url': 'http://engineeringnotes.blogspot.ru/2015/02/generate-crc-for-nmea-strings-arduino.html', 'type': 'item', 'isSingleItem': true, 'isMultipleItems': false, 'isError': false, 'isPage': false, 'isPost': true, 'isHomepage': false, 'isArchive': false, 'isLabelSearch': false, 'postId': 5421205382896948790}}]);
+_WidgetManager._RegisterWidget('_NavbarView', new _WidgetInfo('Navbar1', 'navbar', null, document.getElementById('Navbar1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HeaderView', new _WidgetInfo('Header1', 'header', null, document.getElementById('Header1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogView', new _WidgetInfo('Blog1', 'main', null, document.getElementById('Blog1'), {'cmtInteractionsEnabled': false}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogSearchView', new _WidgetInfo('BlogSearch1', 'sidebar-right-1', null, document.getElementById('BlogSearch1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_TextListView', new _WidgetInfo('TextList1', 'sidebar-right-1', null, document.getElementById('TextList1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_LinkListView', new _WidgetInfo('LinkList1', 'sidebar-right-1', null, document.getElementById('LinkList1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_LabelView', new _WidgetInfo('Label1', 'sidebar-right-1', null, document.getElementById('Label1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_AttributionView', new _WidgetInfo('Attribution1', 'footer-3', null, document.getElementById('Attribution1'), {}, 'displayModeFull'));
+</script>
+</body>
+</html>
