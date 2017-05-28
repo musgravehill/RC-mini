@@ -1,4 +1,7 @@
 
+// UPLOAD FONT TABLE, run MAX7456->Example->max7456WRITE 
+
+
 #include <SPI.h>
 #include <max7456.h>
 Max7456 osd;

@@ -1,0 +1,1627 @@
+<!doctype html>
+<!--[if !IE]>
+<html class="no-js non-ie" lang="en-US"> <![endif]-->
+<!--[if IE 7 ]>
+<html class="no-js ie7" lang="en-US"> <![endif]-->
+<!--[if IE 8 ]>
+<html class="no-js ie8" lang="en-US"> <![endif]-->
+<!--[if IE 9 ]>
+<html class="no-js ie9" lang="en-US"> <![endif]-->
+<!--[if gt IE 9]><!-->
+<html class="no-js" lang="en-US"> <!--<![endif]-->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+
+<title>A max7456 library for Arduino &#8211; The Bored Engineers</title>
+<link rel='dns-prefetch' href='//platform-api.sharethis.com' />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="The Bored Engineers &raquo; Feed" href="//theboredengineers.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="The Bored Engineers &raquo; Comments Feed" href="//theboredengineers.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="The Bored Engineers &raquo; A max7456 library for Arduino Comments Feed" href="//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/svg\/","svgExt":".svg","source":{"concatemoji":"\/\/theboredengineers.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.7.5"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),!(j.toDataURL().length<3e3)&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,65039,8205,55356,57096),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,55356,57096),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55357,56425,55356,57341,8205,55357,56507),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55357,56425,55356,57341,55357,56507),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='cptch_stylesheet-css'  href='//theboredengineers.com/wp-content/plugins/captcha/css/front_end_style.css?ver=4.2.8' type='text/css' media='all' />
+<link rel='stylesheet' id='dashicons-css'  href='//theboredengineers.com/wp-includes/css/dashicons.min.css?ver=4.7.5' type='text/css' media='all' />
+<link rel='stylesheet' id='cptch_desktop_style-css'  href='//theboredengineers.com/wp-content/plugins/captcha/css/desktop_style.css?ver=4.2.8' type='text/css' media='all' />
+<link rel='stylesheet' id='sparkling-bootstrap-css'  href='//theboredengineers.com/wp-content/themes/sparkling/inc/css/bootstrap.min.css?ver=4.7.5' type='text/css' media='all' />
+<link rel='stylesheet' id='sparkling-icons-css'  href='//theboredengineers.com/wp-content/themes/sparkling/inc/css/font-awesome.min.css?ver=4.7.5' type='text/css' media='all' />
+<link rel='stylesheet' id='sparkling-fonts-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A400italic%2C400%2C600%2C700%7CRoboto+Slab%3A400%2C300%2C700&#038;ver=4.7.5' type='text/css' media='all' />
+<link rel='stylesheet' id='sparkling-style-css'  href='//theboredengineers.com/wp-content/themes/sparkling/style.css?ver=4.7.5' type='text/css' media='all' />
+<link rel='stylesheet' id='shCore-css'  href='//theboredengineers.com/wp-content/plugins/syntax-highlighter/3.0.83/css/shCore.css?ver=3.0.83' type='text/css' media='all' />
+<link rel='stylesheet' id='shCoreDefault-css'  href='//theboredengineers.com/wp-content/plugins/syntax-highlighter/3.0.83/css/shCoreDefault.css?ver=3.0.83' type='text/css' media='all' />
+<link rel='stylesheet' id='shThemeDefault-css'  href='//theboredengineers.com/wp-content/plugins/syntax-highlighter/3.0.83/css/shThemeDefault.css?ver=3.0.83' type='text/css' media='all' />
+<script type='text/javascript' src='//theboredengineers.com/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type='text/javascript' src='//theboredengineers.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript' src='//theboredengineers.com/wp-content/themes/sparkling/inc/js/modernizr.min.js?ver=4.7.5'></script>
+<script type='text/javascript' src='//theboredengineers.com/wp-content/themes/sparkling/inc/js/bootstrap.min.js?ver=4.7.5'></script>
+<script type='text/javascript' src='//theboredengineers.com/wp-content/themes/sparkling/inc/js/functions.min.js?ver=4.7.5'></script>
+<script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#product=ga'></script>
+<link rel='https://api.w.org/' href='//theboredengineers.com/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="//theboredengineers.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="//theboredengineers.com/wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='The quadcopter goes to an abandoned factory' href='//theboredengineers.com/2012/10/11/the-quadcopter-goes-to-an-abandoned-factory/' />
+<link rel='next' title='Crash T-REX 450' href='//theboredengineers.com/2012/12/30/crash-t-rex-450/' />
+<meta name="generator" content="WordPress 4.7.5" />
+<link rel="canonical" href="//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/" />
+<link rel='shortlink' href='//theboredengineers.com/?p=490' />
+<link rel="alternate" type="application/json+oembed" href="//theboredengineers.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Ftheboredengineers.com%2F2012%2F12%2F28%2Fa-max7456-library-for-arduino%2F" />
+<link rel="alternate" type="text/xml+oembed" href="//theboredengineers.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Ftheboredengineers.com%2F2012%2F12%2F28%2Fa-max7456-library-for-arduino%2F&#038;format=xml" />
+<style type="text/css"></style><link rel="pingback" href="//theboredengineers.com/xmlrpc.php">		<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+		
+</head>
+
+<body class="post-template-default single single-post postid-490 single-format-standard group-blog">
+<a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+<div id="page" class="hfeed site">
+
+	<header id="masthead" class="site-header" role="banner">
+		<nav class="navbar navbar-default " role="navigation">
+			<div class="container">
+				<div class="row">
+					<div class="site-navigation-inner col-sm-12">
+						<div class="navbar-header">
+							<button type="button" class="btn navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+
+							
+							
+							<div id="logo">
+								<p class="site-name">									<a class="navbar-brand" href="//theboredengineers.com/" title="The Bored Engineers" rel="home">The Bored Engineers</a>
+								</p>							</div><!-- end of #logo -->
+
+							
+						</div>
+											</div>
+				</div>
+			</div>
+		</nav><!-- .site-navigation -->
+	</header><!-- #masthead -->
+
+	<div id="content" class="site-content">
+
+		<div class="top-section">
+								</div>
+
+		<div class="container main-content-area">
+            			<div class="row side-pull-left">
+				<div class="main-content-inner col-sm-12 col-md-8">
+
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+<article id="post-490" class="post-490 post type-post status-publish format-standard hentry category-arduino category-diy category-non-classe tag-arduino tag-doxygen tag-library tag-max7456 tag-sdl">
+		<div class="post-inner-content">
+		<header class="entry-header page-header">
+
+			<h1 class="entry-title ">A max7456 library for Arduino</h1>
+
+			<div class="entry-meta">
+				<span class="posted-on"><i class="fa fa-calendar"></i> <a href="//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/" rel="bookmark"><time class="entry-date published" datetime="2012-12-28T12:47:26+00:00">28 December 2012</time></a></span><span class="byline"> <i class="fa fa-user"></i> <span class="author vcard"><a class="url fn n" href="//theboredengineers.com/author/ben/">Ben</a></span></span>
+								<span class="cat-links"><i class="fa fa-folder-open-o"></i>
+					 <a href="//theboredengineers.com/category/software/arduino/" rel="category tag">Arduino</a>, <a href="//theboredengineers.com/category/diy/" rel="category tag">DIY</a>, <a href="//theboredengineers.com/category/non-classe/" rel="category tag">Non classé</a>				</span>
+								
+			</div><!-- .entry-meta -->
+		</header><!-- .entry-header -->
+
+		<div class="entry-content">
+			<p>It's been a while since we published the last article.. Well we've been pretty busy those days but as a gift in this article I'll present you some of our lattest work : A library for the well known max7456 chip by Maxim.</p>
+<p>As famous as it is, a little reminder won't be too much. max7456 is basically used to insert customized information in a given analogic video stream. This manip is called "OSD" (for On-Screen Display). A little picture to explain it :</p>
+<p><a href="//theboredengineers.com/2012/12/a-max7456-library-for-arduino/explainationosd/" rel="attachment wp-att-494"><img class="alignnone size-large wp-image-494" alt="explainationOSD" src="//theboredengineers.com/WordPress3/wp-content/uploads/2012/12/explainationOSD-1024x473.png" width="620" height="286" /></a></p>
+<p>We recently bought a wireless video system in order to do FPV (First Person Flying, you only look on a video send by a camera installed on the drone/plane). And the problem is that it's quite hard to pilot this way without additional informations about the flight. So we decided to make our own OSD system.</p>
+<p>We decided to make a library for the max7456 because we didn't found one that fitted our needs. This library is pretty simple to use and comes with a complete documentation and example programs. This has been used with a PAL system, but the differences with NTSC are not really big (you have to init it an other way, refer to the datasheed of max7456 if you need to).</p>
+<p>Here is the Hello World ! code :</p>
+<pre class="brush: cpp; auto-links: false;">
+#include &quot;SPI.h&quot;
+#include &quot;max7456.h&quot;
+
+Max7456 osd;
+
+void setup()
+{
+  SPI.begin(); //to be called before osd.init
+  osd.init(10); //CS on port 10
+  osd.setDisplayOffsets(60,18);
+  osd.setBlinkParams(_8fields, _BT_BT);
+
+  osd.activateOSD();
+  osd.print(&quot;Hello world : )&quot;,1,3);
+}
+
+void loop()
+{
+}
+
+</pre>
+<p>In order to make easier the process of entering new characters in the NVM (non-volatile memory) of the OSD, I made an program used to transform a bmp picture representing the OSD characters table into a single array you can use with the library (there is an example that shows the use of this array). Just lauch the executable with the options :</p>
+<p>[source lang="shell"]convertOSD.exe -i &quot;.bmp picture&quot; -head &quot;.h containing array&quot;[/source]</p>
+<p>The bmp picture looks like this :</p>
+<p><a href="//theboredengineers.com/2012/12/a-max7456-library-for-arduino/tableosd/" rel="attachment wp-att-526"><img class="alignnone size-large wp-image-526" alt="tableOSD" src="//theboredengineers.com/WordPress3/wp-content/uploads/2012/12/tableOSD.bmp" /></a></p>
+<p>This represents the 256 characters to be insered into the NVM. So here's the deal : when you want to put your customized characters table into the NVM, you must write on a register in the max7456. The values to write on this special register are directly related to the character. To be quick, each pixel of a character is 2-bits coded, and the character is 12x18 pixels you'll need 54 bytes of data. There are 256 characters in the table so the array returned by the program is 13824 bytes long (approx. 13.5k) . This is much more than the Arduino's flash memory can handle (2k). But the program memory is sufficient to store such an array. Then we used a little trick to program the max7456 in one single operation : we simple store the array in the program memory with the instruction :</p>
+<pre class="brush: cpp; auto-links: false;">const prog_uchar tableOfAllCharacters[13824] PROGMEM = {0x55,0x55,0x55,0 // ....</pre>
+<p>Nothing really hard here : character at address 0x00  is represented by the 54 first bytes, character at address i is represented by the (54*i) next 54 characters. Note that all the 0xFF value has been replaced by "0x55". This is because af a tricky bug in the Arduino bootloader that causes the Arduino to be corrupted if too many 0xFF are sent on a row to the program memory. Therefore, this is the method to get the character i in the table "table" (we fill a special type "charact" which is in fact a 54 bytes array.</p>
+<pre class="brush: cpp; auto-links: false;">
+
+//-----------------------------------------------------------------------------
+// Implements Max7456::getCARACFromProgMem
+//-----------------------------------------------------------------------------
+void Max7456::getCARACFromProgMem(const prog_uchar *table, byte i, charact car)
+{
+	unsigned long index;
+	byte read;
+	index = i*54;
+	for(unsigned long j = 0 ; j &lt; 54 ; j++)
+	{
+		read = pgm_read_byte_near(table +index+j );
+		car[j] = read;
+		if (car[j] == 0x55)
+			car[j] = 0xff;
+	}
+}
+
+</pre>
+<p>Note that we experienced problems with the sparkfun max7456 package. This was caused by a chip overheat dued to insuficient copper pad under it. We solved the problem by adding a tiny RAM heat dissipator on it.</p>
+<p>Ok, most important part now : the sources !</p>
+<p><a href="//theboredengineers.com/2012/12/a-max7456-library-for-arduino/tbemax7456chargenerator/" rel="attachment wp-att-500">Character array generator</a></p>
+<p><a href="//theboredengineers.com/2012/12/a-max7456-library-for-arduino/max7456/" rel="attachment wp-att-499">Max7456 Library</a></p>
+					</div><!-- .entry-content -->
+
+		<footer class="entry-meta">
+
+	    		      <!-- tags -->
+	      <div class="tagcloud">
+
+	          <a href="//theboredengineers.com/tag/arduino/">Arduino</a> <a href="//theboredengineers.com/tag/doxygen/">Doxygen</a> <a href="//theboredengineers.com/tag/library/">Library</a> <a href="//theboredengineers.com/tag/max7456/">Max7456</a> <a href="//theboredengineers.com/tag/sdl/">SDL</a> 
+	      </div>
+	      <!-- end tags -->
+	      
+		</footer><!-- .entry-meta -->
+	</div>
+
+	
+</article><!-- #post-## -->
+
+<div id="comments" class="comments-area">
+
+			<h2 class="comments-title">
+			40 thoughts on &ldquo;<span>A max7456 library for Arduino</span>&rdquo;		</h2>
+
+		
+		<ol class="comment-list">
+					<li id="comment-100" class="comment even thread-even depth-1 parent">
+			<article id="div-comment-100" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/23a673945debd769cc8f39e762584d46?s=60&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/23a673945debd769cc8f39e762584d46?s=120&amp;d=mm&amp;r=g 2x' class='avatar avatar-60 photo' height='60' width='60' />						<b class="fn">trisonic</b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/#comment-100">
+							<time datetime="2013-01-23T20:45:20+00:00">
+								23 January 2013 at 20 h 45 min							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>hi</p>
+<p>sorry for this email, but i really need your help</p>
+<p>i have read your article about max7456 here: <a href="//theboredengineers.com/2012/12/a-max7456-library-for-arduino/" rel="nofollow">https://theboredengineers.com/2012/12/a-max7456-library-for-arduino/</a></p>
+<p>i have a lot of problem, i have spent 2 days around it but it still not works.</p>
+<p>i really dont know why it doesnt works, this is the wiring that i have used: <a href="http://localhostr.com/files/xFMs77Z/Uno" rel="nofollow">http://localhostr.com/files/xFMs77Z/Uno</a> and Max7456  C.jpg<br />
+this is a sketch that i have flashed: <a href="http://pastebin.com/aXieBpbM" rel="nofollow">http://pastebin.com/aXieBpbM</a></p>
+<p>but i dont see nothing on my display (pal tv color "mivar 16 p2").<br />
+i see only the image from a little cam that i have attached but no osd.</p>
+<p>how can you help me?</p>
+<p>regards</p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel='nofollow' class='comment-reply-link' href='//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/?replytocom=100#respond' onclick='return addComment.moveForm( "div-comment-100", "100", "respond", "490" )' aria-label='Reply to trisonic'>Reply</a></div>			</article><!-- .comment-body -->
+<ol class="children">
+		<li id="comment-101" class="comment byuser comment-author-ben bypostauthor odd alt depth-2 parent">
+			<article id="div-comment-101" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/cb12e8e5c3f44016ca0cf4fbb4017fba?s=60&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/cb12e8e5c3f44016ca0cf4fbb4017fba?s=120&amp;d=mm&amp;r=g 2x' class='avatar avatar-60 photo' height='60' width='60' />						<b class="fn"><a href='http://www.theboredengineers.com' rel='external nofollow' class='url'>Ben</a></b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/#comment-101">
+							<time datetime="2013-01-23T21:30:41+00:00">
+								23 January 2013 at 21 h 30 min							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>Hi trisonic,</p>
+<p>I checked your sketch and it seems OK.<br />
+Your wiring seems good too, but you should try to tie LOS, HSYNC and VSYNC output to 5V with a 5K ou 10k resistor (same as RST). We had numerous problems caused by floating outputs.</p>
+<p>Is the display easily disturbed (when you move it a little with your finger for instance) ?</p>
+<p>Your max7456 seems OK too since the background is displayed.<br />
+Is it warm ? We had to add a heat sinker because after a few seconds the display disappeared.</p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel='nofollow' class='comment-reply-link' href='//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/?replytocom=101#respond' onclick='return addComment.moveForm( "div-comment-101", "101", "respond", "490" )' aria-label='Reply to Ben'>Reply</a></div>			</article><!-- .comment-body -->
+<ol class="children">
+		<li id="comment-102" class="comment even depth-3">
+			<article id="div-comment-102" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/23a673945debd769cc8f39e762584d46?s=60&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/23a673945debd769cc8f39e762584d46?s=120&amp;d=mm&amp;r=g 2x' class='avatar avatar-60 photo' height='60' width='60' />						<b class="fn">trisonic</b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/#comment-102">
+							<time datetime="2013-01-23T23:48:43+00:00">
+								23 January 2013 at 23 h 48 min							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>thanks for your reply!</p>
+<p>i have wired it as you have wrote, i have used some trimpots adjusted at 7k... but nothing.<br />
+i see only the background image but no osd, no disturb, no strange effect, its not warm.</p>
+<p>maybe the problem is on the offset?<br />
+  osd.setDisplayOffsets(60,18);<br />
+  osd.setBlinkParams(_8fields, _BT_BT);</p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel='nofollow' class='comment-reply-link' href='//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/?replytocom=102#respond' onclick='return addComment.moveForm( "div-comment-102", "102", "respond", "490" )' aria-label='Reply to trisonic'>Reply</a></div>			</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+		<li id="comment-103" class="comment byuser comment-author-ben bypostauthor odd alt thread-odd thread-alt depth-1 parent">
+			<article id="div-comment-103" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/cb12e8e5c3f44016ca0cf4fbb4017fba?s=60&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/cb12e8e5c3f44016ca0cf4fbb4017fba?s=120&amp;d=mm&amp;r=g 2x' class='avatar avatar-60 photo' height='60' width='60' />						<b class="fn"><a href='http://www.theboredengineers.com' rel='external nofollow' class='url'>Ben</a></b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/#comment-103">
+							<time datetime="2013-01-24T00:02:02+00:00">
+								24 January 2013 at 0 h 02 min							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>Hi again,</p>
+<p>Did you upload into the OSD a new character table? if you did it using the sample program Max7456WriteTable.cpp your OSD memory has been overriden with 0xFFs (so all your characters are white). Can you try to invert colors on your osd.print("Hello world :)",1,3);  (just replace it with   osd.print("Hello world :)",1,3,0,1);. If so, you'll have to upload a non-empty table again.</p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel='nofollow' class='comment-reply-link' href='//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/?replytocom=103#respond' onclick='return addComment.moveForm( "div-comment-103", "103", "respond", "490" )' aria-label='Reply to Ben'>Reply</a></div>			</article><!-- .comment-body -->
+<ol class="children">
+		<li id="comment-104" class="comment even depth-2 parent">
+			<article id="div-comment-104" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/23a673945debd769cc8f39e762584d46?s=60&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/23a673945debd769cc8f39e762584d46?s=120&amp;d=mm&amp;r=g 2x' class='avatar avatar-60 photo' height='60' width='60' />						<b class="fn">trisonic</b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/#comment-104">
+							<time datetime="2013-01-24T00:48:49+00:00">
+								24 January 2013 at 0 h 48 min							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>uhm.... i didn't upload no character table! ;(<br />
+my osd is brand new and i didnt uploaded nothing, my mistake!!<br />
+...tomorrow i will fix it.</p>
+<p>thanks so much ben</p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel='nofollow' class='comment-reply-link' href='//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/?replytocom=104#respond' onclick='return addComment.moveForm( "div-comment-104", "104", "respond", "490" )' aria-label='Reply to trisonic'>Reply</a></div>			</article><!-- .comment-body -->
+<ol class="children">
+		<li id="comment-105" class="comment byuser comment-author-ben bypostauthor odd alt depth-3">
+			<article id="div-comment-105" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/cb12e8e5c3f44016ca0cf4fbb4017fba?s=60&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/cb12e8e5c3f44016ca0cf4fbb4017fba?s=120&amp;d=mm&amp;r=g 2x' class='avatar avatar-60 photo' height='60' width='60' />						<b class="fn"><a href='http://www.theboredengineers.com' rel='external nofollow' class='url'>Ben</a></b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/#comment-105">
+							<time datetime="2013-01-24T00:55:48+00:00">
+								24 January 2013 at 0 h 55 min							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>Well actually it should work anyway : don't try it yet. There is a default chars table in the max, and some random characters should appear replacing the "Hello world" string. I'll try tomorow to upload the exact code you posted to see if it's a software problem. one thing you can do is to reset first the OSD (by connecting RST to ground and then put it back to 5V with resistor), and then reset the arduino after this (don't disconnect it, just push the reset button). What is the Arduino board you're working on?</p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel='nofollow' class='comment-reply-link' href='//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/?replytocom=105#respond' onclick='return addComment.moveForm( "div-comment-105", "105", "respond", "490" )' aria-label='Reply to Ben'>Reply</a></div>			</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+		<li id="comment-106" class="comment even thread-even depth-1 parent">
+			<article id="div-comment-106" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/23a673945debd769cc8f39e762584d46?s=60&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/23a673945debd769cc8f39e762584d46?s=120&amp;d=mm&amp;r=g 2x' class='avatar avatar-60 photo' height='60' width='60' />						<b class="fn">trisonic</b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/#comment-106">
+							<time datetime="2013-01-24T01:08:06+00:00">
+								24 January 2013 at 1 h 08 min							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>Arduino UNO, and a regular duemilanove (with optiboot bootloader).</p>
+<p>Do you think that my osd has a default table?<br />
+Could you populate Max7456WriteTable.h with a default table?<br />
+Maybe i can try to upload a new table.</p>
+<p>What kind of benefit shoul i will have with resetting the osd?</p>
+<p>regards</p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel='nofollow' class='comment-reply-link' href='//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/?replytocom=106#respond' onclick='return addComment.moveForm( "div-comment-106", "106", "respond", "490" )' aria-label='Reply to trisonic'>Reply</a></div>			</article><!-- .comment-body -->
+<ol class="children">
+		<li id="comment-107" class="comment byuser comment-author-ben bypostauthor odd alt depth-2 parent">
+			<article id="div-comment-107" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/cb12e8e5c3f44016ca0cf4fbb4017fba?s=60&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/cb12e8e5c3f44016ca0cf4fbb4017fba?s=120&amp;d=mm&amp;r=g 2x' class='avatar avatar-60 photo' height='60' width='60' />						<b class="fn"><a href='http://www.theboredengineers.com' rel='external nofollow' class='url'>Ben</a></b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/#comment-107">
+							<time datetime="2013-01-24T01:23:32+00:00">
+								24 January 2013 at 1 h 23 min							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>resetting the chip will only restore its internal registers to a default value ; basically if the internal state of the max may have been somehow corrupted by something (lets say : rise up on the 5V ; states of the Arduino pins on startup,...). By the way can you tell me what version of the IDE you are using ? You could have to manually set the SPI pins to input and output states. But it's already done on the latest ones. one other problem you're pointing out is the bootloader that can somehow disturb the functionning of the max. those chips are quite sensitive so if you can for your tests I recommand you to get back to the original bootloader and therefore see if this is the source of the problem. If it still don't work, maybe you should try to upload a sample code for the max7456 (you can found it on the internet (<a href="http://f5mna.free.fr/Arduino.htm" rel="nofollow">http://f5mna.free.fr/Arduino.htm</a> for exemple, it's in french but you can download a sample sketch at <a href="http://f5mna.free.fr/arduino/f5mna_8_phrases.zip" rel="nofollow">http://f5mna.free.fr/arduino/f5mna_8_phrases.zip</a> ). Let us know if you find a solution to your problems.<br />
+Regards</p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel='nofollow' class='comment-reply-link' href='//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/?replytocom=107#respond' onclick='return addComment.moveForm( "div-comment-107", "107", "respond", "490" )' aria-label='Reply to Ben'>Reply</a></div>			</article><!-- .comment-body -->
+<ol class="children">
+		<li id="comment-108" class="comment even depth-3 parent">
+			<article id="div-comment-108" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/23a673945debd769cc8f39e762584d46?s=60&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/23a673945debd769cc8f39e762584d46?s=120&amp;d=mm&amp;r=g 2x' class='avatar avatar-60 photo' height='60' width='60' />						<b class="fn">andrea</b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/#comment-108">
+							<time datetime="2013-01-24T10:52:50+00:00">
+								24 January 2013 at 10 h 52 min							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>thanks for your suppor dude</p>
+<p>i have tried to reset the osd but nothing on tv, im using ide 1.0.1.<br />
+i want to try to upload a new char table (im desperate!), is your code for arduino? i see a .cpp extension.<br />
+can you try modify it for a regular arduino + ide 1.0.1?</p>
+<p>regards</p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel='nofollow' class='comment-reply-link' href='//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/?replytocom=108#respond' onclick='return addComment.moveForm( "div-comment-108", "108", "respond", "490" )' aria-label='Reply to andrea'>Reply</a></div>			</article><!-- .comment-body -->
+<ol class="children">
+		<li id="comment-109" class="comment byuser comment-author-ben bypostauthor odd alt depth-4 parent">
+			<article id="div-comment-109" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/cb12e8e5c3f44016ca0cf4fbb4017fba?s=60&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/cb12e8e5c3f44016ca0cf4fbb4017fba?s=120&amp;d=mm&amp;r=g 2x' class='avatar avatar-60 photo' height='60' width='60' />						<b class="fn"><a href='http://www.theboredengineers.com' rel='external nofollow' class='url'>Ben</a></b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/#comment-109">
+							<time datetime="2013-01-24T11:57:04+00:00">
+								24 January 2013 at 11 h 57 min							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>Hi Andrea,</p>
+<p>I know this little device can be a pain in the ass 🙁</p>
+<p>This is actually a code designed to be used in eclipse but chances are that you'll be able to open it in your arduino IDE by changing the extension to .ino. (If you often use arduino you should give a try to eclipse we wrote an article about it).</p>
+<p>Also, the .h file that contains the characters table is filled with 0x55 (blanck characters).<br />
+You can try the program that we gave with the library (you have to open it with command lines -hope you know how to do this). It takes a bmp file as input and generate a .h which contains a table of 13.5k of data representing this bmp table into the max memory. You'll just have to copy it and replace the old 0x55 values in the initial.h. I tried your example and it works fine on me.</p>
+<p>If it's an option to you, try to upgrade your IDE to 1.0.2, too..</p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel='nofollow' class='comment-reply-link' href='//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/?replytocom=109#respond' onclick='return addComment.moveForm( "div-comment-109", "109", "respond", "490" )' aria-label='Reply to Ben'>Reply</a></div>			</article><!-- .comment-body -->
+<ol class="children">
+		<li id="comment-110" class="comment byuser comment-author-ben bypostauthor even depth-5">
+			<article id="div-comment-110" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/cb12e8e5c3f44016ca0cf4fbb4017fba?s=60&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/cb12e8e5c3f44016ca0cf4fbb4017fba?s=120&amp;d=mm&amp;r=g 2x' class='avatar avatar-60 photo' height='60' width='60' />						<b class="fn"><a href='http://www.theboredengineers.com' rel='external nofollow' class='url'>Ben</a></b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/#comment-110">
+							<time datetime="2013-01-24T12:15:19+00:00">
+								24 January 2013 at 12 h 15 min							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>Here is a data to copy if you can't use the generator</p>
+<p><a href="//theboredengineers.com/WordPress3/wp-content/uploads/2013/01/table.h" rel="nofollow">https://theboredengineers.com/WordPress3/wp-content/uploads/2013/01/table.h</a></p>
+				</div><!-- .comment-content -->
+
+							</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+		<li id="comment-111" class="comment odd alt depth-5">
+			<article id="div-comment-111" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/23a673945debd769cc8f39e762584d46?s=60&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/23a673945debd769cc8f39e762584d46?s=120&amp;d=mm&amp;r=g 2x' class='avatar avatar-60 photo' height='60' width='60' />						<b class="fn">andrea</b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/#comment-111">
+							<time datetime="2013-01-24T13:16:15+00:00">
+								24 January 2013 at 13 h 16 min							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>i will modify your char loader...!</p>
+<p>thanks a lot</p>
+				</div><!-- .comment-content -->
+
+							</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+		<li id="comment-112" class="comment byuser comment-author-ben bypostauthor even depth-5">
+			<article id="div-comment-112" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/cb12e8e5c3f44016ca0cf4fbb4017fba?s=60&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/cb12e8e5c3f44016ca0cf4fbb4017fba?s=120&amp;d=mm&amp;r=g 2x' class='avatar avatar-60 photo' height='60' width='60' />						<b class="fn"><a href='http://www.theboredengineers.com' rel='external nofollow' class='url'>Ben</a></b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/#comment-112">
+							<time datetime="2013-01-24T13:41:26+00:00">
+								24 January 2013 at 13 h 41 min							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>No problem 🙂 I hope you'll eventually figure out what's the problem. Don't hesitate to comment again to share your experience.</p>
+<p>Ben</p>
+				</div><!-- .comment-content -->
+
+							</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+		<li id="comment-113" class="comment odd alt thread-odd thread-alt depth-1">
+			<article id="div-comment-113" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/23a673945debd769cc8f39e762584d46?s=60&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/23a673945debd769cc8f39e762584d46?s=120&amp;d=mm&amp;r=g 2x' class='avatar avatar-60 photo' height='60' width='60' />						<b class="fn">andrea</b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/#comment-113">
+							<time datetime="2013-01-24T15:18:43+00:00">
+								24 January 2013 at 15 h 18 min							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>Im converting your loader for working with arduino ide but i have some  error messages such:</p>
+<p>Max7456 *osd = NULL; //Pointer representing a max7456 .</p>
+<p>In file included from Max7456WriteTable.ino:2:<br />
+Max7456WriteTable.h:25: error: expected constructor, destructor, or type conversion before '*' token</p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel='nofollow' class='comment-reply-link' href='//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/?replytocom=113#respond' onclick='return addComment.moveForm( "div-comment-113", "113", "respond", "490" )' aria-label='Reply to andrea'>Reply</a></div>			</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+		<li id="comment-114" class="comment even thread-even depth-1">
+			<article id="div-comment-114" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/23a673945debd769cc8f39e762584d46?s=60&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/23a673945debd769cc8f39e762584d46?s=120&amp;d=mm&amp;r=g 2x' class='avatar avatar-60 photo' height='60' width='60' />						<b class="fn">andrea</b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/#comment-114">
+							<time datetime="2013-01-24T15:57:52+00:00">
+								24 January 2013 at 15 h 57 min							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>little update for your loader: <a href="https://gist.github.com/4622611" rel="nofollow">https://gist.github.com/4622611</a></p>
+<p>sketch_jan24b.ino: In function 'void setup()':<br />
+sketch_jan24b:303: error: no matching function for call to 'Max7456::getCARACFromProgMem(int&amp;, byte [54])'<br />
+D:arduino-1.0.3librariesmax7456/max7456.h:228: note: candidates are: static void Max7456::getCARACFromProgMem(const prog_uchar*, byte, byte*)<br />
+sketch_jan24b:304: error: no matching function for call to 'Max7456::sendCharacter(byte [54], int&amp;)'<br />
+D:arduino-1.0.3librariesmax7456/max7456.h:116: note: candidates are: void Max7456::sendCharacter(const byte*, byte, byte)</p>
+<p>how can i solve it?</p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel='nofollow' class='comment-reply-link' href='//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/?replytocom=114#respond' onclick='return addComment.moveForm( "div-comment-114", "114", "respond", "490" )' aria-label='Reply to andrea'>Reply</a></div>			</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+		<li id="comment-115" class="comment byuser comment-author-ben bypostauthor odd alt thread-odd thread-alt depth-1">
+			<article id="div-comment-115" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/cb12e8e5c3f44016ca0cf4fbb4017fba?s=60&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/cb12e8e5c3f44016ca0cf4fbb4017fba?s=120&amp;d=mm&amp;r=g 2x' class='avatar avatar-60 photo' height='60' width='60' />						<b class="fn"><a href='http://www.theboredengineers.com' rel='external nofollow' class='url'>Ben</a></b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/#comment-115">
+							<time datetime="2013-01-24T17:51:53+00:00">
+								24 January 2013 at 17 h 51 min							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>Ok for your first error you just have to add the name of the variable in progmem : tableOfAllCharacters as first argument. leave the other arguments as they are.</p>
+<p>For the second, do this trick:<br />
+osd->sendCharacter(currentChar,i&#038;0xF0, i&#038;0xF0);</p>
+<p>this is because we use it as low and high addresses and I forget to update the code sample, appologies 🙁</p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel='nofollow' class='comment-reply-link' href='//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/?replytocom=115#respond' onclick='return addComment.moveForm( "div-comment-115", "115", "respond", "490" )' aria-label='Reply to Ben'>Reply</a></div>			</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+		<li id="comment-116" class="comment even thread-even depth-1">
+			<article id="div-comment-116" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/23a673945debd769cc8f39e762584d46?s=60&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/23a673945debd769cc8f39e762584d46?s=120&amp;d=mm&amp;r=g 2x' class='avatar avatar-60 photo' height='60' width='60' />						<b class="fn">andrea</b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/#comment-116">
+							<time datetime="2013-01-24T18:28:06+00:00">
+								24 January 2013 at 18 h 28 min							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>Thanks for your support</p>
+<p>I have modified the sketch, the *final* version is this: <a href="https://gist.github.com/4625393.git" rel="nofollow">https://gist.github.com/4625393.git</a></p>
+<p>BUT...  the two functions (osd.getCARACFromProgMem - osd.sendCharacter) will overflow the ram of my arduino uno....<br />
+I dont see nothing on the serial monitor but, If i will comment only this two functions it works!</p>
+<p>What do you think?</p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel='nofollow' class='comment-reply-link' href='//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/?replytocom=116#respond' onclick='return addComment.moveForm( "div-comment-116", "116", "respond", "490" )' aria-label='Reply to andrea'>Reply</a></div>			</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+		<li id="comment-117" class="comment odd alt thread-odd thread-alt depth-1">
+			<article id="div-comment-117" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/23a673945debd769cc8f39e762584d46?s=60&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/23a673945debd769cc8f39e762584d46?s=120&amp;d=mm&amp;r=g 2x' class='avatar avatar-60 photo' height='60' width='60' />						<b class="fn">andrea</b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/#comment-117">
+							<time datetime="2013-01-24T18:30:06+00:00">
+								24 January 2013 at 18 h 30 min							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>Sorry, this is the link: <a href="https://gist.github.com/4625449" rel="nofollow">https://gist.github.com/4625449</a></p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel='nofollow' class='comment-reply-link' href='//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/?replytocom=117#respond' onclick='return addComment.moveForm( "div-comment-117", "117", "respond", "490" )' aria-label='Reply to andrea'>Reply</a></div>			</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+		<li id="comment-118" class="comment even thread-even depth-1 parent">
+			<article id="div-comment-118" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/23a673945debd769cc8f39e762584d46?s=60&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/23a673945debd769cc8f39e762584d46?s=120&amp;d=mm&amp;r=g 2x' class='avatar avatar-60 photo' height='60' width='60' />						<b class="fn">andrea</b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/#comment-118">
+							<time datetime="2013-01-24T22:56:51+00:00">
+								24 January 2013 at 22 h 56 min							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>the problem is only in this function: osd.getCARACFromProgMem(tableOfAllCharacters,i,currentChar);<br />
+if i will comment only this, it will run (but it will write nothing)....  maybe it take too much ram in run time.</p>
+<p>what kind of trick can i use for upload a new table on the eeprom?</p>
+<p>some people on internet, with my same issues, have solved it by uploading a new table.... maybe its blank.</p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel='nofollow' class='comment-reply-link' href='//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/?replytocom=118#respond' onclick='return addComment.moveForm( "div-comment-118", "118", "respond", "490" )' aria-label='Reply to andrea'>Reply</a></div>			</article><!-- .comment-body -->
+<ol class="children">
+		<li id="comment-119" class="comment byuser comment-author-ben bypostauthor odd alt depth-2 parent">
+			<article id="div-comment-119" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/cb12e8e5c3f44016ca0cf4fbb4017fba?s=60&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/cb12e8e5c3f44016ca0cf4fbb4017fba?s=120&amp;d=mm&amp;r=g 2x' class='avatar avatar-60 photo' height='60' width='60' />						<b class="fn"><a href='http://www.theboredengineers.com' rel='external nofollow' class='url'>Ben</a></b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/#comment-119">
+							<time datetime="2013-01-24T23:12:13+00:00">
+								24 January 2013 at 23 h 12 min							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>Hi again,</p>
+<p>One thing you can try is enable verbose mode for your compilation (file/preferences/check verbose). This can give you a better hint on what's happening. We had this problem but it was solved using the "prog_uchar... PROGMEM" pattern which write the big array into program memory of the chip. btw, what is your atmega version ? we did all our tests with a 328 but if you have a 168 it can be too short in memory (16kb of data from wich you must take the 13.5 from the array and 2k from the bootloader, which left almost nothing). If so, you should try to upload the 128 first characters only (divide the size of the array by 2 which free ~7k of memory) and then if it's ok go ahead with the 128 last characters.</p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel='nofollow' class='comment-reply-link' href='//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/?replytocom=119#respond' onclick='return addComment.moveForm( "div-comment-119", "119", "respond", "490" )' aria-label='Reply to Ben'>Reply</a></div>			</article><!-- .comment-body -->
+<ol class="children">
+		<li id="comment-120" class="comment even depth-3">
+			<article id="div-comment-120" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/23a673945debd769cc8f39e762584d46?s=60&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/23a673945debd769cc8f39e762584d46?s=120&amp;d=mm&amp;r=g 2x' class='avatar avatar-60 photo' height='60' width='60' />						<b class="fn">andrea</b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/#comment-120">
+							<time datetime="2013-01-24T23:22:51+00:00">
+								24 January 2013 at 23 h 22 min							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>sorry again 🙂</p>
+<p>"myloader.ino: In function 'void setup()':<br />
+myloaderi.ino:17: warning: '__progmem__' attribute ignored"</p>
+<p>line 17 is for:   const prog_uchar tableOfAllCharacters[13824] PROGMEM = {</p>
+<p>is it a big problem?</p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel='nofollow' class='comment-reply-link' href='//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/?replytocom=120#respond' onclick='return addComment.moveForm( "div-comment-120", "120", "respond", "490" )' aria-label='Reply to andrea'>Reply</a></div>			</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+		<li id="comment-121" class="comment odd alt depth-3">
+			<article id="div-comment-121" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/23a673945debd769cc8f39e762584d46?s=60&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/23a673945debd769cc8f39e762584d46?s=120&amp;d=mm&amp;r=g 2x' class='avatar avatar-60 photo' height='60' width='60' />						<b class="fn">andrea</b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/#comment-121">
+							<time datetime="2013-01-24T23:23:45+00:00">
+								24 January 2013 at 23 h 23 min							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>a regular arduino uno, 328p 😉</p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel='nofollow' class='comment-reply-link' href='//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/?replytocom=121#respond' onclick='return addComment.moveForm( "div-comment-121", "121", "respond", "490" )' aria-label='Reply to andrea'>Reply</a></div>			</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+		<li id="comment-122" class="comment byuser comment-author-ben bypostauthor even depth-3 parent">
+			<article id="div-comment-122" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/cb12e8e5c3f44016ca0cf4fbb4017fba?s=60&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/cb12e8e5c3f44016ca0cf4fbb4017fba?s=120&amp;d=mm&amp;r=g 2x' class='avatar avatar-60 photo' height='60' width='60' />						<b class="fn"><a href='http://www.theboredengineers.com' rel='external nofollow' class='url'>Ben</a></b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/#comment-122">
+							<time datetime="2013-01-24T23:32:17+00:00">
+								24 January 2013 at 23 h 32 min							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>OK this must be the problem : try to add the static keyword just after the const one.<br />
+If this does not do the trick, try to install a new version of Arduino. Some other dudes had the same problem solved by re-installing the entire chaintool.</p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel='nofollow' class='comment-reply-link' href='//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/?replytocom=122#respond' onclick='return addComment.moveForm( "div-comment-122", "122", "respond", "490" )' aria-label='Reply to Ben'>Reply</a></div>			</article><!-- .comment-body -->
+<ol class="children">
+		<li id="comment-123" class="comment odd alt depth-4">
+			<article id="div-comment-123" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/23a673945debd769cc8f39e762584d46?s=60&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/23a673945debd769cc8f39e762584d46?s=120&amp;d=mm&amp;r=g 2x' class='avatar avatar-60 photo' height='60' width='60' />						<b class="fn">andrea</b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/#comment-123">
+							<time datetime="2013-01-24T23:42:43+00:00">
+								24 January 2013 at 23 h 42 min							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>i have solved the problem about the loader, the correct sketch for a regulare arduino ide 1.0.3 is this: <a href="https://gist.github.com/4628935" rel="nofollow">https://gist.github.com/4628935</a></p>
+<p>but.... still nothing on my tv! </p>
+<p>i really dont know what is the problem....</p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel='nofollow' class='comment-reply-link' href='//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/?replytocom=123#respond' onclick='return addComment.moveForm( "div-comment-123", "123", "respond", "490" )' aria-label='Reply to andrea'>Reply</a></div>			</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+		<li id="comment-124" class="comment byuser comment-author-ben bypostauthor even depth-4 parent">
+			<article id="div-comment-124" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/cb12e8e5c3f44016ca0cf4fbb4017fba?s=60&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/cb12e8e5c3f44016ca0cf4fbb4017fba?s=120&amp;d=mm&amp;r=g 2x' class='avatar avatar-60 photo' height='60' width='60' />						<b class="fn"><a href='http://www.theboredengineers.com' rel='external nofollow' class='url'>Ben</a></b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/#comment-124">
+							<time datetime="2013-01-24T23:50:51+00:00">
+								24 January 2013 at 23 h 50 min							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>There is a function in the library that allow reading characters from the max7456. Try to use it with one or two characters to see if the upload went well</p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel='nofollow' class='comment-reply-link' href='//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/?replytocom=124#respond' onclick='return addComment.moveForm( "div-comment-124", "124", "respond", "490" )' aria-label='Reply to Ben'>Reply</a></div>			</article><!-- .comment-body -->
+<ol class="children">
+		<li id="comment-125" class="comment odd alt depth-5">
+			<article id="div-comment-125" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/23a673945debd769cc8f39e762584d46?s=60&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/23a673945debd769cc8f39e762584d46?s=120&amp;d=mm&amp;r=g 2x' class='avatar avatar-60 photo' height='60' width='60' />						<b class="fn">andrea</b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/#comment-125">
+							<time datetime="2013-01-25T01:00:51+00:00">
+								25 January 2013 at 1 h 00 min							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>which function should i use? getCharacter?</p>
+<p>i have made this but it doesnt works: <a href="https://gist.github.com/4629933" rel="nofollow">https://gist.github.com/4629933</a></p>
+<p>can you modify it?</p>
+<p>thanks</p>
+				</div><!-- .comment-content -->
+
+							</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+		<li id="comment-126" class="comment byuser comment-author-ben bypostauthor even depth-5">
+			<article id="div-comment-126" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/cb12e8e5c3f44016ca0cf4fbb4017fba?s=60&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/cb12e8e5c3f44016ca0cf4fbb4017fba?s=120&amp;d=mm&amp;r=g 2x' class='avatar avatar-60 photo' height='60' width='60' />						<b class="fn"><a href='http://www.theboredengineers.com' rel='external nofollow' class='url'>Ben</a></b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/#comment-126">
+							<time datetime="2013-01-25T14:04:05+00:00">
+								25 January 2013 at 14 h 04 min							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>Hi Andrea, </p>
+<p>This is the right function. This code works with me. This seems to be a hardware problem : you can try to see if the SPI pins are correctly initialized (MISO as input for example). Maybe your max7456 is broken, too, but I can't really tell. If you can try with an other go for it. Did you try other examples around the internet ?</p>
+				</div><!-- .comment-content -->
+
+							</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+		<li id="comment-127" class="comment byuser comment-author-ben bypostauthor odd alt depth-5">
+			<article id="div-comment-127" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/cb12e8e5c3f44016ca0cf4fbb4017fba?s=60&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/cb12e8e5c3f44016ca0cf4fbb4017fba?s=120&amp;d=mm&amp;r=g 2x' class='avatar avatar-60 photo' height='60' width='60' />						<b class="fn"><a href='http://www.theboredengineers.com' rel='external nofollow' class='url'>Ben</a></b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/#comment-127">
+							<time datetime="2013-01-25T14:10:46+00:00">
+								25 January 2013 at 14 h 10 min							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>(Sorry I  just made a typo : it's  osd.getCharacter(currentChar,i&#038;0x0F, i&#038;0xF0), not  i&#038;0xF0, i&#038;0xF0, but it should not affect the overall function.</p>
+				</div><!-- .comment-content -->
+
+							</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+		<li id="comment-128" class="comment even thread-odd thread-alt depth-1">
+			<article id="div-comment-128" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/23a673945debd769cc8f39e762584d46?s=60&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/23a673945debd769cc8f39e762584d46?s=120&amp;d=mm&amp;r=g 2x' class='avatar avatar-60 photo' height='60' width='60' />						<b class="fn">andrea</b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/#comment-128">
+							<time datetime="2013-01-25T15:04:08+00:00">
+								25 January 2013 at 15 h 04 min							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>I have modified both sketch with: i&amp;0x0F, i&amp;0xF0</p>
+<p>getCharacter returns only 0</p>
+<p>what it means? is the eeprom empty?!</p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel='nofollow' class='comment-reply-link' href='//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/?replytocom=128#respond' onclick='return addComment.moveForm( "div-comment-128", "128", "respond", "490" )' aria-label='Reply to andrea'>Reply</a></div>			</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+		<li id="comment-129" class="comment odd alt thread-even depth-1">
+			<article id="div-comment-129" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/23a673945debd769cc8f39e762584d46?s=60&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/23a673945debd769cc8f39e762584d46?s=120&amp;d=mm&amp;r=g 2x' class='avatar avatar-60 photo' height='60' width='60' />						<b class="fn">andrea</b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/#comment-129">
+							<time datetime="2013-01-28T17:30:54+00:00">
+								28 January 2013 at 17 h 30 min							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>hey ben!<br />
+i have bought a new one max7456... it works!<br />
+but i see a lot of strange characters, how can i fix it?</p>
+<p>look:<br />
+<a href="http://localhostr.com/files/6oQSQ5Y/2013-01-28%2017.27.49.jpg" rel="nofollow">http://localhostr.com/files/6oQSQ5Y/2013-01-28%2017.27.49.jpg</a></p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel='nofollow' class='comment-reply-link' href='//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/?replytocom=129#respond' onclick='return addComment.moveForm( "div-comment-129", "129", "respond", "490" )' aria-label='Reply to andrea'>Reply</a></div>			</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+		<li id="comment-130" class="comment byuser comment-author-ben bypostauthor even thread-odd thread-alt depth-1">
+			<article id="div-comment-130" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/cb12e8e5c3f44016ca0cf4fbb4017fba?s=60&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/cb12e8e5c3f44016ca0cf4fbb4017fba?s=120&amp;d=mm&amp;r=g 2x' class='avatar avatar-60 photo' height='60' width='60' />						<b class="fn"><a href='http://www.theboredengineers.com' rel='external nofollow' class='url'>Ben</a></b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/#comment-130">
+							<time datetime="2013-01-28T17:53:30+00:00">
+								28 January 2013 at 17 h 53 min							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>Hi Andrea that's great news (altought i'm sorry for your money 🙁 )</p>
+<p>They are some things you can try out now you have a "running" max7456 :<br />
+- try to reset the OSD before to reset the arduino (do it manually)<br />
+- try to upload the whole new character table : the chinese chars you see come from the default table.</p>
+<p>anyway you should get it to work soon 😉</p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel='nofollow' class='comment-reply-link' href='//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/?replytocom=130#respond' onclick='return addComment.moveForm( "div-comment-130", "130", "respond", "490" )' aria-label='Reply to Ben'>Reply</a></div>			</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+		<li id="comment-131" class="comment odd alt thread-even depth-1 parent">
+			<article id="div-comment-131" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/23a673945debd769cc8f39e762584d46?s=60&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/23a673945debd769cc8f39e762584d46?s=120&amp;d=mm&amp;r=g 2x' class='avatar avatar-60 photo' height='60' width='60' />						<b class="fn">andrea</b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/#comment-131">
+							<time datetime="2013-01-29T21:13:26+00:00">
+								29 January 2013 at 21 h 13 min							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>solved!</p>
+<p>here the solution: <a href="http://arduino.cc/forum/index.php/topic,144493.msg1094963.html#msg1094963" rel="nofollow">http://arduino.cc/forum/index.php/topic,144493.msg1094963.html#msg1094963</a></p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel='nofollow' class='comment-reply-link' href='//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/?replytocom=131#respond' onclick='return addComment.moveForm( "div-comment-131", "131", "respond", "490" )' aria-label='Reply to andrea'>Reply</a></div>			</article><!-- .comment-body -->
+<ol class="children">
+		<li id="comment-132" class="comment byuser comment-author-ben bypostauthor even depth-2">
+			<article id="div-comment-132" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/cb12e8e5c3f44016ca0cf4fbb4017fba?s=60&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/cb12e8e5c3f44016ca0cf4fbb4017fba?s=120&amp;d=mm&amp;r=g 2x' class='avatar avatar-60 photo' height='60' width='60' />						<b class="fn"><a href='http://www.theboredengineers.com' rel='external nofollow' class='url'>Ben</a></b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/#comment-132">
+							<time datetime="2013-01-30T00:03:03+00:00">
+								30 January 2013 at 0 h 03 min							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>Ok that's nice for you ! Sorry you were not able to make it work with this library, have fun with OSD :p</p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel='nofollow' class='comment-reply-link' href='//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/?replytocom=132#respond' onclick='return addComment.moveForm( "div-comment-132", "132", "respond", "490" )' aria-label='Reply to Ben'>Reply</a></div>			</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+		<li id="comment-133" class="comment odd alt thread-odd thread-alt depth-1 parent">
+			<article id="div-comment-133" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/0a063c694d4b8cb0731c271553a2c09c?s=60&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/0a063c694d4b8cb0731c271553a2c09c?s=120&amp;d=mm&amp;r=g 2x' class='avatar avatar-60 photo' height='60' width='60' />						<b class="fn">Rick Eis</b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/#comment-133">
+							<time datetime="2013-04-12T23:40:24+00:00">
+								12 April 2013 at 23 h 40 min							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>Hi Ben,</p>
+<p>Very interested in what you have done here - It appears I have everything working except I'm having trouble bringing in your character set.<br />
+I'm not a programmer but hope you could walk me through using your little program ,"I made an program used to transform a bmp picture"</p>
+<p>Thanks<br />
+Rick</p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel='nofollow' class='comment-reply-link' href='//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/?replytocom=133#respond' onclick='return addComment.moveForm( "div-comment-133", "133", "respond", "490" )' aria-label='Reply to Rick Eis'>Reply</a></div>			</article><!-- .comment-body -->
+<ol class="children">
+		<li id="comment-134" class="comment byuser comment-author-ben bypostauthor even depth-2">
+			<article id="div-comment-134" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/cb12e8e5c3f44016ca0cf4fbb4017fba?s=60&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/cb12e8e5c3f44016ca0cf4fbb4017fba?s=120&amp;d=mm&amp;r=g 2x' class='avatar avatar-60 photo' height='60' width='60' />						<b class="fn"><a href='http://www.theboredengineers.com' rel='external nofollow' class='url'>Ben</a></b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/#comment-134">
+							<time datetime="2013-04-17T12:55:46+00:00">
+								17 April 2013 at 12 h 55 min							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>Hi, this program basically translate a .bmp picture into a arduino-readable .h file that you can copy/past to the code that upload characters to the max7456. Where are you stuck with that ?</p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel='nofollow' class='comment-reply-link' href='//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/?replytocom=134#respond' onclick='return addComment.moveForm( "div-comment-134", "134", "respond", "490" )' aria-label='Reply to Ben'>Reply</a></div>			</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+		<li id="comment-135" class="comment odd alt thread-even depth-1 parent">
+			<article id="div-comment-135" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/a53f678e61baae3a76ce9ef245371cdd?s=60&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/a53f678e61baae3a76ce9ef245371cdd?s=120&amp;d=mm&amp;r=g 2x' class='avatar avatar-60 photo' height='60' width='60' />						<b class="fn">Simon</b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/#comment-135">
+							<time datetime="2013-04-19T11:25:52+00:00">
+								19 April 2013 at 11 h 25 min							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>Hijacking Rick's thread a bit, Yes. I understand that your little program reads a BMP of characters and converts them into a file (tableOSD.h) but what the line that then stuffs that in to the MAX7456.</p>
+<p>I see the line<br />
+const prog_uchar tableOfAllCharacters[13824] PROGMEM = {0x55,0x55,0x55,0 //<br />
+and the<br />
+//-----------------------------------------------------------------------------<br />
+// Implements Max7456::getCARACFromProgMem<br />
+//-----------------------------------------------------------------------------<br />
+void Max7456::getCARACFromProgMem(const prog_uchar *table, byte i, charact car)<br />
+{<br />
+    unsigned long index;<br />
+    byte read;<br />
+    index = i*54;<br />
+    for(unsigned long j = 0 ; j &lt; 54 ; j++)<br />
+    {<br />
+        read = pgm_read_byte_near(table +index+j );<br />
+        car[j] = read;<br />
+        if (car[j] == 0x55)<br />
+            car[j] = 0xff;<br />
+    }<br />
+}</p>
+<p>Do I put<br />
+#include<br />
+at the start of my listing and then use the function Max7456?</p>
+<p>Yours Simon M</p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel='nofollow' class='comment-reply-link' href='//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/?replytocom=135#respond' onclick='return addComment.moveForm( "div-comment-135", "135", "respond", "490" )' aria-label='Reply to Simon'>Reply</a></div>			</article><!-- .comment-body -->
+<ol class="children">
+		<li id="comment-136" class="comment byuser comment-author-ben bypostauthor even depth-2">
+			<article id="div-comment-136" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/cb12e8e5c3f44016ca0cf4fbb4017fba?s=60&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/cb12e8e5c3f44016ca0cf4fbb4017fba?s=120&amp;d=mm&amp;r=g 2x' class='avatar avatar-60 photo' height='60' width='60' />						<b class="fn"><a href='http://www.theboredengineers.com' rel='external nofollow' class='url'>Ben</a></b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/#comment-136">
+							<time datetime="2013-04-24T15:05:47+00:00">
+								24 April 2013 at 15 h 05 min							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>Hey ! </p>
+<p>Basically all you need to do is replace all the characters (hexa values) in const prog_uchar tableOfAllCharacters[13824] PROGMEM = {0x55,0x55,0x55,0 //</p>
+<p>by the freshly generated characters from the .h ; then upload the sketch to the arduino and use a terminal to update the characteres memory of the Max and it's done 🙂</p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel='nofollow' class='comment-reply-link' href='//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/?replytocom=136#respond' onclick='return addComment.moveForm( "div-comment-136", "136", "respond", "490" )' aria-label='Reply to Ben'>Reply</a></div>			</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+		<li id="comment-137" class="comment odd alt thread-odd thread-alt depth-1">
+			<article id="div-comment-137" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/654de3ae2ee1e2945982d189208fff28?s=60&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/654de3ae2ee1e2945982d189208fff28?s=120&amp;d=mm&amp;r=g 2x' class='avatar avatar-60 photo' height='60' width='60' />						<b class="fn"><a href='http://adamxp12.com' rel='external nofollow' class='url'>Adam</a></b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/#comment-137">
+							<time datetime="2013-11-06T22:11:49+00:00">
+								6 November 2013 at 22 h 11 min							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>Will this work with the LowVoltageLabs Video Overlay Shield</p>
+<p>Thanks</p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel='nofollow' class='comment-reply-link' href='//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/?replytocom=137#respond' onclick='return addComment.moveForm( "div-comment-137", "137", "respond", "490" )' aria-label='Reply to Adam'>Reply</a></div>			</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+		<li id="comment-138" class="comment even thread-even depth-1">
+			<article id="div-comment-138" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/e075dca0498ab1ac4091fd82921033f5?s=60&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/e075dca0498ab1ac4091fd82921033f5?s=120&amp;d=mm&amp;r=g 2x' class='avatar avatar-60 photo' height='60' width='60' />						<b class="fn">Mrcongkhu</b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/#comment-138">
+							<time datetime="2015-12-14T19:28:34+00:00">
+								14 December 2015 at 19 h 28 min							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>I have been working with max7456 via PSoC CY29666 for lots of days. It worked very well, however that is characters defaut. When i tried to custommize character for my project then problems happened..<br />
+I used to "write_custom_character()" funtion, which get character from array in "write_custom_character.h" to write NVM ram. What is happened? I saw seem is a layer of fog, i revewed my code but didn't any thing wongs, all commands are true?<br />
+<a href="http://www.fshare.vn/file/469IGIXWG8IK" rel="nofollow">http://www.fshare.vn/file/469IGIXWG8IK</a><br />
+Can you help me?<br />
+main.c:<br />
+	MDelay_ms(500);// Delay atleast 50ms for power-up MAX<br />
+	MAX7456_init();<br />
+	MDelay_ms(500);<br />
+	MAX7456_NVM();</p>
+<p>	MDelay_ms(500);</p>
+<p>	 MAX7456_SPI_WRITE(0x00, 0x00);<br />
+	MDelay_ms(5000);<br />
+	 MAX7456_SPI_WRITE(0x00, 0x0C);<br />
+	//MAX7456_init();<br />
+	ClearOSD(0,0,16,30);<br />
+	Timer8_1_Start();<br />
+	//Draw Hight Ruler<br />
+	MAX7456_Write(1,1,0x03);// (0,0) start cordinate<br />
+	MAX7456_Write(12,27,0xfd);//(12,27) end cordinate<br />
+    MAX7456_Write(1,27,0x02);<br />
+	MAX7456_Write(12,1,0x01);</p>
+<p>	MAX7456_Write(12,2,0xed);<br />
+	MAX7456_Write(12,3,0xf1);<br />
+	MAX7456_Write(12,4,0xf2);<br />
+	MAX7456_Write(12,5,0xf3);</p>
+<p>OSD_driver.c:<br />
+void SPI_WRITE(unsigned char address,unsigned  char data);<br />
+void SPI1_WRITE(unsigned char address);<br />
+unsigned char SPI_READ(unsigned char address);<br />
+void delay_1us(void);<br />
+void delay(unsigned int us);<br />
+void MAX7456_init(void);<br />
+void MAX7456_SPI_WRITE(unsigned char ADDRESS, unsigned char DATA);<br />
+unsigned char MAX7456_SPI_READ(unsigned char ADDRESS);<br />
+void MAX7456_Write(unsigned char x, unsigned char y, unsigned char symbol);<br />
+void MAX7456_NVM(void);</p>
+<p>unsigned char MAX7456_SPI_READ(unsigned char ADDRESS){<br />
+unsigned char temp;</p>
+<p>  CS_LOW//CS=0 Selecting the OSD<br />
+  delay_1us();               //<br />
+  temp  = SPI_READ(ADDRESS); // Read the register DATA<br />
+  CS_HIGH//CS=1 Deselecting the OSD<br />
+  delay(20);<br />
+  return temp;<br />
+}</p>
+<p>void MAX7456_SPI_WRITE(unsigned char ADDRESS, unsigned char DATA){</p>
+<p>  CS_LOW//CS=0 Selecting the OSD<br />
+  delay_1us();<br />
+  SPI_WRITE(ADDRESS,DATA);// Send the ADDRESS of registe in which you wish to wite DATA<br />
+  delay_1us();<br />
+  CS_HIGH//CS=1  Deselecting the OSD click<br />
+  delay(10);</p>
+<p>}</p>
+<p>void MAX7456_init(void){<br />
+unsigned char temp;<br />
+  MAX7456_SPI_WRITE(0x00, 0x0C);   // Setup Video Mode 0 register(0X4C-PAL;0x0C-NTSC)(Note: SWE is PAL-Video)<br />
+  temp  = MAX7456_SPI_READ(0xEC);  // Read OSD Black Level register<br />
+  temp&amp;= 0xEF;<br />
+  MAX7456_SPI_WRITE(0x6C, temp);  // Setup OSD Black Level register<br />
+  MAX7456_SPI_WRITE(0x04, 0x04);  // Setup Display Memory Mode register<br />
+  MAX7456_SPI_WRITE(0x02, 0x26);  // Horizotal offset for ~1/2 of character(have no 0x26 REGISTER)<br />
+  //MAX7456_SPI_WRITE(0x03, 0x26); // Horizotal offset for ~1/2 of character(have no 0x26 REGISTER)<br />
+}</p>
+<p>void MAX7456_Write(unsigned char x, unsigned char y, unsigned char symbol)<br />
+  {<br />
+  CS_LOW//OSD_CS = 0;                     // Selecting the OSD click<br />
+  delay_1us();                    //</p>
+<p>//  SPI1_WRITE(0x05);               // Address to Display Memory Address High<br />
+//  if( ( x * 30 + y ) &lt;= 255 )<br />
+//    SPI1_WRITE(0);                // For first 255 matrix positions Write 0<br />
+//  else<br />
+//    SPI1_WRITE(1);                // For the rest of matrix positions Write 1</p>
+<p>  if( ( x * 30 + y ) &lt;= 255 )    // Address to Display Memory Address High<br />
+    SPI_WRITE(DMAH,0); // For first 255 matrix positions Write 0</p>
+<p>  else<br />
+    SPI_WRITE(DMAH,1); // For the rest of matrix positions Write 1</p>
+<p>  delay_1us();<br />
+  CS_HIGH//OSD_CS = 1;                     // Deselecting the OSD<br />
+  delay(10);</p>
+<p>  MAX7456_SPI_WRITE(0x06, x * 30 + y );  // Set position in display matrix(16x30)<br />
+  MAX7456_SPI_WRITE(0x07, symbol);       // Set character on selected position</p>
+<p>}</p>
+<p>//-----------------------WRITE operation.....<br />
+void SPI_WRITE(unsigned char address,unsigned  char data)<br />
+{<br />
+	unsigned char SPICount;                                       // Counter used to clock out the data<br />
+	unsigned char SPIData;<br />
+	unsigned char tmp;<br />
+	// Define a data structure for the SPI data</p>
+<p>	CS_HIGH                               // Make sure we start with active-low CS high<br />
+	CLK_LOW                             // and CK low</p>
+<p>	SPIData = address;                                            // Preload the data to be sent with Address<br />
+	CS_LOW                               // Set active-low CS low to start the SPI cycle </p>
+<p>	for (SPICount = 0; SPICount &lt; 8; SPICount++)                  // Prepare to clock out the Address byte<br />
+	{<br />
+		tmp=SPIData &amp; 0x80;<br />
+		if (tmp==0x80) SDI_HIGH      // Check for a 1 and set the MOSI line appropriately</p>
+<p>		else SDI_LOW</p>
+<p>		CLK_HIGH                          // Toggle the clock line<br />
+		CLK_LOW</p>
+<p>		SPIData &lt;&lt;= 1;                                             // Rotate to get the next bit<br />
+	}                                                              // and loop back to send the next bit</p>
+<p>																   // Repeat for the Data byte<br />
+	SPIData = data;                                                // Preload the data to be sent with Data</p>
+<p>	for (SPICount = 0; SPICount &lt; 8; SPICount++)<br />
+	{<br />
+		tmp=SPIData &amp; 0x80;<br />
+		if (tmp==0x80) SDI_HIGH</p>
+<p>		else SDI_LOW</p>
+<p>		CLK_HIGH<br />
+		CLK_LOW</p>
+<p>		SPIData &lt;&lt;= 1;<br />
+	}           </p>
+<p>	CS_HIGH<br />
+	SDI_LOW</p>
+<p>}<br />
+//-------------Write Operation in Auto-Increment Mode.........<br />
+void SPI1_WRITE(unsigned char address)<br />
+{<br />
+	unsigned char SPICount;                                       // Counter used to clock out the data<br />
+	unsigned char SPIData;<br />
+	unsigned char tmp;<br />
+	// Define a data structure for the SPI data</p>
+<p>	CS_HIGH                               // Make sure we start with active-low CS high<br />
+	CLK_LOW                             // and CK low</p>
+<p>	SPIData = address;                                            // Preload the data to be sent with Address<br />
+	CS_LOW                               // Set active-low CS low to start the SPI cycle </p>
+<p>	for (SPICount = 0; SPICount &lt; 8; SPICount++)                  // Prepare to clock out the Address byte<br />
+	{<br />
+		tmp=SPIData &amp; 0x80;<br />
+		if (tmp==0x80) SDI_HIGH     // Check for a 1 and set the MOSI line appropriately</p>
+<p>		else SDI_LOW</p>
+<p>		CLK_HIGH                           // Toggle the clock line<br />
+		CLK_LOW</p>
+<p>		SPIData &lt;&lt;= 1;                                             // Rotate to get the next bit<br />
+	}                                                              // and loop back to send the next bit												</p>
+<p>	CS_HIGH<br />
+	SDI_LOW</p>
+<p>}<br />
+//-----------------------READ operation.....<br />
+unsigned char SPI_READ(unsigned char address)<br />
+{<br />
+	unsigned char SPICount;                                       // Counter used to clock out the data</p>
+<p>	unsigned char SPIData;<br />
+	unsigned char data_temp;<br />
+	unsigned char tmp;</p>
+<p>	CS_HIGH                                // Make sure we start with active-low CS high<br />
+	CLK_LOW                            // and CK low</p>
+<p>	SPIData = address;                                            // Preload the data to be sent with Address<br />
+	CS_LOW                                         // Set active-low CS low to start the SPI cycle </p>
+<p>	for (SPICount = 0; SPICount &lt; 8; SPICount++)                  // Prepare to clock out the Address byte<br />
+	{<br />
+		tmp=SPIData &amp; 0x80;<br />
+		if (tmp==0x80) SDI_HIGH    // Check for a 1 and set the MOSI line appropriately</p>
+<p>		else SDI_LOW</p>
+<p>		CLK_HIGH                          // Toggle the clock line<br />
+		CLK_LOW</p>
+<p>		SPIData &lt;&lt;= 1;                                             // Rotate to get the next bit<br />
+	}                                                              // and loop back to send the next bit</p>
+<p>	SDI_LOW                              // Reset the MOSI data line</p>
+<p>	SPIData = 0;<br />
+	data_temp=0;<br />
+	for (SPICount = 0; SPICount &lt; 8; SPICount++)                   // Prepare to clock in the data to be read<br />
+	{<br />
+		SPIData &lt;&lt;=1;                                               // Rotate the data<br />
+		CLK_HIGH                             // Raise the clock to clock the data out of the MAX7456</p>
+<p>		PRT0DR|=SDOUT;//out SDOUT=1 for preparing to receive data bit<br />
+		data_temp=PRT0DR;<br />
+		data_temp&amp;=SDOUT;<br />
+		if(data_temp==SDOUT) SPIData |= 0x01;// Check 1 for bit 7	(hay la |= 0x01;)<br />
+		CLK_LOW                                     // Drop the clock ready for the next bit<br />
+	}                                                               // and loop back<br />
+	CS_HIGH                                 // Raise CS</p>
+<p>	return SPIData;                              // Finally return the read data</p>
+<p>}<br />
+void delay_1us(void){</p>
+<p>  unsigned char nCnt;</p>
+<p>    for(nCnt = 12; nCnt != 0; nCnt--);</p>
+<p>}</p>
+<p>void delay(unsigned int us){</p>
+<p>	unsigned int index;<br />
+	for (index = 0; index &lt; us; index++);<br />
+}</p>
+<p>/**************************************************************************************<br />
+ * write_custom_chars<br />
+ *<br />
+ * Writes to the Character Memory (54 bytes) from &quot;data&quot; extern<br />
+**************************************************************************************/<br />
+void write_custom_chars(void){<br />
+	char h,j,mytemp;<br />
+	for ( h = 0; h&lt; 256 ;h++) {<br />
+		// Disable OSD<br />
+		SPI_WRITE(VM0,0x00);<br />
+		// Select character<br />
+		delay(10);<br />
+		SPI_WRITE(CMAH,(h));<br />
+		for ( j = 0; j&lt; 54; j++) {<br />
+			// Select row thing<br />
+			SPI_WRITE(CMAL,j);<br />
+			// Create char from array...<br />
+			 //mytemp = custom_char_array[j+(h*64)];<br />
+			// set pixels<br />
+			SPI_WRITE(CMDI,mytemp);<br />
+		}</p>
+<p>		//Write from shadow-ram<br />
+		SPI_WRITE(CMM,0b10100000);<br />
+		while ((SPI_READ(0xA0) &amp; 0x20) != 0x00);<br />
+		SPI_WRITE(VM0,0b00001000);<br />
+		delay(50);<br />
+	}<br />
+}</p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel='nofollow' class='comment-reply-link' href='//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/?replytocom=138#respond' onclick='return addComment.moveForm( "div-comment-138", "138", "respond", "490" )' aria-label='Reply to Mrcongkhu'>Reply</a></div>			</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+		<li id="comment-139" class="comment odd alt thread-odd thread-alt depth-1">
+			<article id="div-comment-139" class="comment-body">
+				<footer class="comment-meta">
+					<div class="comment-author vcard">
+						<img alt='' src='https://secure.gravatar.com/avatar/12bbbc7fe72ea5ff6dd7fb3c7a8aab04?s=60&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/12bbbc7fe72ea5ff6dd7fb3c7a8aab04?s=120&amp;d=mm&amp;r=g 2x' class='avatar avatar-60 photo' height='60' width='60' />						<b class="fn">Mohamed_ashraf</b> <span class="says">says:</span>					</div><!-- .comment-author -->
+
+					<div class="comment-metadata">
+						<a href="//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/#comment-139">
+							<time datetime="2016-04-29T18:09:44+00:00">
+								29 April 2016 at 18 h 09 min							</time>
+						</a>
+											</div><!-- .comment-metadata -->
+
+									</footer><!-- .comment-meta -->
+
+				<div class="comment-content">
+					<p>Hey that is such an a great article but i need help in some thing now im making a quadcopter that is uses arduino and xbee so do u have any idea how to connect vga camera on the quad copter  and connect an av lcd to arduino in the controller  then it stream live can u plss sen me connections and coding</p>
+				</div><!-- .comment-content -->
+
+				<div class="reply"><a rel='nofollow' class='comment-reply-link' href='//theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/?replytocom=139#respond' onclick='return addComment.moveForm( "div-comment-139", "139", "respond", "490" )' aria-label='Reply to Mohamed_ashraf'>Reply</a></div>			</article><!-- .comment-body -->
+</li><!-- #comment-## -->
+		</ol><!-- .comment-list -->
+
+			<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/2012/12/28/a-max7456-library-for-arduino/#respond" style="display:none;">Cancel reply</a></small></h3>			<form action="https://theboredengineers.com/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate>
+				<p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> Required fields are marked <span class="required">*</span></p><p class="comment-form-comment"><label for="comment">Comment</label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" aria-required="true" required="required"></textarea></p><p class="comment-form-author"><label for="author">Name <span class="required">*</span></label> <input id="author" name="author" type="text" value="" size="30" maxlength="245" aria-required='true' required='required' /></p>
+<p class="comment-form-email"><label for="email">Email <span class="required">*</span></label> <input id="email" name="email" type="email" value="" size="30" maxlength="100" aria-describedby="email-notes" aria-required='true' required='required' /></p>
+<p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" type="url" value="" size="30" maxlength="200" /></p>
+<p class="cptch_block"><span class="cptch_wrap">
+				<label class="cptch_label" for="cptch_input_22">
+					<span class="cptch_span"><input id="cptch_input_22" class="cptch_input cptch_wp_comments" type="text" autocomplete="off" name="cptch_number" value="" maxlength="2" size="2" aria-required="true" required="required" style="margin-bottom:0;display:inline;font-size: 12px;width: 40px;" /></span>
+					<span class="cptch_span">&nbsp;&times;&nbsp;</span>
+					<span class="cptch_span">fi&#118;e</span>
+					<span class="cptch_span">&nbsp;=&nbsp;</span>
+					<span class="cptch_span">20</span>
+					<input type="hidden" name="cptch_result" value="+VQ=" />
+					<input type="hidden" name="cptch_time" value="1495998078" />
+					<input type="hidden" name="cptch_form" value="wp_comments" />
+				</label><span class="cptch_reload_button_wrap hide-if-no-js">
+					<noscript>
+						<style type="text/css">
+							.hide-if-no-js {
+								display: none !important;
+							}
+						</style>
+					</noscript>
+					<span class="cptch_reload_button dashicons dashicons-update"></span>
+				</span></span></p><p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Post Comment" /> <input type='hidden' name='comment_post_ID' value='490' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="85a8aabf34" /></p><p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="42"/></p>			</form>
+			</div><!-- #respond -->
+	
+</div><!-- #comments -->
+
+	<nav class="navigation post-navigation" role="navigation">
+		<h2 class="screen-reader-text">Post navigation</h2>
+		<div class="nav-links"><div class="nav-previous"><a href="//theboredengineers.com/2012/10/11/the-quadcopter-goes-to-an-abandoned-factory/" rel="prev"><i class="fa fa-chevron-left"></i> <span class="post-title">The quadcopter goes to an abandoned factory</span></a></div><div class="nav-next"><a href="//theboredengineers.com/2012/12/30/crash-t-rex-450/" rel="next"><span class="post-title">Crash T-REX 450 <i class="fa fa-chevron-right"></i></span></a></div></div>
+	</nav>
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+</div>
+	<div id="secondary" class="widget-area col-sm-12 col-md-4" role="complementary">
+		<div class="well">
+						<aside id="text-3" class="widget widget_text">			<div class="textwidget"><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- siderectangle -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:300px;height:250px"
+     data-ad-client="ca-pub-5720533988940487"
+     data-ad-slot="4458248055"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+		</aside><aside id="search-2" class="widget widget_search">
+<form role="search" method="get" class="form-search" action="https://theboredengineers.com/">
+  <div class="input-group">
+  	<label class="screen-reader-text" for="s">Search for:</label>
+    <input type="text" class="form-control search-query" placeholder="Search&hellip;" value="" name="s" title="Search for:" />
+    <span class="input-group-btn">
+      <button type="submit" class="btn btn-default" name="submit" id="searchsubmit" value="Search"><span class="glyphicon glyphicon-search"></span></button>
+    </span>
+  </div>
+</form></aside>		<aside id="recent-posts-2" class="widget widget_recent_entries">		<h3 class="widget-title">Recent Posts</h3>		<ul>
+					<li>
+				<a href="//theboredengineers.com/2015/08/21/automatic-firecracker-ignition-system/">RC Fireworks Ignition System</a>
+						</li>
+					<li>
+				<a href="//theboredengineers.com/2014/11/16/magnometer-calibration/">Magnometer calibration</a>
+						</li>
+					<li>
+				<a href="//theboredengineers.com/2014/09/24/t-rex-700l-dominator/">T-Rex 700L Dominator</a>
+						</li>
+					<li>
+				<a href="//theboredengineers.com/2014/05/07/the-drone-parachute/">The drone parachute</a>
+						</li>
+					<li>
+				<a href="//theboredengineers.com/2014/05/01/piweather-part-4-first-pcbs/">PiWeather part 4 : first PCBs</a>
+						</li>
+				</ul>
+		</aside>		<aside id="recent-comments-2" class="widget widget_recent_comments"><h3 class="widget-title">Recent Comments</h3><ul id="recentcomments"><li class="recentcomments"><span class="comment-author-link">Moayad</span> on <a href="//theboredengineers.com/2012/05/28/the-quadcopter-part-1-genesis-of-the-project/#comment-230">The quadcopter part 1 : genesis of the project</a></li><li class="recentcomments"><span class="comment-author-link">Ashley</span> on <a href="//theboredengineers.com/2012/05/30/the-quadcopter-basics/#comment-63">The quadcopter : control the orientation</a></li><li class="recentcomments"><span class="comment-author-link">oulad haddou</span> on <a href="//theboredengineers.com/2013/06/23/animal-motion-detection-an-arduino-project-for-photography/#comment-175">Animal motion detection : an Arduino project for photography</a></li><li class="recentcomments"><span class="comment-author-link">JIN</span> on <a href="//theboredengineers.com/2014/05/07/the-drone-parachute/#comment-200">The drone parachute</a></li><li class="recentcomments"><span class="comment-author-link">Sumesh Kumar</span> on <a href="//theboredengineers.com/2012/05/30/the-quadcopter-basics/#comment-62">The quadcopter : control the orientation</a></li></ul></aside><aside id="text-6" class="widget widget_text">			<div class="textwidget"><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- siderectangle -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:300px;height:250px"
+     data-ad-client="ca-pub-5720533988940487"
+     data-ad-slot="4458248055"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+		</aside><aside id="archives-2" class="widget widget_archive"><h3 class="widget-title">Archives</h3>		<ul>
+			<li><a href='//theboredengineers.com/2015/08/'>August 2015</a></li>
+	<li><a href='//theboredengineers.com/2014/11/'>November 2014</a></li>
+	<li><a href='//theboredengineers.com/2014/09/'>September 2014</a></li>
+	<li><a href='//theboredengineers.com/2014/05/'>May 2014</a></li>
+	<li><a href='//theboredengineers.com/2014/01/'>January 2014</a></li>
+	<li><a href='//theboredengineers.com/2013/07/'>July 2013</a></li>
+	<li><a href='//theboredengineers.com/2013/06/'>June 2013</a></li>
+	<li><a href='//theboredengineers.com/2013/04/'>April 2013</a></li>
+	<li><a href='//theboredengineers.com/2013/03/'>March 2013</a></li>
+	<li><a href='//theboredengineers.com/2013/01/'>January 2013</a></li>
+	<li><a href='//theboredengineers.com/2012/12/'>December 2012</a></li>
+	<li><a href='//theboredengineers.com/2012/10/'>October 2012</a></li>
+	<li><a href='//theboredengineers.com/2012/09/'>September 2012</a></li>
+	<li><a href='//theboredengineers.com/2012/08/'>August 2012</a></li>
+	<li><a href='//theboredengineers.com/2012/07/'>July 2012</a></li>
+	<li><a href='//theboredengineers.com/2012/06/'>June 2012</a></li>
+	<li><a href='//theboredengineers.com/2012/05/'>May 2012</a></li>
+		</ul>
+		</aside><aside id="categories-2" class="widget widget_categories"><h3 class="widget-title">Categories</h3>		<ul>
+	<li class="cat-item cat-item-13"><a href="//theboredengineers.com/category/software/arduino/" >Arduino</a>
+</li>
+	<li class="cat-item cat-item-2"><a href="//theboredengineers.com/category/astronomy/" >Astronomy</a>
+</li>
+	<li class="cat-item cat-item-3"><a href="//theboredengineers.com/category/diy/" >DIY</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="//theboredengineers.com/category/non-classe/" >Non classé</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="//theboredengineers.com/category/other/" >Other</a>
+</li>
+	<li class="cat-item cat-item-17"><a href="//theboredengineers.com/category/projects/piweather/" >PiWeather</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="//theboredengineers.com/category/projects/" >Projects</a>
+</li>
+	<li class="cat-item cat-item-6"><a href="//theboredengineers.com/category/diy/quadri/" title="The arduino-controlled quadrirotor project">Quadrirotor</a>
+</li>
+	<li class="cat-item cat-item-7"><a href="//theboredengineers.com/category/diy/raspberry/" >Raspberry</a>
+</li>
+	<li class="cat-item cat-item-8"><a href="//theboredengineers.com/category/rc/" >RC</a>
+</li>
+	<li class="cat-item cat-item-9"><a href="//theboredengineers.com/category/software/" title="Software programming, from ASM to php...">Software</a>
+</li>
+	<li class="cat-item cat-item-10"><a href="//theboredengineers.com/category/software/stellarium/" >Stellarium</a>
+</li>
+		</ul>
+</aside><aside id="meta-2" class="widget widget_meta"><h3 class="widget-title">Meta</h3>			<ul>
+						<li><a href="//theboredengineers.com/wp-login.php">Log in</a></li>
+			<li><a href="//theboredengineers.com/feed/">Entries <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="//theboredengineers.com/comments/feed/">Comments <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="https://wordpress.org/" title="Powered by WordPress, state-of-the-art semantic personal publishing platform.">WordPress.org</a></li>			</ul>
+			</aside>		</div>
+	</div><!-- #secondary -->
+		</div><!-- close .row -->
+	</div><!-- close .container -->
+</div><!-- close .site-content -->
+
+	<div id="footer-area">
+		<div class="container footer-inner">
+			<div class="row">
+				
+	
+	<div class="footer-widget-area">
+				<div class="col-sm-4 footer-widget" role="complementary">
+			<div id="text-5" class="widget widget_text">			<div class="textwidget"><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- footer -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-5720533988940487"
+     data-ad-slot="4678574053"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+		</div>		</div><!-- .widget-area .first -->
+		
+		
+			</div>			</div>
+		</div>
+
+		<footer id="colophon" class="site-footer" role="contentinfo">
+			<div class="site-info container">
+				<div class="row">
+										<nav role="navigation" class="col-md-6">
+											</nav>
+					<div class="copyright col-md-6">
+						sparkling						Theme by <a href="http://colorlib.com/" target="_blank">Colorlib</a> Powered by <a href="http://wordpress.org/" target="_blank">WordPress</a>					</div>
+				</div>
+			</div><!-- .site-info -->
+			<div class="scroll-to-top"><i class="fa fa-angle-up"></i></div><!-- .scroll-to-top -->
+		</footer><!-- #colophon -->
+	</div>
+</div><!-- #page -->
+
+  <script type="text/javascript">
+    jQuery( document ).ready( function( $ ){
+      if ( $( window ).width() >= 767 ){
+        $( '.navbar-nav > li.menu-item > a' ).click( function(){
+            if( $( this ).attr('target') !== '_blank' ){
+                window.location = $( this ).attr( 'href' );
+            }else{
+                var win = window.open($( this ).attr( 'href' ), '_blank');
+                win.focus();
+            }
+        });
+      }
+    });
+  </script>
+<script>
+    jQuery(document).ready(function () {
+		jQuery.post('https://theboredengineers.com?ga_action=googleanalytics_get_script', {action: 'googleanalytics_get_script'}, function(response) {
+			var F = new Function ( response );
+			return( F() );
+		});
+    });
+</script><script type="text/javascript" src="//theboredengineers.com/wp-content/plugins/syntax-highlighter/3.0.83/js/shCore.js?ver=3.0.83"></script>
+<script type="text/javascript" src="//theboredengineers.com/wp-content/plugins/syntax-highlighter/3.0.83/js/shBrushCpp.js?ver=3.0.83"></script>
+<script type='text/javascript' src='//theboredengineers.com/wp-content/plugins/akismet/_inc/form.js?ver=3.3'></script>
+<script type="text/javascript">//<![CDATA[
+SyntaxHighlighter.all();
+//]]></script>
+<script type='text/javascript' src='//theboredengineers.com/wp-content/themes/sparkling/inc/js/skip-link-focus-fix.js?ver=20140222'></script>
+<script type='text/javascript' src='//theboredengineers.com/wp-includes/js/comment-reply.min.js?ver=4.7.5'></script>
+<script type='text/javascript' src='//theboredengineers.com/wp-includes/js/wp-embed.min.js?ver=4.7.5'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var cptch_vars = {"nonce":"a1b1fda1a2","ajaxurl":"\/\/theboredengineers.com\/wp-admin\/admin-ajax.php","enlarge":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='//theboredengineers.com/wp-content/plugins/captcha/js/front_end_script.js?ver=4.7.5'></script>
+
+</body>
+</html>
+<!-- Dynamic page generated in 0.285 seconds. -->
+<!-- File not cached! Super Cache Couldn't write to: wp-content/cache/supercache/theboredengineers.com/2012/12/28/a-max7456-library-for-arduino/1434532720592b1e7e193f87.42960486.tmp -->

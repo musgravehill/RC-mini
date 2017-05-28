@@ -1,3 +1,6 @@
+// see max7456registers.h  SET PAL
+
+
 void OSD_render() {
   osd.printMax7456Char(0x01, 0, 1);
   osd.print("Hello world :)", 1, 3);

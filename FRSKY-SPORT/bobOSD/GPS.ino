@@ -7,11 +7,11 @@ void GPS_distance_and_bearing() {
   // distance computation for hypothetical sphere of radius 6372795 meters.
   // Because Earth is no exact sphere, rounding errors may be up to 0.5%.
   // Courtesy of Maarten Lamers
+  double GPS_HOME_lat_rad = radians(GPS_HOME_lat);
+  double GPS_NOW_lat_rad = radians(GPS_NOW_lat);
   double delta = radians(GPS_HOME_long - GPS_NOW_long);
   double sdlong = sin(delta);
   double cdlong = cos(delta);
-  GPS_HOME_lat_rad = radians(GPS_HOME_lat);
-  GPS_NOW_lat_rad = radians(GPS_NOW_lat);
   double sGPS_HOME_lat = sin(GPS_HOME_lat_rad);
   double cGPS_HOME_lat = cos(GPS_HOME_lat_rad);
   double sGPS_NOW_lat = sin(GPS_NOW_lat_rad);
@@ -25,8 +25,6 @@ void GPS_distance_and_bearing() {
   GPS_HOME_dist = delta * 6372795;
 
   double dlon = radians(GPS_NOW_long - GPS_HOME_long);
-  GPS_HOME_lat_rad = radians(GPS_HOME_lat);
-  GPS_NOW_lat_rad = radians(GPS_NOW_lat);
   double a1 = sin(dlon) * cos(GPS_NOW_lat_rad);
   double a2 = sin(GPS_HOME_lat_rad) * cos(GPS_NOW_lat_rad) * cos(dlon);
   a2 = cos(GPS_HOME_lat_rad) * sin(GPS_NOW_lat_rad) - a2;
@@ -42,6 +40,15 @@ void GPS_test() {
   //по карте точка выше дома, расстояние метров 100-200
   GPS_NOW_lat = 57.695242;
   GPS_NOW_long = 39.767611;
+
+  //по карте точка ниже дома, расстояние метров 50
+  GPS_NOW_lat = 57.693556 ;
+  GPS_NOW_long = 39.768001;
+
+  //по карте точка левее дома, расстояние метров 300
+  GPS_NOW_lat = 57.693990;
+  GPS_NOW_long = 39.764136;
+
   GPS_distance_and_bearing();
 
   Serial.println("");
