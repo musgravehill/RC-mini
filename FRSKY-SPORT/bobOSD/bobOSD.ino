@@ -1,5 +1,5 @@
 
-// UPLOAD FONT TABLE, run MAX7456->Example->max7456WRITE 
+// UPLOAD FONT TABLE, run RC-mini\FRSKY-SPORT\Max7456WriteFONT
 
 
 #include <SPI.h>
