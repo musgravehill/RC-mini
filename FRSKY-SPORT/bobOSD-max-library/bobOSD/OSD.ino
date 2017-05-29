@@ -23,8 +23,8 @@
     pinMode(SPICLOCK,OUTPUT);
     pinMode(VSYNC, INPUT);
 
-   # define MAX7456ENABLE    PORTD&=B10111111;  //d6   PORTD отображается на цифровые выводы Arduino от 0 до 7.
-    # define MAX7456DISABLE   PORTD|=B01000000; //d6   PORTD отображается на цифровые выводы Arduino от 0 до 7.
+   # define MAX7456ENABLE    PORTD&=B10111111;  //d6 = SS  PORTD отображается на цифровые выводы Arduino от 0 до 7.
+    # define MAX7456DISABLE   PORTD|=B01000000; //d6 = SS  PORTD отображается на цифровые выводы Arduino от 0 до 7.
     # define MAX7456HWRESET   PORTB&=B11111011;delay(100);PORTB|=B00000100;   //d11 ?  PORTB отображается на цифровые выводы Arduino от 8 до 13
 
 
