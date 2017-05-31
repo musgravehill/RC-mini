@@ -10,13 +10,22 @@
           //#define ATTITUDE_SENSING_DISABLED
 */
 
-#include "FrSkySportSensor.h"
-#include "FrSkySportSingleWireSerial.h"
-#include "FrSkySportTelemetry.h"
-#include "SoftwareSerial.h"
+#include "FrSkySportTelemetry/FrSkySportSensor.h"
+#include "FrSkySportTelemetry/FrSkySportSingleWireSerial.h"
+#include "FrSkySportTelemetry/FrSkySportTelemetry.h"
+#include "FrSkySportTelemetry/FrSkySportPolling.h"
 
-#include "FrSkySportSensorGps.h"
-#include "FrSkySportSensorFcs.h"
+#include "FrSkySportTelemetry/FrSkySportSensor.cpp"
+#include "FrSkySportTelemetry/FrSkySportSingleWireSerial.cpp"
+#include "FrSkySportTelemetry/FrSkySportTelemetry.cpp"
+#include "FrSkySportTelemetry/FrSkySportPolling.cpp"
+#include <SoftwareSerial.h>
+
+#include "FrSkySportTelemetry/FrSkySportSensorGps.h"
+#include "FrSkySportTelemetry/FrSkySportSensorFcs.h"
+
+#include "FrSkySportTelemetry/FrSkySportSensorGps.cpp"
+#include "FrSkySportTelemetry/FrSkySportSensorFcs.cpp"
 
 FrSkySportSensorFcs sensor_fcs_main;
 FrSkySportSensorFcs sensor_fcs_video(FrSkySportSensor::ID15);
@@ -37,10 +46,10 @@ int16_t gps_h, gps_i, gps_s; // 12,59, 59);   // Time (hour, minute, second) - w
 
 
 void setup() {
-  frsky_telemetry.begin(FrSkySportSingleWireSerial::SOFT_SERIAL_PIN_12, &ssensor_fcs_main, &sensor_fcs_video, &sensor_gps);
+  frsky_telemetry.begin(FrSkySportSingleWireSerial::SOFT_SERIAL_PIN_12, &sensor_fcs_main, &sensor_fcs_video, &sensor_gps);
   Serial.begin(57600);
   delay(5000); //5s
-  Serial.println("$PMTK300,1000,0,0,0,0*1C"); //1Hz
+  Serial.println(F("$PMTK300,1000,0,0,0,0*1C")); //1Hz
 }
 
 void loop() {
