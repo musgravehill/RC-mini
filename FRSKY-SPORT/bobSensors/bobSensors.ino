@@ -1,6 +1,6 @@
 /*
-      USE RESISTOR TO S.PORT FROM 5v-ARDUINO. 
-      
+      USE RESISTOR TO S.PORT FROM 5v-ARDUINO.
+
 			  The default S.Port rate for polling a GPS is 1 hz.
 
 			  Use hardware serial for GPS. Disconnect GPS when programming.
@@ -16,9 +16,10 @@
 #include "SoftwareSerial.h"
 
 #include "FrSkySportSensorGps.h"
-#include "FrSkySportSensorFlvss.h"
+#include "FrSkySportSensorFcs.h"
 
-FrSkySportSensorFlvss sensor_flvss;
+FrSkySportSensorFcs sensor_fcs_main;
+FrSkySportSensorFcs sensor_fcs_video(FrSkySportSensor::ID15);
 FrSkySportSensorGps sensor_gps;
 
 FrSkySportTelemetry frsky_telemetry;
@@ -36,7 +37,7 @@ int16_t gps_h, gps_i, gps_s; // 12,59, 59);   // Time (hour, minute, second) - w
 
 
 void setup() {
-  frsky_telemetry.begin(FrSkySportSingleWireSerial::SOFT_SERIAL_PIN_12, &sensor_flvss, &sensor_gps);
+  frsky_telemetry.begin(FrSkySportSingleWireSerial::SOFT_SERIAL_PIN_12, &ssensor_fcs_main, &sensor_fcs_video, &sensor_gps);
   Serial.begin(57600);
   delay(5000); //5s
   Serial.println("$PMTK300,1000,0,0,0,0*1C"); //1Hz
@@ -54,7 +55,7 @@ void loop() {
         gps_alt = gps_parser.altitude.meters();
       }
       if (gps_parser.speed.isValid()) {
-        gps_speed = gps_parser.speed.kmph() * 1000/3600; // m\s
+        gps_speed = gps_parser.speed.kmph() * 1000 / 3600; // m\s
       }
       if (gps_parser.course.isValid()) {
         gps_course = gps_parser.course.deg();
@@ -83,11 +84,8 @@ void loop() {
     }
   }
 
-
-
-
-
-  sensor_flvss.setData(4.10, 4.11, 4.12);
+  sensor_fcs_main.setData(1, 12.58);
+  sensor_fcs_video.setData(1, 4.37);
 
   //setData(float lat, float lon, float alt, float speed, float cog, uint8_t year, uint8_t month, uint8_t day, uint8_t hour, uint8_t minute, uint8_t second);
   sensor_gps.setData(gps_lat, gps_lng,   // Latitude and longitude in degrees decimal (positive for N/E, negative for S/W)

@@ -93,7 +93,7 @@
 uint16_t MAX_screen_size;
 
 // Goods for tidiness
-#define VIDEO_MODE (Settings[S_VIDEOSIGNALTYPE] ? VIDEO_MODE_PAL : VIDEO_MODE_NTSC)
+#define VIDEO_MODE VIDEO_MODE_PAL
 
 uint8_t detectedCamType = 0;
 
@@ -172,39 +172,12 @@ void MAX7456Setup(void)
 #endif
 
   MAX7456ENABLE
-
-#ifdef AUTOCAM 
-  uint8_t srdata;
-
-  delay(1000/10); // Extra delay for input sync detection. 4 frames
-
-  spi_transfer(MAX7456ADD_STAT);
-  srdata = spi_transfer(0xFF); 
-  srdata &= B00000011;
-  if (srdata == B00000001){      // PAL
-    Settings[S_VIDEOSIGNALTYPE]=1; 
-    flags.signaltype = 1;
-  }
-  else if (srdata == B00000010){ // NTSC
-    Settings[S_VIDEOSIGNALTYPE]=0;
-    flags.signaltype = 0;
-  }
-  else{
-    flags.signaltype = 2 + Settings[S_VIDEOSIGNALTYPE]; // NOT DETECTED    
-  }
-  detectedCamType = srdata;
-#else
-  flags.signaltype = Settings[S_VIDEOSIGNALTYPE];
-#endif //AUTOCAM
-  if(Settings[S_VIDEOSIGNALTYPE]) {   // PAL
+ 
+  // PAL
     MAX7456_reset = 0x4C;
     MAX_screen_size = 480;
     MAX_screen_rows = 16;
-  }
-  else {                              // NTSC
-    MAX_screen_size = 390;
-    MAX_screen_rows=13;
-  }
+  
 
   // Set up the Max chip. Enable display + set standard.
   MAX7456_Send(MAX7456ADD_VM0, MAX7456_reset);
@@ -227,38 +200,17 @@ void MAX7456Setup(void)
     EICRA |= (1 << ISC01); // interrupt at the falling edge
   }
 #endif
-  readEEPROM_screenlayout();
+  
 }
 
 // Copy string from ram into screen buffer
 
-#ifdef INVERTED_CHAR_SUPPORT
-
-// XXX Have to check which derives the smaller code:
-// XXX (1) Prepare WriteString and WriteStringWithAttr
-// XXX (2) Pass call to WriteString to WriteStringWithAttr
 
 void MAX7456_WriteString(const char *string, int addr)
-{
-  MAX7456_WriteStringWithAttr(string, addr, 0);
-}
-
-void MAX7456_WriteStringWithAttr(const char *string, int addr, int attr)
-#else
-void MAX7456_WriteString(const char *string, int addr)
-#endif
 {
   char *screenp = &screen[addr];
   while (*string) {
     *screenp++ = *string++;
-#ifdef INVERTED_CHAR_SUPPORT
-    if (attr) {
-      bitSET(screenAttr, addr);
-    } else {
-      bitCLR(screenAttr, addr);
-    }
-    addr++;
-#endif
   }
 }
 
@@ -270,18 +222,6 @@ void MAX7456_WriteString_P(const char *string, int Adresse)
   while((c = (char)pgm_read_byte(string++)) != 0)
     *screenp++ = c;
 }
-
-#ifdef CANVAS_SUPPORT
-void MAX7456_ClearScreen(void)
-{
-  for(uint16_t xx = 0; xx < MAX_screen_size; ++xx) {
-    screen[xx] = ' ';
-#ifdef INVERTED_CHAR_SUPPORT
-    bitCLR(screenAttr, xx);
-#endif
-  }
-}
-#endif
 
 #ifdef USE_VSYNC
 volatile unsigned char vsync_wait = 0;
