@@ -43,68 +43,23 @@ float    gps_course; // 90.23 Course over ground in degrees (0-359, 0 = north)
 int16_t gps_y, gps_m, gps_d; //17, 4, 29,  Date (year - 2000, month, day)
 int16_t gps_h, gps_i, gps_s; // 12,59, 59);   // Time (hour, minute, second) - will be affected by timezone setings in your radio
 
-
+//TIMEMACHINE
+uint32_t TIMEMACHINE_prevMicros_333ms = 0L;
 
 void setup() {
   frsky_telemetry.begin(FrSkySportSingleWireSerial::SOFT_SERIAL_PIN_12, &sensor_fcs_main, &sensor_fcs_video, &sensor_gps);
   Serial.begin(57600);
-  delay(5000); //5s
+  Serial.flush();
+  delay(3000); //5s
   Serial.println(F("$PMTK300,1000,0,0,0,0*1C")); //1Hz
+  Serial.flush();
 }
 
 void loop() {
-
   while (Serial.available() > 0) {
-    if (gps_parser.encode(Serial.read())) {
-      if (gps_parser.location.isValid())  {
-        gps_lat = gps_parser.location.lat();
-        gps_lng = gps_parser.location.lng();
-      }
-      if (gps_parser.altitude.isValid()) {
-        gps_alt = gps_parser.altitude.meters();
-      }
-      if (gps_parser.speed.isValid()) {
-        gps_speed = gps_parser.speed.kmph() * 1000 / 3600; // m\s
-      }
-      if (gps_parser.course.isValid()) {
-        gps_course = gps_parser.course.deg();
-      }
-      if (gps_parser.date.isValid()) {
-        gps_y = gps_parser.date.year() - 2000;
-        gps_m = gps_parser.date.month();
-        gps_d = gps_parser.date.day();
-      }
-      if (gps_parser.time.isValid()) {
-        gps_h = gps_parser.time.hour();
-        gps_i = gps_parser.time.minute();
-        gps_s = gps_parser.time.second();
-      }
-
-      //printInt(gps.satellites.value(), gps.satellites.isValid(), 5);
-      //printInt(gps.hdop.value(), gps.hdop.isValid(), 5);
-      //printFloat(gps.location.lat(), gps.location.isValid(), 11, 6);
-      //printFloat(gps.location.lng(), gps.location.isValid(), 12, 6);
-      //printInt(gps.location.age(), gps.location.isValid(), 5);
-      //printDateTime(gps.date, gps.time);
-      //printFloat(gps.altitude.meters(), gps.altitude.isValid(), 7, 2);
-      //printFloat(gps.course.deg(), gps.course.isValid(), 7, 2);
-      //printFloat(gps.speed.kmph(), gps.speed.isValid(), 6, 2);
-      //printStr(gps.course.isValid() ? gps_parserlus::cardinal(gps.course.value()) : "*** ", 6);
-    }
+    GPS_process();
   }
-
-  sensor_fcs_main.setData(1, 12.58);
-  sensor_fcs_video.setData(1, 4.37);
-
-  //setData(float lat, float lon, float alt, float speed, float cog, uint8_t year, uint8_t month, uint8_t day, uint8_t hour, uint8_t minute, uint8_t second);
-  sensor_gps.setData(gps_lat, gps_lng,   // Latitude and longitude in degrees decimal (positive for N/E, negative for S/W)
-                     gps_alt ,                 // Altitude in m (can be negative)
-                     gps_speed,                 // Speed in m/s
-                     gps_course,                 // Course over ground in degrees (0-359, 0 = north)
-                     gps_y, gps_m, gps_d,             // Date (year - 2000, month, day)
-                     gps_h, gps_i, gps_s);           // Time (hour, minute, second) - will be affected by timezone setings in your radio
-
-  frsky_telemetry.send();
+  TIMEMACHINE_loop();
 }
 
 
