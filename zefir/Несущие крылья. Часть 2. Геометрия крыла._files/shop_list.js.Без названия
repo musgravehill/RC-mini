@@ -1,0 +1,24 @@
+ function show_mag(id){ 
+   if(document.getElementById('edit_'+id).style.display == "inline"){
+     hide_mag(id);
+     return;
+   }
+   document.getElementById('hide_'+id).style.display="inline";
+   document.getElementById('show_'+id).style.display="none";
+   document.getElementById('addr_'+id).style.display="none"; 
+   document.getElementById('edit_'+id).style.display="inline"; 
+   document.getElementById('edittable_'+id).style.display="block";
+}
+ function hide_mag(id){ 
+   document.getElementById('show_'+id).style.display="inline";
+   document.getElementById('hide_'+id).style.display="none";
+   document.getElementById('addr_'+id).style.display="block";
+   document.getElementById('edit_'+id).style.display="none"; 
+   document.getElementById('edittable_'+id).style.display="none";
+}
+
+function MM_jumpMenu(targ,selObj,restore){ 
+  eval(targ+".location='"+selObj.options[selObj.selectedIndex].value+"'");
+  if (restore) selObj.selectedIndex=0;
+}
+
